@@ -54,8 +54,12 @@
   --c-danger: #b3261e;
 
   /* ---- Type ------------------------------------------------------------ */
-  --font-display: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /*
+   * The *-Fallback families are metric-adjusted (see base.css) so the font-display: swap does not
+   * move the page. They must come before the generic stack.
+   */
+  --font-display: 'Poppins', 'Poppins Fallback', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', 'Inter Fallback', 'Segoe UI', system-ui, -apple-system, sans-serif;
 
   --fs-xs: 0.8125rem;
   --fs-sm: 0.9062rem;

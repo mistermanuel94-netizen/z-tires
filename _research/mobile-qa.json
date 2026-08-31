@@ -251,13 +251,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 128,
+        "time": 152,
         "el": "img"
       },
       "cls": 0,
-      "ttfb": 7,
-      "domContentLoaded": 32,
-      "transfer": 72022,
+      "ttfb": 4,
+      "domContentLoaded": 26,
+      "transfer": 72088,
       "resources": 9
     },
     "consoleErrors": []
@@ -272,13 +272,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 68,
+        "time": 88,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 4,
-      "domContentLoaded": 20,
-      "transfer": 56320,
+      "ttfb": 7,
+      "domContentLoaded": 26,
+      "transfer": 56402,
       "resources": 9
     },
     "consoleErrors": []
@@ -293,13 +293,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 84,
+        "time": 116,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 5,
+      "ttfb": 4,
       "domContentLoaded": 22,
-      "transfer": 97137,
+      "transfer": 97227,
       "resources": 7
     },
     "consoleErrors": []
@@ -314,13 +314,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 76,
+        "time": 72,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 5,
+      "ttfb": 4,
       "domContentLoaded": 24,
-      "transfer": 62367,
+      "transfer": 62443,
       "resources": 7
     },
     "consoleErrors": []
@@ -335,13 +335,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 72,
+        "time": 92,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 9,
-      "domContentLoaded": 32,
-      "transfer": 64194,
+      "ttfb": 8,
+      "domContentLoaded": 44,
+      "transfer": 64262,
       "resources": 7
     },
     "consoleErrors": []
@@ -356,13 +356,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 80,
+        "time": 76,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 41,
-      "transfer": 57598,
+      "ttfb": 9,
+      "domContentLoaded": 34,
+      "transfer": 57688,
       "resources": 9
     },
     "consoleErrors": []
@@ -382,8 +382,8 @@
       },
       "cls": 0,
       "ttfb": 9,
-      "domContentLoaded": 35,
-      "transfer": 54724,
+      "domContentLoaded": 34,
+      "transfer": 54814,
       "resources": 7
     },
     "consoleErrors": []
@@ -398,13 +398,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 64,
+        "time": 92,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 26,
-      "transfer": 54227,
+      "ttfb": 9,
+      "domContentLoaded": 40,
+      "transfer": 54317,
       "resources": 6
     },
     "consoleErrors": []
@@ -419,13 +419,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 88,
+        "time": 76,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 29,
-      "transfer": 70327,
+      "ttfb": 7,
+      "domContentLoaded": 25,
+      "transfer": 70427,
       "resources": 6
     },
     "consoleErrors": []
@@ -440,13 +440,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 76,
+        "time": 72,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 37,
-      "transfer": 59285,
+      "ttfb": 6,
+      "domContentLoaded": 26,
+      "transfer": 59375,
       "resources": 7
     },
     "consoleErrors": []
@@ -461,13 +461,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 76,
+        "time": 64,
         "el": "p.card__text"
       },
       "cls": 0,
-      "ttfb": 16,
-      "domContentLoaded": 38,
-      "transfer": 50977,
+      "ttfb": 4,
+      "domContentLoaded": 20,
+      "transfer": 51067,
       "resources": 6
     },
     "consoleErrors": []
@@ -482,13 +482,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 80,
+        "time": 92,
         "el": "p"
       },
       "cls": 0,
       "ttfb": 9,
-      "domContentLoaded": 33,
-      "transfer": 127046,
+      "domContentLoaded": 44,
+      "transfer": 127147,
       "resources": 6
     },
     "consoleErrors": []
@@ -508,8 +508,8 @@
       },
       "cls": 0,
       "ttfb": 7,
-      "domContentLoaded": 30,
-      "transfer": 56895,
+      "domContentLoaded": 26,
+      "transfer": 56985,
       "resources": 7
     },
     "consoleErrors": []
@@ -524,13 +524,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 108,
+        "time": 76,
         "el": "img"
       },
       "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 46,
-      "transfer": 73403,
+      "ttfb": 4,
+      "domContentLoaded": 25,
+      "transfer": 73493,
       "resources": 11
     },
     "consoleErrors": []
@@ -545,13 +545,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 88,
+        "time": 124,
         "el": "li"
       },
       "cls": 0,
       "ttfb": 8,
-      "domContentLoaded": 40,
-      "transfer": 63458,
+      "domContentLoaded": 87,
+      "transfer": 63548,
       "resources": 6
     },
     "consoleErrors": []
@@ -566,13 +566,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 112,
+        "time": 72,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 7,
-      "domContentLoaded": 38,
-      "transfer": 66878,
+      "ttfb": 8,
+      "domContentLoaded": 27,
+      "transfer": 66968,
       "resources": 7
     },
     "consoleErrors": []
@@ -587,13 +587,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 92,
+        "time": 84,
         "el": "p"
       },
       "cls": 0,
       "ttfb": 8,
-      "domContentLoaded": 33,
-      "transfer": 57873,
+      "domContentLoaded": 32,
+      "transfer": 57963,
       "resources": 6
     },
     "consoleErrors": []
@@ -608,13 +608,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 84,
+        "time": 80,
         "el": "p"
       },
       "cls": 0,
       "ttfb": 8,
-      "domContentLoaded": 38,
-      "transfer": 54830,
+      "domContentLoaded": 39,
+      "transfer": 54900,
       "resources": 6
     },
     "consoleErrors": []
@@ -629,13 +629,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 96,
+        "time": 116,
         "el": "p.page-head__lede"
       },
       "cls": 0,
       "ttfb": 8,
-      "domContentLoaded": 53,
-      "transfer": 124579,
+      "domContentLoaded": 48,
+      "transfer": 124682,
       "resources": 6
     },
     "consoleErrors": []
@@ -654,9 +654,9 @@
         "el": "p.page-head__lede"
       },
       "cls": 0,
-      "ttfb": 10,
-      "domContentLoaded": 40,
-      "transfer": 61136,
+      "ttfb": 9,
+      "domContentLoaded": 38,
+      "transfer": 61235,
       "resources": 6
     },
     "consoleErrors": []
@@ -671,13 +671,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 76,
+        "time": 92,
         "el": "p"
       },
       "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 33,
-      "transfer": 56851,
+      "ttfb": 9,
+      "domContentLoaded": 36,
+      "transfer": 80041,
       "resources": 6
     },
     "consoleErrors": []
@@ -692,13 +692,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 68,
+        "time": 88,
         "el": "p.page-head__lede"
       },
       "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 33,
-      "transfer": 49751,
+      "ttfb": 9,
+      "domContentLoaded": 40,
+      "transfer": 49841,
       "resources": 6
     },
     "consoleErrors": []
@@ -955,13 +955,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 96,
+        "time": 108,
         "el": "img"
       },
       "cls": 0,
       "ttfb": 4,
-      "domContentLoaded": 23,
-      "transfer": 72022,
+      "domContentLoaded": 27,
+      "transfer": 72088,
       "resources": 10
     },
     "consoleErrors": []
@@ -976,13 +976,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 96,
+        "time": 116,
         "el": "p"
       },
-      "cls": 0.0115,
-      "ttfb": 5,
-      "domContentLoaded": 29,
-      "transfer": 56320,
+      "cls": 0,
+      "ttfb": 3,
+      "domContentLoaded": 20,
+      "transfer": 56402,
       "resources": 10
     },
     "consoleErrors": []
@@ -997,13 +997,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 128,
+        "time": 152,
         "el": "img"
       },
-      "cls": 0.0056,
+      "cls": 0.0006,
       "ttfb": 8,
-      "domContentLoaded": 42,
-      "transfer": 97137,
+      "domContentLoaded": 43,
+      "transfer": 97227,
       "resources": 7
     },
     "consoleErrors": []
@@ -1018,13 +1018,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 92,
+        "time": 104,
         "el": "img"
       },
-      "cls": 0.0067,
+      "cls": 0,
       "ttfb": 8,
-      "domContentLoaded": 27,
-      "transfer": 62367,
+      "domContentLoaded": 37,
+      "transfer": 62443,
       "resources": 7
     },
     "consoleErrors": []
@@ -1039,13 +1039,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 68,
+        "time": 96,
         "el": "p"
       },
-      "cls": 0.0072,
-      "ttfb": 8,
-      "domContentLoaded": 26,
-      "transfer": 64194,
+      "cls": 0.0009,
+      "ttfb": 9,
+      "domContentLoaded": 34,
+      "transfer": 64262,
       "resources": 7
     },
     "consoleErrors": []
@@ -1060,13 +1060,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 104,
+        "time": 108,
         "el": "img"
       },
-      "cls": 0,
-      "ttfb": 8,
-      "domContentLoaded": 39,
-      "transfer": 57598,
+      "cls": 0.0002,
+      "ttfb": 9,
+      "domContentLoaded": 34,
+      "transfer": 57688,
       "resources": 10
     },
     "consoleErrors": []
@@ -1081,13 +1081,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 100,
+        "time": 96,
         "el": "img"
       },
-      "cls": 0.0065,
+      "cls": 0,
       "ttfb": 9,
       "domContentLoaded": 37,
-      "transfer": 54724,
+      "transfer": 54814,
       "resources": 7
     },
     "consoleErrors": []
@@ -1102,13 +1102,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 96,
+        "time": 112,
         "el": "p"
       },
-      "cls": 0.0015,
-      "ttfb": 8,
-      "domContentLoaded": 43,
-      "transfer": 54227,
+      "cls": 0.0001,
+      "ttfb": 9,
+      "domContentLoaded": 49,
+      "transfer": 54317,
       "resources": 6
     },
     "consoleErrors": []
@@ -1123,13 +1123,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 80,
+        "time": 84,
         "el": "p"
       },
-      "cls": 0.0049,
+      "cls": 0.0004,
       "ttfb": 6,
-      "domContentLoaded": 33,
-      "transfer": 70327,
+      "domContentLoaded": 29,
+      "transfer": 70427,
       "resources": 6
     },
     "consoleErrors": []
@@ -1144,13 +1144,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 100,
+        "time": 112,
         "el": "img"
       },
-      "cls": 0.0046,
-      "ttfb": 8,
+      "cls": 0.0026,
+      "ttfb": 9,
       "domContentLoaded": 40,
-      "transfer": 59285,
+      "transfer": 59375,
       "resources": 7
     },
     "consoleErrors": []
@@ -1165,13 +1165,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 68,
+        "time": 84,
         "el": "h1"
       },
-      "cls": 0.0018,
+      "cls": 0.0001,
       "ttfb": 8,
-      "domContentLoaded": 30,
-      "transfer": 50977,
+      "domContentLoaded": 40,
+      "transfer": 51067,
       "resources": 6
     },
     "consoleErrors": []
@@ -1186,13 +1186,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 88,
+        "time": 96,
         "el": "p"
       },
-      "cls": 0.0021,
+      "cls": 0.0001,
       "ttfb": 8,
-      "domContentLoaded": 33,
-      "transfer": 127046,
+      "domContentLoaded": 41,
+      "transfer": 127147,
       "resources": 6
     },
     "consoleErrors": []
@@ -1207,13 +1207,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 104,
+        "time": 100,
         "el": "img"
       },
-      "cls": 0,
+      "cls": 0.0013,
       "ttfb": 8,
-      "domContentLoaded": 42,
-      "transfer": 56895,
+      "domContentLoaded": 38,
+      "transfer": 56985,
       "resources": 7
     },
     "consoleErrors": []
@@ -1228,13 +1228,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 80,
-        "el": "h1"
+        "time": 124,
+        "el": "img"
       },
       "cls": 0,
-      "ttfb": 7,
-      "domContentLoaded": 28,
-      "transfer": 73403,
+      "ttfb": 8,
+      "domContentLoaded": 47,
+      "transfer": 73493,
       "resources": 24
     },
     "consoleErrors": []
@@ -1249,13 +1249,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 84,
+        "time": 72,
         "el": "h1"
       },
-      "cls": 0.0076,
-      "ttfb": 8,
-      "domContentLoaded": 31,
-      "transfer": 63458,
+      "cls": 0.0003,
+      "ttfb": 7,
+      "domContentLoaded": 25,
+      "transfer": 63548,
       "resources": 6
     },
     "consoleErrors": []
@@ -1270,13 +1270,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 108,
+        "time": 100,
         "el": "img"
       },
-      "cls": 0,
+      "cls": 0.0007,
       "ttfb": 8,
-      "domContentLoaded": 38,
-      "transfer": 66878,
+      "domContentLoaded": 32,
+      "transfer": 66968,
       "resources": 7
     },
     "consoleErrors": []
@@ -1291,13 +1291,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 84,
+        "time": 92,
         "el": "p"
       },
-      "cls": 0.0077,
-      "ttfb": 6,
-      "domContentLoaded": 25,
-      "transfer": 57873,
+      "cls": 0.0005,
+      "ttfb": 8,
+      "domContentLoaded": 38,
+      "transfer": 57963,
       "resources": 6
     },
     "consoleErrors": []
@@ -1312,13 +1312,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 60,
+        "time": 84,
         "el": "p"
       },
-      "cls": 0.0115,
-      "ttfb": 7,
-      "domContentLoaded": 24,
-      "transfer": 54830,
+      "cls": 0.0004,
+      "ttfb": 9,
+      "domContentLoaded": 40,
+      "transfer": 54900,
       "resources": 6
     },
     "consoleErrors": []
@@ -1333,13 +1333,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 108,
+        "time": 84,
         "el": "h1"
       },
-      "cls": 0.0012,
-      "ttfb": 9,
-      "domContentLoaded": 38,
-      "transfer": 124579,
+      "cls": 0.0003,
+      "ttfb": 8,
+      "domContentLoaded": 37,
+      "transfer": 124682,
       "resources": 6
     },
     "consoleErrors": []
@@ -1354,13 +1354,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 88,
+        "time": 96,
         "el": "h1"
       },
-      "cls": 0.0026,
+      "cls": 0.0002,
       "ttfb": 8,
       "domContentLoaded": 41,
-      "transfer": 61136,
+      "transfer": 61235,
       "resources": 6
     },
     "consoleErrors": []
@@ -1375,13 +1375,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 72,
-        "el": "p"
+        "time": 104,
+        "el": "h1"
       },
-      "cls": 0.0175,
-      "ttfb": 8,
-      "domContentLoaded": 29,
-      "transfer": 56851,
+      "cls": 0.0002,
+      "ttfb": 5,
+      "domContentLoaded": 28,
+      "transfer": 80041,
       "resources": 6
     },
     "consoleErrors": []
@@ -1396,13 +1396,13 @@
     "small": [],
     "vitals": {
       "lcp": {
-        "time": 76,
+        "time": 80,
         "el": "p.page-head__lede"
       },
-      "cls": 0.0014,
+      "cls": 0.0001,
       "ttfb": 8,
-      "domContentLoaded": 34,
-      "transfer": 49751,
+      "domContentLoaded": 29,
+      "transfer": 49841,
       "resources": 6
     },
     "consoleErrors": []

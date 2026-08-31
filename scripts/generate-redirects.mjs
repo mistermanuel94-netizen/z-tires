@@ -73,12 +73,40 @@ if (errors.length) {
 
 fs.mkdirSync('dist', { recursive: true });
 
+/**
+ * Percent-encode a path for the formats that are whitespace-delimited.
+ *
+ * The _redirects format and nginx's `location` directive both split on whitespace, so a rule for a
+ * path containing a literal space -- such as the old "/en/Terms & Conditions.pdf" -- truncates at
+ * the first space and never matches. Encoding makes the rule expressible. Segments already
+ * percent-encoded in the source are left alone.
+ */
+const encodePath = (p) =>
+  p
+    .split('/')
+    .map((seg) => (/%[0-9A-Fa-f]{2}/.test(seg) ? seg : encodeURIComponent(seg)))
+    .join('/');
+
+/** Two source rules can collapse to the same encoded path; keep the first. */
+const encodedRules = [];
+const seenEncoded = new Set();
+for (const r of rules) {
+  const from = encodePath(r.from);
+  if (seenEncoded.has(from)) continue;
+  seenEncoded.add(from);
+  encodedRules.push({ ...r, from });
+}
+
 // ── Netlify / Cloudflare Pages ─────────────────────────────────────────────────────────────
 const netlify = [
   '# Generated from src/data/redirects.ts — do not edit by hand.',
   '# Single-hop only. 410 = content that was fabricated or is a dead platform artefact.',
   '',
-  ...rules.map((r) => (r.status === 410 ? `${r.from}  /404  410` : `${r.from}  ${r.to}  301`)),
+  '# Paths are percent-encoded: this format is whitespace-delimited, so a literal space would',
+  '# truncate the rule.',
+  ...encodedRules.map((r) =>
+    r.status === 410 ? `${r.from}  /404  410` : `${r.from}  ${r.to}  301`,
+  ),
   '',
 ].join('\n');
 fs.writeFileSync('dist/_redirects', netlify);
@@ -126,7 +154,7 @@ const nginx = [
   '# Generated from src/data/redirects.ts — do not edit by hand.',
   '# include this file inside a server { } block.',
   '',
-  ...rules.map((r) =>
+  ...encodedRules.map((r) =>
     r.status === 410
       ? `location = ${r.from} { return 410; }`
       : `location = ${r.from} { return 301 ${r.to}; }`,
@@ -138,4 +166,9 @@ fs.writeFileSync('dist/nginx-redirects.conf', nginx);
 const n301 = rules.filter((r) => r.status === 301).length;
 const n410 = rules.filter((r) => r.status === 410).length;
 console.log(`generate-redirects: OK — ${rules.length} rules (${n301} x 301, ${n410} x 410)`);
+if (encodedRules.length !== rules.length) {
+  console.log(
+    `  ${rules.length - encodedRules.length} rule(s) collapsed to an existing encoded path in the whitespace-delimited formats`,
+  );
+}
 console.log('  wrote dist/_redirects, dist/vercel.json, dist/.htaccess, dist/nginx-redirects.conf');

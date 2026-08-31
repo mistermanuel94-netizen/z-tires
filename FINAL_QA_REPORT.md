@@ -12,7 +12,7 @@ Every gate exits non-zero on failure and runs in `npm run audit:full`.
 
 | Gate | Scope | Result |
 |---|---|---|
-| `npm run typecheck` | 65 files, `astro/tsconfigs/strictest` | **0 errors, 0 warnings, 0 hints** |
+| `npm run typecheck` | 67 files, `astro/tsconfigs/strictest` | **0 errors, 0 warnings, 0 hints** |
 | `npm run build` | Content schemas, metadata validation, redirect integrity, CSP validity | **29 pages, no errors** |
 | `npm run check:seo` | Titles, descriptions, canonicals, robots, OG, headings, alt, image dimensions, JSON-LD, orphans | **PASS** — 29 pages, 26 sitemap URLs |
 | `npm run check:links` | Broken links, redirect-source links, dead anchors, fragments, `noopener` | **PASS** — 2,080 internal links |
@@ -26,16 +26,16 @@ Every gate exits non-zero on failure and runs in `npm run audit:full`.
 
 | Check | Result |
 |---|---|
-| Every source URL has a destination | **86/86** — 75 × 301, 7 × 410, 2 unchanged, 2 non-HTML mirrored |
+| Every source URL has a destination | **86/86** — 76 × 301, 7 × 410, 2 unchanged, 2 non-HTML mirrored |
 | Redirect chains | **0** (source had 8) |
 | Redirect loops | **0** |
-| 301 targets verified present in `dist/` | **75/75** |
+| 301 targets verified present in `dist/` | **76/76** |
 | Genuine content assets lost | **0** |
 | Content rescued from the abandoned legacy install | **3** significant assets |
 | Verbatim quotations altered | **0** |
 | Testimonial text, names or dates changed | **0** |
-| Legal documents edited | **0** |
-| Downloadable documents byte-identical to source | **3/3** |
+| Legal documents **reissued on owner instruction** | 3 — every change logged on the page; the superseded 2012 PDF archived byte-identically |
+| Downloadable documents byte-identical to source | **3/3** (stock list XLSX and PDF, archived 2012 terms) |
 
 Redirect behaviour verified against a running build:
 
@@ -45,7 +45,10 @@ Redirect behaviour verified against a running build:
 410  /hello-world/
 404  /nope/
 200  /robots.txt
-200  /documents/flextyres-purchasing-terms.pdf   ← 404s on the live site
+301  /documents/flextyres-purchasing-terms.pdf   → /legal/purchasing-terms/
+301  /en/Terms%20&%20Conditions.pdf              → /legal/purchasing-terms/   ← 404s on the live site
+200  /legal/purchasing-terms/
+200  /documents/flextyres-purchasing-terms-2012.pdf
 ```
 
 ## 3. Desktop and mobile QA
@@ -65,8 +68,8 @@ Real Chrome via the DevTools Protocol, 22 routes × 4 viewports (320 / 390 / 768
 
 | | Mobile (390, DPR 3) | Desktop (1440) |
 |---|---|---|
-| Worst LCP | **96–128 ms** | **120 ms** |
-| Worst CLS | **0.0000** | **0.0175** |
+| Worst LCP | **152 ms** | **152 ms** |
+| Worst CLS | **0.0000** | **0.0026** |
 | Requests per page | 6–15 | 6–35 |
 | Blocking sub-resources | **0** | **0** |
 
@@ -111,6 +114,9 @@ Each was found by an automated gate and fixed in the site, not by weakening the 
 | 8 | Homepage meta description was 163 chars | `check-seo` (build-time throw) | Rewritten to 155 |
 | 9 | The 404 declared a canonical and `og:url`, asserting itself as a real document | `check-seo` | `isErrorPage` flag suppresses both; schema reduced to Organization + WebSite |
 | 10 | Type errors on optional `Location` properties under `exactOptionalPropertyTypes` | `typecheck` | Explicit `Location` interface with optional fields |
+| 11 | A redirect path containing a literal space (`/en/Terms & Conditions.pdf`) **could not be expressed** in the whitespace-delimited `_redirects` and nginx formats — it truncated at the first space and never matched | Manual redirect verification | Generator now percent-encodes paths for those two formats and de-duplicates rules that collapse to the same encoded path |
+| 12 | The purchasing-terms changelog table produced **0.043 CLS** on desktop — `nowrap` row headers made column widths font-dependent, so the display font swapping in reflowed the whole table | `check:mobile` | `table-layout: fixed` with an explicit `colgroup` |
+| 13 | Residual font-swap CLS remained on long text pages: `font-display: swap` replaced a metrically different fallback, moving everything below it | `check:mobile` | Metric-adjusted `@font-face` fallbacks (`ascent-override`, `descent-override`, `size-adjust`) for both families. **Site-wide worst CLS fell from 0.0175 to 0.0026** |
 
 ## 6. Content quality control
 
@@ -133,10 +139,10 @@ The build is deployable, but these should be resolved before or immediately at l
 
 | # | Action | Why it blocks | Reference |
 |---|---|---|---|
-| **1** | **Choose a form endpoint** | Forms currently open the visitor's mail client. Functional, and phone/WhatsApp/email are always present, but a real endpoint is expected | `DEPLOYMENT.md` §1, D-10 |
-| **2** | **Legal review of the privacy policy** | Three different policies are published on the live site; which governs is not an engineering decision | C-18 |
-| **3** | **Reissue the Purchasing Terms PDF** | The live document contains "30 **(change this)** days", no dispute-resolution mechanism selected, and 3% interest **per day** | C-19 |
-| **4** | **Decommission the legacy root WordPress install** | While it stays online it is a duplicate-content problem and an attack surface with a public login | `SEO_AUDIT.md`, `SECURITY_AUDIT.md` |
+| **1** | **Choose a form endpoint** | Deferred by the owner. Forms open the visitor's mail client; phone, WhatsApp and email are on every page, so no path is dead | `DEPLOYMENT.md` §1, D-10 |
+| **2** | ~~Legal review of the privacy policy~~ → **sign off privacy policy v2.0** | **Rewritten.** An operational policy replaces the boilerplate, which was factually wrong about this site. Needs a qualified adviser's approval, plus the registered entity name and enterprise number | C-18, D-20 |
+| **3** | ~~Reissue the Purchasing Terms PDF~~ → **sign off purchasing terms v2.0** | **Reissued.** All three defects fixed, every change logged on the page, 2012 PDF archived. Needs legal approval and confirmation of currency and payment method | C-19, D-21 |
+| **4** | **Decommission the legacy root WordPress install** | Verified still live on 2026-08-31, including a fabricated staff page and the public login. Requires hosting access this project does not have | [`LEGACY_DECOMMISSION.md`](LEGACY_DECOMMISSION.md) |
 
 ## 8. Non-blocking owner decisions
 
@@ -169,7 +175,7 @@ named.
 |---|---|---|
 | **Technical SEO** | **94** | Unique validated metadata on all 26 pages, 0 orphans, 0 chains, correct sitemap and robots, self-referential canonicals, 82 verified redirects. **−6:** every ranking URL moves, and re-indexing cannot be verified pre-launch. |
 | **Information Architecture** | **93** | Max depth 2, 6 previously unserved intents now served, cannibalisation resolved, every page justified by source content. **−7:** the product tier is only three pages deep because the source publishes nothing more granular. |
-| **Content Quality** | **88** | 100% of genuine content migrated, 3 assets rescued from the abandoned install, 8 unsupported claims removed, verbatim quotations preserved. **−12:** the source's own contradictions force hedging on tread depths, minimum order and truck grading until the owner resolves them. |
+| **Content Quality** | **91** | 100% of genuine content migrated, 3 assets rescued from the abandoned install, 8 unsupported claims removed, verbatim quotations preserved. Legal documents rewritten to be accurate and complete rather than inherited boilerplate. **−9:** the source's own contradictions still force hedging on tread depths, minimum order and truck grading until the owner resolves them. |
 | **Internal Linking** | **96** | 2,080 links, 0 broken, 0 pointing at a redirect, 0 orphans, build-enforced. **−4:** no editorial content exists to link from, so the graph is entirely commercial. |
 | **Structured Data** | **95** | 10 types, one byte-identical Organization across 29 pages, every FAQ/HowTo/breadcrumb claim verified visible, 22 unsupported properties blocklisted. **−5:** no Product or Offer markup — correct today, but a genuine commercial gap. |
 | **Entity Clarity** | **94** | One entity, one data module, address/phone/hours/contactPoint/knowsAbout all present, sameAs verified live. **−6:** no `foundingDate`, no Place ID, no LinkedIn — none can be invented. |
@@ -180,10 +186,10 @@ named.
 | **Accessibility** | **90** | 19/19 contrast pairs at AA, 0 overflow, 0 undersized targets, 0 structural violations, full keyboard operation, works without JS. **−10:** no screen-reader testing performed. |
 | **Mobile UX** | **95** | 0 overflow across 88 route/viewport combinations, 44px targets, fluid type, native disclosures. **−5:** the 348-checkbox picker is dense on a small screen even inside disclosures. |
 | **Conversion UX** | **89** | Quote CTA on every page, phone/WhatsApp/email in header, footer and CTA band, two product-specific forms, the orphaned Sprinter offer recovered. **−11:** no working backend endpoint yet; forms fall back to `mailto:`. |
-| **Security** | **93** | Hash-pinned CSP, 8 headers, 0 secrets, 0 third-party requests, 0 cookies, 0 npm vulnerabilities, entire WordPress surface removed. **−7:** `style-src 'unsafe-inline'` accepted; the legacy install is still live. |
+| **Security** | **94** | Hash-pinned CSP, 8 headers, 0 secrets, 0 third-party requests, 0 cookies, 0 npm vulnerabilities, entire WordPress surface removed. Full decommission runbook with interim mitigations that close the exposure before cutover. **−6:** `style-src 'unsafe-inline'` accepted; the legacy install is still live and outside this project's access. |
 | **Maintainability** | **95** | One source of truth for business facts, schema-validated collections, strictest TypeScript at 0 errors, 8 audit gates, documented decisions. **−5:** custom audit scripts are project-specific and need maintaining alongside the site. |
 
-### **Overall: 92.9 / 100**
+### **Overall: 93.2 / 100**
 
 ## 11. Sign-off
 
@@ -199,6 +205,12 @@ Two things are true at once and both belong in this report:
    addresses in different cities is a commercial risk, not a technical one. The rebuild surfaces
    every one of them, implements the least misleading option, and marks the uncertainty visibly
    rather than papering over it.
+
+Both legal documents have since been rewritten on owner instruction — the privacy policy because
+the inherited text described advertising cookies this site does not set, and the purchasing terms
+because three defects made parts of them unusable or unenforceable. Every change is logged on the
+page itself. Both remain **pending sign-off by a qualified adviser**, which is tracked in code:
+`legalDocs.*.legallyReviewed` is `false`, and that renders a visible review banner until it is set.
 
 The most valuable next step is not more engineering. It is a 30-minute conversation with FlexTyres
 about the six P1 items in `CONTENT_TRUST_CONFLICTS.md`.

@@ -42,6 +42,35 @@
     U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/*
+ * Metric-adjusted fallbacks.
+ *
+ * `font-display: swap` means the fallback renders first, then the web font replaces it. If the two
+ * have different metrics, everything below the swapped text moves — which is layout shift the user
+ * sees and Core Web Vitals counts. On long text pages the accumulation is significant: the
+ * purchasing terms page measured 0.043 CLS from this alone.
+ *
+ * Overriding the fallback's ascent, descent and advance width to match the web font makes the swap
+ * dimensionally identical, so nothing moves. Values follow the standard capsize-derived overrides
+ * for these two families against an Arial-metric fallback.
+ */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  ascent-override: 90%;
+  descent-override: 22.43%;
+  line-gap-override: 0%;
+  size-adjust: 107.12%;
+}
+@font-face {
+  font-family: 'Poppins Fallback';
+  src: local('Arial');
+  ascent-override: 93.75%;
+  descent-override: 31.25%;
+  line-gap-override: 0%;
+  size-adjust: 112%;
+}
+
 /* ---- Reset ------------------------------------------------------------ */
 *,
 *::before,

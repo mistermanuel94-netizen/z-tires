@@ -1,0 +1,109 @@
+---
+/**
+ * Review-status banner for legal documents. Renders only while `reviewed` is false, so it
+ * disappears automatically once a document is signed off in src/data/legal.ts.
+ */
+interface Props {
+  reviewed: boolean;
+  version: string;
+  effectiveDate: string;
+  supersedes?: { version: string; date: string } | undefined;
+  /** Extra sentence specific to this document. */
+  note?: string | undefined;
+}
+
+const { reviewed, version, effectiveDate, supersedes, note } = Astro.props;
+
+const fmt = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+---
+
+<div class="legal-meta">
+  <dl>
+    <div>
+      <dt>Version</dt>
+      <dd>{version}</dd>
+    </div>
+    <div>
+      <dt>Effective</dt>
+      <dd><time datetime={effectiveDate}>{fmt(effectiveDate)}</time></dd>
+    </div>
+    {
+      supersedes && (
+        <div>
+          <dt>Supersedes</dt>
+          <dd>
+            Version {supersedes.version} of{' '}
+            <time datetime={supersedes.date}>{fmt(supersedes.date)}</time>
+          </dd>
+        </div>
+      )
+    }
+  </dl>
+</div>
+
+{
+  !reviewed && (
+    <div class="note note--review" role="note">
+      <svg
+        class="note__icon"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        fill="currentColor"
+      >
+        <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z" />
+      </svg>
+      <div>
+        <p>
+          <strong>Pending legal review.</strong> This document has been drafted to describe how
+          FlexTyres actually operates and to correct defects in the version it replaces. It has not
+          yet been reviewed by a qualified legal adviser.
+        </p>
+        {note && <p>{note}</p>}
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .legal-meta {
+    margin-bottom: var(--s-5);
+  }
+  .legal-meta dl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-6);
+    margin: 0;
+    padding: var(--s-3) var(--s-4);
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    font-size: var(--fs-sm);
+  }
+  .legal-meta dl > div {
+    display: flex;
+    gap: var(--s-2);
+  }
+  .legal-meta dt {
+    font-weight: 600;
+    color: var(--c-text-muted);
+  }
+  .legal-meta dd {
+    margin: 0;
+    color: var(--c-ink-900);
+  }
+  .note--review {
+    border-color: var(--c-green-300);
+    background: var(--c-green-50);
+  }
+  .note--review .note__icon {
+    color: var(--c-green-800);
+  }
+</style>

@@ -14,7 +14,7 @@
 | 1 | Full public crawl | **PASS** | [`SITE_INVENTORY.md`](SITE_INVENTORY.md) — 86 URLs |
 | 2 | Content / asset / brand reverse engineering | **PASS** | [`docs/PHASE-2-ASSETS-AND-BRAND.md`](docs/PHASE-2-ASSETS-AND-BRAND.md), [`CONTENT_TRUST_CONFLICTS.md`](CONTENT_TRUST_CONFLICTS.md) |
 | 3 | Existing IA audit | **PASS** | [`docs/PHASE-3-5-ARCHITECTURE.md`](docs/PHASE-3-5-ARCHITECTURE.md) |
-| 4 | URL / canonical / redirect strategy | **PASS** | [`URL_REDIRECT_MAP.md`](URL_REDIRECT_MAP.md) — 82 rules |
+| 4 | URL / canonical / redirect strategy | **PASS** | [`URL_REDIRECT_MAP.md`](URL_REDIRECT_MAP.md) — 83 rules |
 | 5 | New information architecture | **PASS** | [`docs/PHASE-3-5-ARCHITECTURE.md`](docs/PHASE-3-5-ARCHITECTURE.md), [`docs/SEARCH_INTENT_MAP.md`](docs/SEARCH_INTENT_MAP.md) |
 | 6 | Astro architecture | **PASS** | [`ARCHITECTURE.md`](ARCHITECTURE.md) |
 | 7 | Design system | **PASS** | [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) |
@@ -25,7 +25,7 @@
 | 12 | Performance | **PASS** | [`PERFORMANCE_AUDIT.md`](PERFORMANCE_AUDIT.md) |
 | 13 | Accessibility + security | **PASS** | [`ACCESSIBILITY_AUDIT.md`](ACCESSIBILITY_AUDIT.md), [`SECURITY_AUDIT.md`](SECURITY_AUDIT.md) |
 | 14 | Full QA + regression | **PASS** | [`FINAL_QA_REPORT.md`](FINAL_QA_REPORT.md) |
-| 15 | Launch readiness | **PASS** (4 owner actions) | [`DEPLOYMENT.md`](DEPLOYMENT.md) |
+| 15 | Launch readiness | **PASS** (2 owner actions) | [`DEPLOYMENT.md`](DEPLOYMENT.md), [`LEGACY_DECOMMISSION.md`](LEGACY_DECOMMISSION.md) |
 | 16 | Documentation and handoff | **PASS** | This file |
 
 ## Current state
@@ -34,12 +34,12 @@
 |---|---|
 | Indexable pages | 26 |
 | Total built pages | 29 |
-| Redirect rules | 82 (75 × 301, 7 × 410) |
+| Redirect rules | 83 (76 × 301, 7 × 410) |
 | Automated gates | 9, all passing |
-| TypeScript errors | 0 across 65 files at `strictest` |
+| TypeScript errors | 0 across 67 files at `strictest` |
 | Client JavaScript | 461 bytes |
 | Homepage weight vs source | −96% |
-| Open owner decisions | 15 (6 at P1, 4 blocking launch) |
+| Open owner decisions | 15 (6 at P1, 2 blocking launch) |
 
 ## What was delivered
 
@@ -55,7 +55,14 @@ Beyond the rebuild, three things were recovered that the live site had lost or b
 3. **The Purchasing Terms document** — unreachable, because the only link to it 404s in the header
    and footer of every page.
 
-And 24 factual conflicts in the published content were documented rather than silently resolved.
+24 factual conflicts in the published content were documented rather than silently resolved.
+
+Both legal documents were subsequently **rewritten on owner instruction**: the privacy policy
+because the inherited text described advertising cookies this site does not set, and the purchasing
+terms because three defects made parts of them unusable or unenforceable. Every change is logged on
+the page. A [decommission runbook](LEGACY_DECOMMISSION.md) covers taking the legacy WordPress
+install down, with interim mitigations that close the duplicate-content and security exposure
+before the cutover.
 
 ## Metrics
 
@@ -67,7 +74,7 @@ And 24 factual conflicts in the published content were documented rather than si
 | Render-blocking requests | 62 | 0 |
 | Third-party origins on load | 6 | 0 |
 | Font faces | 26 | 4 |
-| Mobile LCP | not measurable through the JS slider | 96–128 ms |
+| Mobile LCP | not measurable through the JS slider | 152 ms |
 | Mobile CLS | — | 0.0000 |
 | Indexable URLs | 71 | 26 |
 | Pages without a meta description | 51 | 0 |
@@ -78,16 +85,16 @@ And 24 factual conflicts in the published content were documented rather than si
 | Images without alt text | ~120 | 0 |
 | WordPress plugins to patch | 19+ | 0 |
 
-**Final scorecard: 92.9 / 100** — breakdown in [`FINAL_QA_REPORT.md`](FINAL_QA_REPORT.md) §10.
+**Final scorecard: 93.2 / 100** — breakdown in [`FINAL_QA_REPORT.md`](FINAL_QA_REPORT.md) §10.
 
 ## Blocking owner actions
 
-| # | Action | Reference |
-|---|---|---|
-| 1 | Choose and harden a form endpoint | `DEPLOYMENT.md` §1 |
-| 2 | Legal review: which of three privacy policies governs | C-18 |
-| 3 | Reissue the Purchasing Terms PDF — it contains "(change this)", no dispute mechanism, and 3% interest **per day** | C-19 |
-| 4 | Decommission the legacy root WordPress install | `SEO_AUDIT.md`, `SECURITY_AUDIT.md` |
+| # | Action | Status | Reference |
+|---|---|---|---|
+| 1 | Choose and harden a form endpoint | Deferred by the owner; `mailto:` fallback in place | `DEPLOYMENT.md` §1 |
+| 2 | Privacy policy | **Done** — v2.0 written to describe actual processing. Sign-off outstanding | C-18 |
+| 3 | Purchasing terms | **Done** — v2.0 with all three defects fixed. Sign-off outstanding | C-19 |
+| 4 | Decommission the legacy WordPress install | **Runbook delivered.** Execution needs hosting access | [`LEGACY_DECOMMISSION.md`](LEGACY_DECOMMISSION.md) |
 
 ## P1 content decisions
 
@@ -106,7 +113,7 @@ Full register of all 15 in [`CONTENT_TRUST_CONFLICTS.md`](CONTENT_TRUST_CONFLICT
 
 **Migration** — [`SITE_INVENTORY.md`](SITE_INVENTORY.md) · [`CONTENT_TRUST_CONFLICTS.md`](CONTENT_TRUST_CONFLICTS.md) · [`CONTENT_MIGRATION.md`](CONTENT_MIGRATION.md) · [`URL_REDIRECT_MAP.md`](URL_REDIRECT_MAP.md)
 
-**Engineering** — [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) · [`DECISIONS.md`](DECISIONS.md) · [`DEPLOYMENT.md`](DEPLOYMENT.md)
+**Engineering** — [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) · [`DECISIONS.md`](DECISIONS.md) · [`DEPLOYMENT.md`](DEPLOYMENT.md) · [`LEGACY_DECOMMISSION.md`](LEGACY_DECOMMISSION.md)
 
 **Phase reports** — [`docs/`](docs/)
 

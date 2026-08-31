@@ -160,9 +160,14 @@ export const documents = {
     sizeLabel: '599 KB',
     type: 'PDF',
   },
-  purchasingTerms: {
-    href: '/documents/flextyres-purchasing-terms.pdf',
-    label: 'Purchasing Terms & Conditions',
+  /**
+   * The purchasing terms are now published as an HTML page (/legal/purchasing-terms/) rather than
+   * a PDF, so they are readable on a phone, indexable, and correctable. The superseded 2012 PDF is
+   * archived below because it still governs contracts concluded under it. See C-19.
+   */
+  purchasingTermsArchive: {
+    href: '/documents/flextyres-purchasing-terms-2012.pdf',
+    label: 'Purchasing Terms 2012 (superseded)',
     sizeLabel: '167 KB',
     type: 'PDF',
     lastUpdated: '2012-10-01',

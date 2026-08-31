@@ -114,16 +114,16 @@ Cross-links deliberately built:
 
 ## 7. Redirects
 
-**82 rules, 100% single-hop, validated at build time.**
+**83 rules, 100% single-hop, validated at build time.**
 
 | Type | Count |
 |---|---|
-| 301 | 75 |
+| 301 | 76 |
 | 410 | 7 |
 | Chains | **0** — enforced: a 301 whose target is itself a redirect source fails the build |
 | Loops | **0** — enforced |
 | Duplicate sources | **0** — enforced |
-| 301 targets verified to exist in `dist/` | **75 / 75** |
+| 301 targets verified to exist in `dist/` | **76 / 76** |
 
 Emitted for four hosts from one source of truth (`src/data/redirects.ts`): Netlify/Cloudflare
 `_redirects`, `vercel.json`, Apache `.htaccess`, nginx `conf`. Full table in
@@ -175,6 +175,11 @@ Single canonical site, 26 indexable pages each with unique validated metadata, o
 
 ### Remaining risks
 Moving from `/en/*` to root-level paths relocates every ranking URL. Mitigated by single-hop 301s
-from all 75 legacy URLs, preserved slugs where the existing slug was good, and a sitemap listing
+from all 76 legacy URLs, preserved slugs where the existing slug was good, and a sitemap listing
 only the new canonical set. Expect 4–8 weeks of re-indexing. Submit both the sitemap and a change
 of address in Search Console at launch.
+
+The duplicate-site problem is only fully resolved when the legacy WordPress install comes down.
+[`LEGACY_DECOMMISSION.md`](LEGACY_DECOMMISSION.md) sets out the sequence, and includes interim
+cross-install canonicals and `noindex` directives that can be applied to the live WordPress today
+to consolidate the duplicates before the cutover.

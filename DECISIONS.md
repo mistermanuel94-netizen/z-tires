@@ -29,7 +29,7 @@ most-linked URL on the site an extra redirect hop and splits the entity across t
 The live site's `/` → `/en/` redirect is on the critical path of every visit that starts at the
 apex — which is most of them.
 
-**Cost:** every ranking URL moves. Mitigated by 75 single-hop 301s and preserved slugs. Expect 4–8
+**Cost:** every ranking URL moves. Mitigated by 76 single-hop 301s and preserved slugs. Expect 4–8
 weeks of re-indexing.
 
 ---
@@ -257,3 +257,108 @@ size to the **layout** viewport in new headless mode. It produced mobile capture
 badly clipped while the page was in fact laying out correctly — a false positive that would have
 sent someone chasing a bug that did not exist. CDP emulation matches what the responsive
 measurements report, so images and metrics agree.
+
+---
+
+## D-20 — The privacy policy was rewritten, not preserved
+
+**Decision:** the inherited 2020 policy is superseded by an operational policy (v2.0) describing
+what this site actually does.
+
+**Why:** preserving it was the right call while its accuracy was untested; on inspection it was
+not merely undated, it was **factually wrong about this website**. It disclosed Google AdSense and
+DoubleClick advertising cookies, general cookie use and log-data collection — none of which this
+build performs. Publishing a policy that overstates processing is as inaccurate as one that
+understates it, and it invites a complaint that is trivially provable.
+
+It also omitted most of what GDPR Article 13 requires: no legal basis for any processing, no
+retention periods, no data-subject rights, no supervisory authority, no mention of international
+transfers by a company whose entire business is export.
+
+**What was preserved:** nothing that was true. The changelog on the page lists all ten corrections
+against the original.
+
+**Drift protection:** the analytics and form-processor sections render conditionally from
+`src/data/site.ts`. Switch on GA4 or a form endpoint and the policy text changes with it, so it
+cannot silently become untrue — which is exactly how the 2020 version became wrong.
+
+**Not claimed:** legal sufficiency. `legalDocs.privacy.legallyReviewed` is `false`, which renders a
+visible review banner until an adviser signs it off. Two facts required for a complete controller
+disclosure — the registered legal entity name and the Belgian enterprise number — are published
+nowhere and are flagged as `null` in `src/data/legal.ts` rather than invented.
+
+---
+
+## D-21 — The purchasing terms were reissued with defects fixed and commercial terms untouched
+
+**Decision:** version 2.0 published as HTML at `/legal/purchasing-terms/`. The 2012 PDF is archived
+byte-identically and still governs contracts concluded under it.
+
+**Why HTML rather than a PDF:** the terms are the most consequential document on the site and were
+the least reachable — a PDF behind a link that 404s on every page, unreadable on a phone,
+unindexable, and uncorrectable without regenerating a binary. As HTML they are readable, linkable,
+versioned in git and diffable.
+
+**The line drawn.** Three defects were fixed because they made the document unusable or
+unenforceable:
+
+1. `"30 (change this) days"` — an unedited template instruction in a live contract.
+2. Dispute resolution offered four options with **none selected**, leaving the mechanism undefined.
+3. Interest at **3% per day** compounds to over 1,000% annually. Under Article 7 of Directive
+   2011/7/EU that is grossly unfair and would very likely be struck out, taking the interest clause
+   with it. Replaced with the statutory rate the Directive sets — ECB reference + 8 percentage
+   points — which is enforceable and is what a Belgian court would apply anyway.
+
+A fourth was clarified rather than changed: an absolute 3-day bar covering *hidden* defects is hard
+to enforce against the CISG the contract itself adopts, so apparent and latent defects are now
+separated, with CISG Article 39 governing the latter.
+
+**Commercial terms were not touched** — net 30, the 10% restocking fee, the 50-tyre refund cap, the
+10% failure-to-take-delivery fee, the liability caps and the warranty disclaimer are all carried
+over as published. Those are the owner's commercial decisions, not defects, and an engineer has no
+standing to soften them.
+
+Clauses a cross-border B2B sale needs and the original lacked were added: Incoterms 2020 reference,
+export control and sanctions, anti-bribery, data protection, a workable notices clause (the
+original referred to "the above-named addresses" and never gave any), and currency and payment
+method per order.
+
+**Not claimed:** legal sufficiency. Sign-off is tracked in code the same way as the privacy policy.
+Two items remain owner decisions: currency and payment method, neither of which is published
+anywhere, and whether a 3-day apparent-defect window is commercially right for sea freight, where a
+buyer may not take delivery for weeks.
+
+---
+
+## D-22 — Redirect paths are percent-encoded for whitespace-delimited host formats
+
+**Decision:** `generate-redirects.mjs` percent-encodes paths when emitting `_redirects` and the
+nginx config, and de-duplicates rules that collapse to the same encoded path.
+
+**Why:** both formats are whitespace-delimited. The rule for the old
+`/en/Terms & Conditions.pdf` truncated at the first space and **never matched** — the generator
+emitted it, validation passed, and the redirect silently did nothing. Found by probing a running
+build rather than by reading the config, which is the only way this class of bug surfaces.
+
+Apache's `RewriteRule` and Vercel's JSON both handle literal spaces, so those formats keep the
+unencoded form.
+
+
+---
+
+## D-23 — Metric-adjusted font fallbacks rather than accepting swap shift
+
+**Decision:** two fallback `@font-face` declarations override `ascent`, `descent`, `line-gap` and
+`size-adjust` so the swap from fallback to web font is dimensionally identical.
+
+**Why:** `font-display: swap` is the right choice — it never blocks text — but it means the page
+renders once in a fallback and again in the web font. Where the two have different metrics, every
+element below the swapped text moves. Images were already immune (intrinsic `width`/`height`
+everywhere), so this was the entire remaining CLS source, and it scaled with page length: the
+purchasing terms page, the longest on the site, accumulated 0.043 on its own.
+
+Alternatives rejected: `font-display: optional` (text sometimes never gets the brand font);
+blocking the render on the font (worse LCP); dropping the web fonts (loses brand identity).
+
+**Result:** site-wide worst CLS **0.0175 → 0.0026**, mobile a flat 0.0000. No cost — the overrides
+are four lines of CSS and add no bytes to the font payload.

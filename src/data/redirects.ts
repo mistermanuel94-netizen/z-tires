@@ -200,15 +200,23 @@ export const redirects: Redirect[] = [
   // ── Documents: the purchasing terms link 404d on every page of the old site ─────────────
   {
     from: '/en/Terms%20&%20Conditions.pdf',
-    to: '/documents/flextyres-purchasing-terms.pdf',
+    to: '/legal/purchasing-terms/',
     status: 301,
-    reason: 'Renamed; the unencoded ampersand made the old link a site-wide 404',
+    reason:
+      'The unencoded ampersand made the old link a site-wide 404. Now points at the HTML terms, which are current, readable on a phone and indexable; the superseded 2012 PDF is linked from that page',
   },
   {
     from: '/en/Terms & Conditions.pdf',
-    to: '/documents/flextyres-purchasing-terms.pdf',
+    to: '/legal/purchasing-terms/',
     status: 301,
     reason: 'Unencoded variant of the above',
+  },
+  {
+    from: '/documents/flextyres-purchasing-terms.pdf',
+    to: '/legal/purchasing-terms/',
+    status: 301,
+    reason:
+      'The terms are now published as HTML; the superseded 2012 PDF is archived at /documents/flextyres-purchasing-terms-2012.pdf',
   },
   {
     from: '/EUSIZESFLEX.xlsx',

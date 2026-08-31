@@ -1,9 +1,27 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageHeader from '~/components/blocks/PageHeader.astro';
+import LegalNotice from '~/components/blocks/LegalNotice.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
 import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
 import { canonical } from '~/lib/seo';
-import { contact } from '~/data/site';
+import { contact, primaryLocation, analytics, formEndpoint } from '~/data/site';
+import { legalDocs, controller } from '~/data/legal';
+
+/**
+ * Operational privacy policy.
+ *
+ * This replaces the inherited 2020 plugin boilerplate, which described a site that no longer
+ * exists: it disclosed Google AdSense and DoubleClick cookies, general cookie use, and log data
+ * collection that this build does not perform. A policy that overstates processing is as
+ * inaccurate as one that understates it.
+ *
+ * The text below describes what this site actually does, and adapts to configuration: the
+ * analytics and form-processor sections render only when those are switched on in site.ts, so
+ * the policy cannot silently become untrue when they are.
+ *
+ * Resolves CONTENT_TRUST_CONFLICTS.md C-18.
+ */
 
 const path = '/legal/privacy-policy/';
 const url = canonical(path);
@@ -13,21 +31,18 @@ const crumbs: Crumb[] = [
   { name: 'Privacy policy', path },
 ];
 
-/**
- * Reproduced verbatim from https://flextyres.com/en/wpautoterms/privacy-policy/ (the current
- * install's version, dated 1 October 2020). Three different privacy policies are published across
- * the source site; selecting between legal documents is the owner's decision, not the engineer's.
- * See CONTENT_TRUST_CONFLICTS.md C-18.
- */
-const LAST_UPDATED = '2020-10-01';
+const doc = legalDocs.privacy;
+const analyticsEnabled = Boolean(analytics.ga4MeasurementId);
+const formProcessorUsed = Boolean(formEndpoint);
 
 const schema = graph(
   webPage({
     url,
     name: 'Privacy policy',
-    description: 'How FlexTyres collects, uses and discloses personal information.',
+    description:
+      'How FlexTyres collects, uses, stores and discloses personal data, and the rights you have under the GDPR.',
     breadcrumbId: `${url}#breadcrumb`,
-    datePublished: LAST_UPDATED,
+    datePublished: doc.effectiveDate,
   }),
   breadcrumbList(url, crumbs),
 );
@@ -35,7 +50,7 @@ const schema = graph(
 
 <BaseLayout
   title="Privacy Policy"
-  description="How FlexTyres collects, uses and discloses personal information from visitors to this website and from people who send an inquiry."
+  description="What personal data FlexTyres collects when you use this website or send an inquiry, why, how long it is kept, and the rights you have under the GDPR."
   path={path}
   schema={schema}
   crumbs={crumbs}
@@ -44,146 +59,440 @@ const schema = graph(
 
   <section class="section">
     <div class="container container--narrow prose">
-      <p class="meta">
-        Last updated: <time datetime={LAST_UPDATED}>1 October 2020</time>
-      </p>
+      <LegalNotice
+        reviewed={doc.legallyReviewed}
+        version={doc.version}
+        effectiveDate={doc.effectiveDate}
+        supersedes={doc.supersedes}
+        note="It describes processing accurately as at the effective date, but a qualified adviser should confirm it meets FlexTyres' obligations before it is relied upon."
+      />
 
-      <div class="note">
-        <svg
-          class="note__icon"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          fill="currentColor"
-        >
-          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
-        </svg>
+      <AnswerBlock label="In short">
+        <p>
+          This website sets <strong>no cookies</strong>, uses <strong>no tracking</strong> and loads
+          <strong>nothing from third parties</strong> unless you choose to open an embedded video or map.
+          The only personal data FlexTyres receives through this site is what you type into a contact
+          or quote form and send.
+        </p>
+      </AnswerBlock>
+
+      <h2>1. Who is responsible for your data</h2>
+      <p>FlexTyres is the data controller for personal data processed through this website.</p>
+      <dl class="facts">
         <div>
-          <p>
-            This policy is reproduced from the version published by FlexTyres. It is under review.
-            For a current statement of how your data is handled, contact FlexTyres at
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>.
-          </p>
+          <dt>Controller</dt>
+          <dd>{controller.name}</dd>
         </div>
-      </div>
+        <div>
+          <dt>Address</dt>
+          <dd>
+            {primaryLocation.street}, {primaryLocation.postalCode}
+            {primaryLocation.locality},
+            {' '}{primaryLocation.country}
+          </dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+        </div>
+        <div>
+          <dt>Telephone</dt>
+          <dd><a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a></dd>
+        </div>
+      </dl>
+      <p>
+        FlexTyres has not appointed a Data Protection Officer. Its core activity is the wholesale of
+        used tyres; it does not carry out large-scale monitoring of individuals and does not process
+        special categories of data at scale. Send any privacy question to the address above.
+      </p>
 
-      <p>
-        Flextyres | Used &amp; New Tyres Export ("us", "we", or "our") operates the Flextyres | Used
-        &amp; New Tyres Export website (the "Service").
-      </p>
-      <p>
-        This page informs you of our policies regarding the collection, use and disclosure of
-        Personal Information when you use our Service.
-      </p>
-      <p>
-        We will not use or share your information with anyone except as described in this Privacy
-        Policy.
-      </p>
-      <p>
-        We use your Personal Information for providing and improving the Service. By using the
-        Service, you agree to the collection and use of information in accordance with this policy.
-        Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the
-        same meanings as in our <a href="/legal/terms-and-conditions/">Terms and Conditions</a>.
-      </p>
-
-      <h2>Information collection and use</h2>
-      <p>
-        While using our Service, we may ask you to provide us with certain personally identifiable
-        information that can be used to contact or identify you. Personally identifiable information
-        ("Personal Information") may include, but is not limited to:
-      </p>
+      <h2>2. What this website does not do</h2>
+      <p>Stating this plainly, because the policy this replaces claimed otherwise:</p>
       <ul>
-        <li>Name</li>
-        <li>Telephone number</li>
-        <li>Address</li>
+        <li>
+          <strong>No cookies are set.</strong> Not for analytics, not for preferences, not for anything
+          else.
+        </li>
+        <li>
+          <strong>No tracking or profiling.</strong> There is no advertising pixel, no remarketing tag,
+          no fingerprinting.
+        </li>
+        <li>
+          <strong>No advertising networks.</strong> Google AdSense and DoubleClick are not used.
+        </li>
+        <li>
+          <strong>No third-party requests when a page loads.</strong> Fonts and images are served from
+          this domain.
+        </li>
+        <li><strong>No account, no login, no user-generated content.</strong></li>
+        <li>
+          <strong>No automated decision-making or profiling</strong> within the meaning of Article 22
+          GDPR.
+        </li>
+      </ul>
+      <p>
+        Because nothing is stored on your device and no tracking takes place, this site does not ask
+        for cookie consent. There is nothing to consent to.
+      </p>
+
+      <h2>3. What FlexTyres collects, and why</h2>
+
+      <h3>3.1 Information you send in a form</h3>
+      <p>
+        The contact form and the quote forms collect only what you type: your name, email address,
+        telephone or WhatsApp number, company name and country if you provide them, the tyre sizes,
+        grade and quantity you select, and your message.
+      </p>
+      <dl class="facts">
+        <div>
+          <dt>Purpose</dt>
+          <dd>To answer your inquiry and, if you go on to order, to carry out the sale.</dd>
+        </div>
+        <div>
+          <dt>Legal basis</dt>
+          <dd>
+            Steps taken at your request before entering into a contract, and performance of that
+            contract (Article 6(1)(b) GDPR). Where your message is a general inquiry rather than a
+            purchase, the basis is FlexTyres' legitimate interest in responding to people who
+            contact it (Article 6(1)(f)).
+          </dd>
+        </div>
+        <div>
+          <dt>Required?</dt>
+          <dd>
+            Only name, email, telephone and destination country are required, because without them
+            FlexTyres cannot reply or quote. Everything else is optional.
+          </dd>
+        </div>
+      </dl>
+      {
+        !formProcessorUsed && (
+          <p>
+            <strong>How the form is sent.</strong> The forms on this site currently open a message
+            in your own email application, pre-filled with what you entered. Nothing is transmitted
+            to this website or stored on it. Your message travels through your own email provider to
+            FlexTyres in the ordinary way.
+          </p>
+        )
+      }
+      {
+        formProcessorUsed && (
+          <p>
+            <strong>How the form is sent.</strong> Form submissions are transmitted over an
+            encrypted connection to a form-handling service acting as a processor on FlexTyres'
+            behalf, which forwards them to FlexTyres by email. That provider processes the data only
+            on FlexTyres' instructions under a data processing agreement.
+          </p>
+        )
+      }
+      <p>
+        Each form includes a hidden field that is never shown to you and should always remain empty.
+        It exists only to identify automated spam submissions. It collects nothing about you.
+      </p>
+
+      <h3>3.2 Contact by telephone, WhatsApp or email</h3>
+      <p>
+        If you call, message or email FlexTyres directly, it receives whatever you choose to share,
+        together with your number or email address. WhatsApp messages are carried by WhatsApp
+        Ireland Ltd under its own terms and privacy policy; FlexTyres does not control that service.
+        The legal basis is the same as for form inquiries.
+      </p>
+
+      <h3>3.3 Server logs</h3>
+      <p>
+        Like any website, this one is delivered by a hosting provider that keeps standard server
+        logs. These typically record the IP address making the request, the time, the page
+        requested, the referring page and the browser identification string. FlexTyres does not use
+        these logs to build any profile and does not combine them with form data.
+      </p>
+      <dl class="facts">
+        <div>
+          <dt>Purpose</dt>
+          <dd>Delivering the site, diagnosing faults, and protecting against abuse and attack.</dd>
+        </div>
+        <div>
+          <dt>Legal basis</dt>
+          <dd>
+            Legitimate interest in operating a secure and functioning website (Article 6(1)(f)).
+          </dd>
+        </div>
+        <div>
+          <dt>Retention</dt>
+          <dd>As set by the hosting provider, typically a short rolling window.</dd>
+        </div>
+      </dl>
+
+      <h3>3.4 Embedded video and maps</h3>
+      <p>
+        Some pages offer an embedded YouTube video or a Google map. <strong
+          >Neither loads automatically.</strong
+        > Each sits behind a button you have to activate. Until you do, no request is made to Google and
+        no data reaches it.
+      </p>
+      <p>
+        If you choose to load one, Google receives your IP address and may set cookies in your
+        browser under its own privacy policy, over which FlexTyres has no control. Videos are
+        embedded through <code>youtube-nocookie.com</code>, which reduces but does not eliminate
+        this. The legal basis for loading the embed is your consent, given by activating it (Article
+        6(1)(a)); you can withhold it simply by not opening the embed.
+      </p>
+
+      {
+        analyticsEnabled && (
+          <>
+            <h3>3.5 Analytics</h3>
+            <p>
+              This site uses Google Analytics 4 to understand how visitors use it, with IP
+              anonymisation enabled. Google Analytics sets cookies and may transfer data outside the
+              European Economic Area.
+            </p>
+            <dl class="facts">
+              <div>
+                <dt>Purpose</dt>
+                <dd>Aggregate measurement of how the site is used.</dd>
+              </div>
+              <div>
+                <dt>Legal basis</dt>
+                <dd>
+                  Your consent (Article 6(1)(a) GDPR and the ePrivacy rules on storing data on your
+                  device).
+                </dd>
+              </div>
+              <div>
+                <dt>Processor</dt>
+                <dd>Google Ireland Limited.</dd>
+              </div>
+            </dl>
+          </>
+        )
+      }
+
+      <h2>4. Who FlexTyres shares your data with</h2>
+      <p>FlexTyres does not sell your personal data and does not share it for advertising.</p>
+      <p>Your data may be shared with:</p>
+      <ul>
+        <li>
+          <strong>Its hosting and email providers</strong>, which process data on its instructions
+          in order to deliver the site and its email.
+        </li>
+        <li>
+          <strong>Transport, freight and customs partners</strong>, where you place an order and the
+          shipment cannot be completed without passing on consignee details. Only what the shipment
+          requires is shared.
+        </li>
+        <li>
+          <strong>Professional advisers and public authorities</strong>, where FlexTyres is legally
+          obliged to disclose, or needs to establish or defend a legal claim.
+        </li>
       </ul>
 
-      <h2>Log data</h2>
+      <h2>5. Transfers outside the European Economic Area</h2>
       <p>
-        We collect information that your browser sends whenever you visit our Service ("Log Data").
-        This Log Data may include information such as your computer's Internet Protocol ("IP")
-        address, browser type, browser version, the pages of our Service that you visit, the time
-        and date of your visit, the time spent on those pages and other statistics.
+        FlexTyres is based in Belgium and its customers are worldwide. If you place an order for
+        delivery outside the EEA, the details needed to ship and clear the goods will necessarily be
+        transferred to the destination country — that is inherent in the export itself, and is
+        necessary for performance of your contract (Article 49(1)(b) GDPR).
+      </p>
+      <p>
+        Where a service provider processes data outside the EEA, FlexTyres relies on an adequacy
+        decision or on the European Commission's standard contractual clauses.
       </p>
 
-      <h2>Cookies</h2>
+      <h2>6. How long data is kept</h2>
+      <dl class="facts">
+        <div>
+          <dt>Inquiries that do not lead to an order</dt>
+          <dd>
+            Kept while the conversation is active and for a reasonable period afterwards, then
+            deleted.
+          </dd>
+        </div>
+        <div>
+          <dt>Orders and related correspondence</dt>
+          <dd>
+            Kept for as long as Belgian commercial and tax law requires records of a transaction to
+            be retained.
+          </dd>
+        </div>
+        <div>
+          <dt>Server logs</dt>
+          <dd>As set by the hosting provider, typically a short rolling window.</dd>
+        </div>
+      </dl>
+      <p>Data no longer needed for any of these purposes is deleted.</p>
+
+      <h2>7. Your rights</h2>
+      <p>Under the GDPR you have the right to:</p>
+      <ul>
+        <li>
+          <strong>Access</strong> the personal data FlexTyres holds about you, and receive a copy.
+        </li>
+        <li><strong>Rectification</strong> of data that is inaccurate or incomplete.</li>
+        <li>
+          <strong>Erasure</strong> of your data, where there is no overriding reason to keep it.
+        </li>
+        <li><strong>Restriction</strong> of processing in certain circumstances.</li>
+        <li>
+          <strong>Portability</strong> — to receive data you provided in a machine-readable format, or
+          have it sent to another controller.
+        </li>
+        <li><strong>Object</strong> to processing based on legitimate interests.</li>
+        <li>
+          <strong>Withdraw consent</strong> at any time, where processing is based on consent. Withdrawing
+          it does not affect processing already carried out.
+        </li>
+      </ul>
       <p>
-        Cookies are files with a small amount of data, which may include an anonymous unique
-        identifier. Cookies are sent to your browser from a web site and stored on your computer's
-        hard drive.
-      </p>
-      <p>
-        We use cookies to collect information. You can instruct your browser to refuse all cookies
-        or to indicate when a cookie is being sent. However, if you do not accept cookies, you may
-        not be able to use some portions of our Service.
+        To exercise any of these, email <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+        FlexTyres will respond within one month. There is no charge, unless a request is manifestly
+        unfounded or excessive.
       </p>
 
-      <h2>Service providers</h2>
+      <h2>8. Complaints</h2>
       <p>
-        We may employ third party companies and individuals to facilitate our Service, to provide
-        the Service on our behalf, to perform Service-related services or to assist us in analyzing
-        how our Service is used.
+        If you are not satisfied with how FlexTyres has handled your data, you can complain to the
+        Belgian supervisory authority:
       </p>
+      <dl class="facts">
+        <div>
+          <dt>Authority</dt>
+          <dd>{controller.supervisoryAuthority.name}</dd>
+        </div>
+        <div>
+          <dt>Address</dt>
+          <dd>{controller.supervisoryAuthority.address}</dd>
+        </div>
+        <div>
+          <dt>Website</dt>
+          <dd>
+            <a href={controller.supervisoryAuthority.url} rel="noopener">
+              gegevensbeschermingsautoriteit.be
+            </a>
+          </dd>
+        </div>
+      </dl>
       <p>
-        These third parties have access to your Personal Information only to perform these tasks on
-        our behalf and are obligated not to disclose or use it for any other purpose.
-      </p>
-
-      <h2>Security</h2>
-      <p>
-        The security of your Personal Information is important to us, but remember that no method of
-        transmission over the Internet, or method of electronic storage is 100% secure. While we
-        strive to use commercially acceptable means to protect your Personal Information, we cannot
-        guarantee its absolute security.
-      </p>
-
-      <h2>Links to other sites</h2>
-      <p>
-        Our Service may contain links to other sites that are not operated by us. If you click on a
-        third party link, you will be directed to that third party's site. We strongly advise you to
-        review the Privacy Policy of every site you visit.
-      </p>
-      <p>
-        We have no control over, and assume no responsibility for the content, privacy policies or
-        practices of any third party sites or services.
+        If you live in another EU or EEA country, you may also complain to your own national
+        supervisory authority.
       </p>
 
-      <h2>Children's privacy</h2>
-      <p>Our Service does not address anyone under the age of 18 ("Children").</p>
+      <h2>9. Security</h2>
       <p>
-        We do not knowingly collect personally identifiable information from children under 18. If
-        you are a parent or guardian and you are aware that your child has provided us with Personal
-        Information, please contact us. If we discover that a child under 18 has provided us with
-        Personal Information, we will delete such information from our servers immediately.
-      </p>
-
-      <h2>Compliance with laws</h2>
-      <p>We will disclose your Personal Information where required to do so by law or subpoena.</p>
-
-      <h2>Changes to this privacy policy</h2>
-      <p>
-        We may update our Privacy Policy from time to time. We will notify you of any changes by
-        posting the new Privacy Policy on this page.
+        This site is served only over an encrypted HTTPS connection, with strict transport security
+        and a content security policy that prevents unauthorised code from running. It is a static
+        website: there is no database, no login and no administration interface, which removes most
+        of the ways a website is normally compromised.
       </p>
       <p>
-        You are advised to review this Privacy Policy periodically for any changes. Changes to this
-        Privacy Policy are effective when they are posted on this page.
+        No transmission over the internet can be guaranteed completely secure. FlexTyres takes
+        appropriate technical and organisational measures, but cannot guarantee absolute security.
       </p>
 
-      <h2>Contact us</h2>
+      <h2>10. Children</h2>
       <p>
-        If you have any questions about this Privacy Policy, email
-        <a href={`mailto:${contact.email}`}>{contact.email}</a> or use the
+        This website is aimed at businesses buying tyres in commercial quantities. It is not
+        directed at children and FlexTyres does not knowingly collect data from anyone under 16. If
+        you believe a child has provided personal data, contact
+        <a href={`mailto:${contact.email}`}>{contact.email}</a> and it will be deleted.
+      </p>
+
+      <h2>11. Changes to this policy</h2>
+      <p>
+        If this policy changes, the new version will be published on this page with a new version
+        number and effective date. Material changes affecting how your data is used will be flagged
+        clearly.
+      </p>
+
+      <h2>12. What changed in this version</h2>
+      <p>
+        Version 2.0 replaces a policy dated 1 October 2020 that had been generated by a WordPress
+        plugin and no longer described this website. Specifically:
+      </p>
+      <div class="table-scroll">
+        <table>
+          <caption>Changes from version 1.0 (1 October 2020)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Version 1.0 said</th>
+              <th scope="col">Why it changed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Google AdSense and DoubleClick cookies are used to serve ads</th>
+              <td>Untrue. No advertising network is used and no ads are served.</td>
+            </tr>
+            <tr>
+              <th scope="row">"We use cookies to collect information"</th>
+              <td>Untrue of this site. It sets no cookies at all.</td>
+            </tr>
+            <tr>
+              <th scope="row">Log data is collected including IP, browser and time on page</th>
+              <td>
+                Corrected. The site itself collects nothing; standard logs are kept by the hosting
+                provider, and that is now stated accurately with its purpose, basis and retention.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">No legal basis stated for any processing</th>
+              <td>Added for every category — GDPR Article 13 requires it.</td>
+            </tr>
+            <tr>
+              <th scope="row">No data subject rights listed</th>
+              <td>All seven rights now listed, with how to exercise them.</td>
+            </tr>
+            <tr>
+              <th scope="row">No supervisory authority named</th>
+              <td>The Belgian Data Protection Authority is now identified, with its address.</td>
+            </tr>
+            <tr>
+              <th scope="row">No retention periods</th>
+              <td>Added for each category of data.</td>
+            </tr>
+            <tr>
+              <th scope="row">No mention of international transfers</th>
+              <td>
+                Added — unavoidable for a business that exports worldwide, and required disclosure.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">"Does not address anyone under 18"</th>
+              <td
+                >Aligned with the GDPR threshold of 16, and with the fact that this is a trade-only
+                site.</td
+              >
+            </tr>
+            <tr>
+              <th scope="row">Controller identified only as a trading name</th>
+              <td>Full postal address, email and telephone now given.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Contact</h2>
+      <p>
+        Any question about this policy or about your data:
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>, or
+        <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>. You can also use the
         <a href="/contact/">contact form</a>.
+      </p>
+
+      <p class="small">
+        Related: <a href="/legal/purchasing-terms/">purchasing terms</a> ·
+        <a href="/legal/terms-and-conditions/">website terms</a>
       </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .meta {
+  .small {
     font-size: var(--fs-sm);
     color: var(--c-text-muted);
+  }
+  th[scope='row'] {
+    font-weight: 400;
+    color: var(--c-ink-700);
   }
 </style>

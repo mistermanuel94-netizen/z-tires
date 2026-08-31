@@ -333,10 +333,12 @@ credibility) · **LOW** (cosmetic inconsistency).
 | **Source C** | `https://flextyres.com/privacy-policy/` — **1,050 words**, a different Divi-era document, **sharing an identical `<title>` with Source B** |
 | **Severity** | HIGH |
 | **Risk** | Three indexable privacy policies, no effective dates, no indication which governs. For a business processing EU personal data through contact and quote forms, this is a compliance exposure, not merely an SEO defect. |
-| **Safe to normalise?** | **NO — legal content must not be selected by an engineer** |
-| **Chosen implementation** | The rebuild publishes **one** privacy policy at `/legal/privacy-policy/`, carrying the **current install's** text (Source A) verbatim, unedited. Sources B and C 301 to it. A visible note states: *"This policy is reproduced from the version published by FlexTyres. It is under review."* The form pages link to it. |
-| **Owner verification required?** | **YES — BLOCKING for legal sign-off** |
-| **Reason** | Selecting between three legal documents is the owner's decision, not the engineer's. The rebuild preserves the current-install version and changes not a word of it, but the owner must confirm which policy governs and have it dated and reviewed. |
+| **Safe to normalise?** | **NO — but superseding all three was authorised by the owner** |
+| **Original implementation** | One policy at `/legal/privacy-policy/`, carrying Source A verbatim, marked "under review". |
+| **Chosen implementation (revised 2026-08-31, on owner instruction)** | **All three are superseded by a new operational policy, version 2.0.** The inherited text was not merely undated — it was *factually wrong about this website*. It disclosed Google AdSense and DoubleClick advertising cookies, general cookie use, and log-data collection, none of which this build performs. An overstated policy is as inaccurate as an understated one. Version 2.0 describes actual processing: no cookies, no tracking, no third-party requests on load, click-to-load embeds, form data by email, and host server logs. It adds what GDPR Article 13 requires and the original omitted entirely — legal basis per processing activity, retention periods, all seven data-subject rights, international transfers, and the Belgian supervisory authority. A changelog on the page lists all ten corrections. Sources B and C 301 to it. |
+| **Drift protection** | The analytics and form-processor sections render **conditionally** from `src/data/site.ts`. If GA4 or a form endpoint is switched on, the policy text changes with it, so it cannot silently become untrue. |
+| **Owner verification required?** | **YES — legal sign-off still outstanding** |
+| **Reason** | The document is accurate as to fact and structured to GDPR Article 13, but "accurate" is not the same as "legally sufficient". `legalDocs.privacy.legallyReviewed` is `false`, which renders a visible review banner; setting it to `true` removes the banner. Two facts remain unavailable and are flagged in `src/data/legal.ts` rather than invented: the **registered legal entity name** and the **Belgian enterprise number**, both required for a complete controller disclosure. |
 
 ---
 
@@ -353,10 +355,12 @@ credibility) · **LOW** (cosmetic inconsistency).
 | **Defect 5** | **The only link to this document 404s on every page of the site** (unencoded `&` in the href) |
 | **Severity** | HIGH |
 | **Risk** | Buyers are directed to terms they cannot open; if they could, they would find an undefined dispute mechanism, a template placeholder and a punitive interest rate. |
-| **Safe to normalise?** | **NO — the engineer must not edit a legal document** |
-| **Chosen implementation** | The PDF is mirrored **byte-for-byte, unaltered**, at `/documents/flextyres-purchasing-terms.pdf`, and the broken link is fixed so it is reachable from the header, the footer and every quote page. A `/legal/purchasing-terms/` HTML landing page summarises only the **unambiguous, uncontested** commercial terms — net-30 payment, three-day inspection window, 10 % restocking fee, refunds up to 50 tyres, title passing at destination port, Belgian governing law, CISG applies — links to the authoritative PDF, and states its 2012 date plainly. **Defects 1, 2 and 3 are neither reproduced nor paraphrased in site copy.** |
-| **Owner verification required?** | **YES — BLOCKING for legal sign-off** |
-| **Reason** | Three substantive defects in a live commercial contract require legal review and reissue. The rebuild fixes the delivery problem — the 404 — but cannot and must not fix the document. |
+| **Safe to normalise?** | **NO — but reissue was authorised by the owner** |
+| **Original implementation** | The PDF mirrored byte-for-byte, with an HTML page summarising only the uncontested commercial terms and reproducing none of the defects. |
+| **Chosen implementation (revised 2026-08-31, on owner instruction)** | **Version 2.0 issued as full HTML at `/legal/purchasing-terms/`.** The 2012 PDF is archived byte-identically at `/documents/flextyres-purchasing-terms-2012.pdf`, remains linked from the page, and still governs contracts concluded under it. Defects fixed: **(1)** the `(change this)` placeholder now reads 30 days; **(2)** dispute resolution is now defined — good-faith negotiation for 30 days, then exclusive jurisdiction of the courts of Brussels, which follows from the existing Belgian governing-law clause; **(3)** the 3%-per-day interest rate is replaced by the **statutory rate under Directive 2011/7/EU** (ECB reference rate + 8 percentage points) plus the €40 minimum recovery compensation the Directive mandates. **(4)** The absolute 3-day bar is split: 3 working days for defects apparent on inspection, with latent defects governed by CISG Article 39 — an absolute bar covering hidden defects is hard to enforce against the CISG the contract itself adopts. Clauses a cross-border B2B sale needs and the original lacked were added: Incoterms 2020 reference, export control and sanctions, anti-bribery, data protection, a workable notices clause, and currency and payment method per order. |
+| **Not changed** | **Every commercial term is carried over as published** — net 30, the 10% restocking fee, the 50-tyre refund cap, the 10% failure-to-take-delivery fee, the liability caps and the warranty disclaimer. Those are the owner's commercial decisions, not defects. |
+| **Owner verification required?** | **YES — legal sign-off still outstanding** |
+| **Reason** | The defects that made the document unusable or unenforceable are fixed and every change is listed in a changelog on the page. It still requires a qualified adviser's approval before it is used to conclude contracts; `legalDocs.purchasingTerms.legallyReviewed` is `false` and renders a visible banner until set. Two items remain owner decisions: the **currency and payment method** (neither published anywhere), and whether the 3-day apparent-defect window is commercially right for sea freight, where a buyer may not take delivery for weeks. |
 
 ---
 
@@ -454,8 +458,8 @@ implementation in place — but each represents a claim the owner alone can reso
 | C-02 | Confirm the Belgium office address (and whether "Map box 16" should read "box 16") | **P1** |
 | C-05 | Confirm whether a 1,000-piece order is still accepted, or whether container/van minimums are the only routes | **P1** |
 | C-14 | Supply real staff details, or confirm the site carries no team section | **P1** |
-| C-18 | Confirm which privacy policy governs; have it dated and legally reviewed | **P1 — legal** |
-| C-19 | Reissue the Purchasing Terms PDF: fill the "(change this)" placeholder, select a dispute-resolution mechanism, confirm the 3 %/day interest rate | **P1 — legal** |
+| C-18 | **Superseded — legal sign-off outstanding.** Privacy policy v2.0 issued; supply the registered entity name and enterprise number, then set `legallyReviewed: true` | **P1 — legal** |
+| C-19 | **Superseded — legal sign-off outstanding.** Purchasing terms v2.0 issued with all three defects fixed; confirm currency, payment method and the 3-day apparent-defect window, then set `legallyReviewed: true` | **P1 — legal** |
 | C-04 | Confirm whether the Hollywood, Florida warehouse is operational | **P2** |
 | C-09 | Confirm whether sales are restricted to wholesalers, retailers, or both | **P2** |
 | C-12 | Confirm current truck grading criteria and export restrictions | **P2** |

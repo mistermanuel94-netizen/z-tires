@@ -4,7 +4,7 @@ import PageHeader from '~/components/blocks/PageHeader.astro';
 import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
 import { canonical } from '~/lib/seo';
 import { legalNav } from '~/data/nav';
-import { documents } from '~/data/site';
+import { legalDocs } from '~/data/legal';
 
 const path = '/legal/';
 const url = canonical(path);
@@ -13,12 +13,18 @@ const crumbs: Crumb[] = [
   { name: 'Legal', path },
 ];
 
+const fmt = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+
 const notes: Record<string, string> = {
-  '/legal/purchasing-terms/': `The terms that govern a purchase from FlexTyres. Last updated ${documents.purchasingTerms.lastUpdated}.`,
-  '/legal/terms-and-conditions/':
-    'The terms that govern use of this website. Last updated 1 October 2020.',
-  '/legal/privacy-policy/':
-    'How FlexTyres handles personal information. Last updated 1 October 2020.',
+  '/legal/purchasing-terms/': `The terms that govern a purchase. Version ${legalDocs.purchasingTerms.version}, effective ${fmt(legalDocs.purchasingTerms.effectiveDate)}. The superseded 2012 version is archived and linked from the page.`,
+  '/legal/terms-and-conditions/': `The terms that govern use of this website. Version ${legalDocs.websiteTerms.version}, effective ${fmt(legalDocs.websiteTerms.effectiveDate)}.`,
+  '/legal/privacy-policy/': `What personal data FlexTyres collects, why, and the rights you have. Version ${legalDocs.privacy.version}, effective ${fmt(legalDocs.privacy.effectiveDate)}.`,
 };
 
 const schema = graph(
@@ -74,9 +80,13 @@ const schema = graph(
         </svg>
         <div>
           <p>
-            These documents are reproduced from the versions FlexTyres publishes. They are dated
-            2012 and 2020 respectively and are under review. Contact FlexTyres for the current
-            version before entering into a contract.
+            These documents were rewritten to describe how FlexTyres and this website actually
+            operate, and to correct defects in the versions they replace. Each page lists exactly
+            what changed and why.
+          </p>
+          <p>
+            They are <strong>pending review by a qualified legal adviser</strong>. Contact FlexTyres
+            if you need confirmation of the terms applying to a specific order.
           </p>
         </div>
       </div>

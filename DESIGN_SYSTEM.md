@@ -76,6 +76,19 @@ Google Fonts requests** — to render three.
 Self-hosted woff2, latin subset, **62.4 KB total**, `font-display: swap`. The two above-the-fold
 faces are preloaded. No connection to `fonts.googleapis.com` or `fonts.gstatic.com`.
 
+**Metric-adjusted fallbacks.** `swap` renders a fallback first, then replaces it. If the metrics
+differ, everything below the swapped text moves. Two fallback families in `base.css` override
+`ascent`, `descent`, `line-gap` and `size-adjust` so the fallback occupies exactly the space the
+web font will, and the swap causes no shift:
+
+| Fallback family | size-adjust | ascent-override | descent-override |
+|---|---|---|---|
+| `Inter Fallback` | 107.12% | 90% | 22.43% |
+| `Poppins Fallback` | 112% | 93.75% | 31.25% |
+
+They sit between the web font and the generic stack in `--font-display` and `--font-body`. Site-wide
+worst CLS fell from 0.0175 to **0.0026** when these were added.
+
 Inter replaces Open Sans: metrically closer to the observed body rendering and smaller. Roboto was
 loaded but never used.
 

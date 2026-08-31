@@ -183,8 +183,8 @@ buyers — and is flagged as an owner decision rather than assumed either way.
 | `style-src 'unsafe-inline'` | Low | Accepted, documented (D-12) |
 | Form endpoint not yet chosen | **Medium** | **Owner action required before launch** |
 | GA4 consent mechanism if analytics is enabled | Medium | Documented in `DEPLOYMENT.md`; not triggered by the current build |
-| Legacy WordPress install remains online with a public login | **High — but outside this repository** | Owner must decommission it after the redirect layer is live |
-| Purchasing Terms PDF contains an unfilled template placeholder and no dispute-resolution selection | **High (legal, not technical)** | C-19; requires legal review |
+| Legacy WordPress install remains online with a public login | **High — outside this repository** | Verified still live 2026-08-31. Full runbook in [`LEGACY_DECOMMISSION.md`](LEGACY_DECOMMISSION.md), including hardening that can be applied to the live WordPress **today** without waiting for the cutover |
+| Purchasing Terms defects | ~~High~~ **Resolved** | Version 2.0 issued: placeholder filled, dispute resolution defined, unenforceable interest rate replaced with the statutory rate. Legal sign-off still outstanding — C-19 |
 
 ## PHASE RESULT — Phase 13, Security
 
@@ -198,6 +198,9 @@ buyers — and is flagged as an owner decision rather than assumed either way.
 - Entire WordPress attack surface eliminated
 
 ### Remaining risks
-The form endpoint must be chosen and hardened before launch. The legacy WordPress install must be
-decommissioned — while it remains online it is both a security surface and, per `SEO_AUDIT.md`,
-an active duplicate-content problem.
+The form endpoint is deferred by the owner; the `mailto:` fallback keeps every contact path live in
+the meantime. The legacy WordPress install must still be decommissioned — while it remains online it
+is both a security surface and, per `SEO_AUDIT.md`, an active duplicate-content problem.
+[`LEGACY_DECOMMISSION.md`](LEGACY_DECOMMISSION.md) provides the executable sequence, including
+`functions.php` hardening that disables XML-RPC, restricts the REST API and blocks user enumeration
+on the live install immediately.

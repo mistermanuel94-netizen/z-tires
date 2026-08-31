@@ -1,10 +1,28 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageHeader from '~/components/blocks/PageHeader.astro';
+import LegalNotice from '~/components/blocks/LegalNotice.astro';
 import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
 import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
 import { canonical } from '~/lib/seo';
-import { documents, contact } from '~/data/site';
+import { contact, primaryLocation } from '~/data/site';
+import { legalDocs } from '~/data/legal';
+
+/**
+ * Purchasing terms, version 2.0.
+ *
+ * The 2012 document remains the authoritative text for contracts already concluded under it and is
+ * archived at /documents/flextyres-purchasing-terms-2012.pdf.
+ *
+ * This version corrects three defects that made the original partly unusable and partly
+ * unenforceable — an unfilled template placeholder, an unselected dispute-resolution mechanism,
+ * and a 3%-per-day interest rate — and adds clauses a cross-border B2B sale needs. Commercial
+ * terms (net 30, the restocking fee, the refund cap) are carried over unchanged: those are the
+ * owner's decisions, not defects.
+ *
+ * Every change is listed in the changelog at the foot of the page. Resolves
+ * CONTENT_TRUST_CONFLICTS.md C-19.
+ */
 
 const path = '/legal/purchasing-terms/';
 const url = canonical(path);
@@ -14,94 +32,68 @@ const crumbs: Crumb[] = [
   { name: 'Purchasing terms', path },
 ];
 
-/**
- * This page summarises only the unambiguous commercial terms from the published PDF, and links to
- * the PDF itself as the authoritative document. It deliberately does not restate the document's
- * unfilled template placeholder, its blank dispute-resolution selection, or its 3%-per-day
- * interest clause — see CONTENT_TRUST_CONFLICTS.md C-19.
- */
-const terms = [
+const doc = legalDocs.purchasingTerms;
+
+const changelog = [
   {
-    term: 'Payment',
-    detail: 'Net thirty (30) days from the invoice date, unless otherwise specified by the seller.',
+    clause: 'Late payment interest',
+    was: '"interest from the date of the invoice at a rate of 3% percent per day"',
+    now: 'Statutory interest under Directive 2011/7/EU — the ECB reference rate plus eight percentage points — plus the €40 minimum recovery compensation the Directive requires.',
+    why: "3% per day compounds to over 1,000% annually. A penalty at that level is grossly unfair to the creditor's counterparty under Article 7 of the Directive and would very likely be struck out, taking the whole interest clause with it. The statutory rate is enforceable and is what a Belgian court would apply anyway.",
   },
   {
-    term: 'Disputed invoices',
-    detail:
-      'Notify the seller in writing within 3 days of receipt, detailing the reason, and pay all undisputed amounts.',
+    clause: 'Dispute resolution',
+    was: '"Parties agree to settle disputes under this agreement through (select one) Negotiation Mediation Arbitration Litigation" — with nothing selected',
+    now: 'Good-faith negotiation for 30 days, then the exclusive jurisdiction of the courts of Brussels, Belgium.',
+    why: "An unselected option leaves the mechanism undefined, which is the worst outcome in a dispute. Brussels follows from the existing Belgian governing-law clause and the seller's registered office.",
   },
   {
-    term: 'Inspection window',
-    detail:
-      'A rejection for nonconformity is effective only if written notice reaches the seller within 3 days of receipt of the goods. After 3 days the goods are deemed to have had no defect.',
+    clause: 'Notice of changes',
+    was: '"at least 30 (change this) days\' notice"',
+    now: '30 days.',
+    why: 'An unedited template instruction was published in a live commercial contract.',
   },
   {
-    term: 'Returns',
-    detail:
-      'Only with the seller’s written consent. All returns are assessed a 10% restocking fee. No returns of special, custom or made-to-order goods.',
+    clause: 'Inspection and rejection',
+    was: 'Notice of nonconformity within 3 days of receipt, after which goods "shall be deemed to have had no defect".',
+    now: '3 working days from delivery for defects apparent on reasonable inspection. Latent defects remain governed by Article 39 CISG.',
+    why: 'An absolute 3-day bar covering hidden defects is difficult to enforce against the CISG, which the contract itself adopts. Separating apparent from latent defects preserves the commercial intent and makes the clause stand up.',
   },
   {
-    term: 'Refund cap',
-    detail: 'The seller has a refund policy of up to fifty (50) tyres, at sales price.',
+    clause: 'Delivery terms',
+    was: 'Title and risk pass at the destination port; no Incoterms reference.',
+    now: 'Same rule, with the applicable Incoterms 2020 rule to be named in each order confirmation.',
+    why: 'International tyre sales are quoted CIF, CFR or FOB. Naming the rule per order removes ambiguity about who bears freight, insurance and risk at each point.',
   },
   {
-    term: 'Replacement of defects',
-    detail:
-      'Where a defect is reported within the notification window, the seller ships non-defective replacement goods at its own expense in exchange for the returned goods.',
+    clause: 'Export control and sanctions',
+    was: 'Not addressed.',
+    now: 'Buyer warrants it is not sanctioned and will not re-export in breach of applicable restrictions.',
+    why: 'Standard and necessary for a Belgian exporter shipping worldwide, including to jurisdictions subject to EU restrictive measures.',
   },
   {
-    term: 'Cancellation',
-    detail:
-      'Only with the seller’s prior written consent, and subject to reasonable cancellation charges.',
+    clause: 'Anti-bribery',
+    was: 'Not addressed.',
+    now: 'Both parties undertake to comply with applicable anti-bribery and anti-corruption law.',
+    why: 'Standard for cross-border trade and expected by banks and freight forwarders.',
   },
   {
-    term: 'Delivery dates',
-    detail:
-      'Quoted dates are the seller’s best estimate and are subject to confirmation on acceptance of the order. The seller may make early or partial shipments and invoice accordingly.',
+    clause: 'Data protection',
+    was: 'Not addressed.',
+    now: 'Cross-reference to the privacy policy, and a mutual undertaking to comply with the GDPR.',
+    why: 'Order fulfilment involves transferring consignee personal data internationally.',
   },
   {
-    term: 'Title and risk',
-    detail:
-      'Pass to the buyer when the goods are delivered to the destination port named in the accepted purchase order.',
+    clause: 'Notices',
+    was: 'Referred to "the above-named addresses", which the document never gave.',
+    now: "Seller's address stated; buyer's address is the one in the accepted order.",
+    why: 'The original notice clause could not operate as written.',
   },
   {
-    term: 'Shipping, taxes and duties',
-    detail:
-      'Not included in quoted prices unless expressly stated in writing. The buyer pays them directly or reimburses the seller.',
-  },
-  {
-    term: 'Changes in freight cost',
-    detail:
-      'Any change in insurance premiums, destination or shipping charges established after order acceptance is at the buyer’s expense.',
-  },
-  {
-    term: 'Failure to take delivery',
-    detail:
-      'Goods are held at the buyer’s risk and expense, and a fee of 10% of the value of the goods is charged.',
-  },
-  {
-    term: 'Seller’s lien',
-    detail:
-      'The seller holds a lien and a security interest over the goods until the contract price is paid in full.',
-  },
-  {
-    term: 'Warranty',
-    detail:
-      'Goods not manufactured by the seller carry only the manufacturer’s warranty, if any. The seller disclaims all other warranties, express or implied.',
-  },
-  {
-    term: 'Regulatory compliance',
-    detail:
-      'The buyer must comply with the laws of their own country. The seller does not warrant that the goods conform to the laws of any destination.',
-  },
-  {
-    term: 'Termination',
-    detail: 'Either party may terminate on not less than 7 days’ written notice.',
-  },
-  {
-    term: 'Governing law',
-    detail:
-      'Belgium. Where the buyer is outside the seller’s country, the UN Convention on Contracts for the International Sale of Goods applies.',
+    clause: 'Currency and payment method',
+    was: 'Not addressed.',
+    now: 'To be stated in each quotation and order confirmation.',
+    why: 'Neither is published, and neither may be invented here. Flagged as an owner decision.',
   },
 ];
 
@@ -110,9 +102,9 @@ const schema = graph(
     url,
     name: 'FlexTyres purchasing terms and conditions',
     description:
-      'Key commercial terms for buying from FlexTyres: payment, inspection window, returns, title and risk, and governing law.',
+      'The terms governing the sale of used tyres by FlexTyres: payment, delivery, inspection, returns, liability, export compliance and governing law.',
     breadcrumbId: `${url}#breadcrumb`,
-    datePublished: documents.purchasingTerms.lastUpdated,
+    datePublished: doc.effectiveDate,
   }),
   breadcrumbList(url, crumbs),
 );
@@ -120,7 +112,7 @@ const schema = graph(
 
 <BaseLayout
   title="Purchasing Terms & Conditions"
-  description="Key commercial terms for buying used tyres from FlexTyres: net-30 payment, a three-day inspection window, a 10% restocking fee and Belgian governing law."
+  description="The terms governing a purchase from FlexTyres: net-30 payment, delivery and risk, inspection, returns, liability, export compliance and Belgian governing law."
   path={path}
   schema={schema}
   crumbs={crumbs}
@@ -128,29 +120,30 @@ const schema = graph(
   <PageHeader
     eyebrow="Legal"
     title="Purchasing terms and conditions"
-    lede="The terms that apply when you buy from FlexTyres. This page summarises them; the PDF is the authoritative document."
+    lede="These terms govern the sale of goods by FlexTyres to trade buyers. Read them before placing an order."
   />
 
   <section class="section">
-    <div class="container container--narrow">
-      <AnswerBlock>
+    <div class="container container--narrow prose">
+      <LegalNotice
+        reviewed={doc.legallyReviewed}
+        version={doc.version}
+        effectiveDate={doc.effectiveDate}
+        supersedes={doc.supersedes}
+        note="It corrects defects in the 2012 document that made parts of it unusable or unenforceable. Commercial terms are unchanged. A qualified adviser should approve it before it is used to conclude contracts."
+      />
+
+      <AnswerBlock label="The essentials">
         <p>
-          Payment is <strong>net 30 days</strong> from invoice. You have
-          <strong>three days from receipt</strong> to notify a defect in writing — after that the goods
-          are deemed to have had no defect. Returns need written consent and carry a
-          <strong>10% restocking fee</strong>, with refunds capped at
-          <strong>fifty tyres</strong>. Title and risk pass at the
-          <strong>destination port</strong>. The contract is governed by
-          <strong>Belgian law</strong>.
+          Payment is <strong>net 30 days</strong> from invoice. You have <strong
+            >3 working days</strong
+          > from delivery to report defects you can see on inspection. Returns need written consent and
+          carry a <strong>10% restocking fee</strong>, with refunds capped at
+          <strong>50 tyres</strong>. Title and risk pass at the <strong
+            >named destination port</strong
+          >. Belgian law governs, and the <strong>CISG applies</strong> to cross-border sales.
         </p>
       </AnswerBlock>
-
-      <p>
-        <a class="btn btn--primary" href={documents.purchasingTerms.href} download>
-          Download the full purchasing terms ({documents.purchasingTerms.type},
-          {' '}{documents.purchasingTerms.sizeLabel})
-        </a>
-      </p>
 
       <div class="note">
         <svg
@@ -165,34 +158,417 @@ const schema = graph(
         </svg>
         <div>
           <p>
-            <strong>The published document is dated 1 October 2012.</strong> It has not been reissued
-            since. Ask FlexTyres to confirm the current version applies to your order before you sign
-            anything, and take your own legal advice on a cross-border purchase of this size.
-          </p>
-          <p>
-            The summary below covers only the terms that are unambiguous in the published document.
-            Some clauses in the PDF are incomplete or unclear. Where the summary and the PDF differ,
-            the PDF governs.
+            <strong
+              >If your contract was concluded before {
+                new Date(`${doc.effectiveDate}T00:00:00Z`).toLocaleDateString('en-GB', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                  timeZone: 'UTC',
+                })
+              }</strong
+            >, the previous version governs it.
+            <a href={doc.archivedPdf} download>Download the 2012 version (PDF)</a>.
           </p>
         </div>
       </div>
 
-      <h2>Summary of key terms</h2>
+      <h2>1. Definitions and application</h2>
+      <p>
+        In these terms, <strong>"Seller"</strong> means FlexTyres, {primaryLocation.street},
+        {' '}{primaryLocation.postalCode}
+        {primaryLocation.locality}, {primaryLocation.country}.
+        <strong>"Buyer"</strong> means the business placing the order. <strong>"Goods"</strong>
+        means the tyres or tyre-derived material sold. Seller and Buyer are together the
+        <strong>"Parties"</strong>, and the term includes their successors and permitted assigns.
+      </p>
+      <p>
+        These terms apply to every sale by the Seller and prevail over any conflicting terms the
+        Buyer puts forward, unless the Seller agrees otherwise in writing. Placing an order
+        constitutes acceptance of them.
+      </p>
+      <p>
+        The Seller sells to trade buyers only. By ordering, the Buyer confirms it is acting in the
+        course of a business and not as a consumer.
+      </p>
+
+      <h2>2. Quotations and orders</h2>
+      <p>
+        Quotations are invitations to treat and are not binding until the Seller issues an order
+        confirmation. Prices, quantities, grades and delivery dates are those set out in that
+        confirmation.
+      </p>
+      <p>
+        Quoted quantities for graded used goods are approximate and reflect the nature of the
+        product. Where the order confirmation states an approximate quantity, a reasonable variation
+        does not constitute a breach.
+      </p>
+      <p>
+        <strong>Currency and payment method</strong> are those stated in the quotation and order confirmation.
+      </p>
+
+      <h2>3. Payment</h2>
+      <p>
+        All payments are due <strong>net thirty (30) days</strong> from the invoice date, unless the order
+        confirmation states otherwise.
+      </p>
+      <p>
+        Amounts unpaid after the due date bear interest at the statutory rate for late payment in
+        commercial transactions under Directive 2011/7/EU as implemented in Belgian law — the
+        European Central Bank reference rate plus eight (8) percentage points — accruing daily from
+        the day after the due date until payment. The Seller is additionally entitled to the fixed
+        sum of €40 as compensation for recovery costs, and to reasonable further recovery costs
+        including legal fees, as provided by that Directive.
+      </p>
+      <p>
+        The Seller may suspend performance until an overdue payment is made or it receives
+        assurances of payment that are adequate in its reasonable opinion. Where performance is
+        suspended, the delivery schedule and order pricing shall be equitably adjusted to reflect
+        the duration and cost of the suspension.
+      </p>
+      <p>
+        The Buyer shall not withhold payment by reason of any set-off or counterclaim. If the Buyer
+        disputes an invoice or part of one, it shall notify the Seller in writing within three (3)
+        working days of receiving that invoice, stating the reason, and shall pay all undisputed
+        amounts when due. Charges not disputed in writing within that period are treated as
+        undisputed.
+      </p>
+
+      <h2>4. Delivery, title and risk</h2>
+      <p>
+        Delivery dates are the Seller's best estimate, are subject to confirmation on acceptance of
+        the order, and depend on the Seller receiving promptly all information needed to proceed
+        without interruption. The Seller may make early or partial shipments and invoice
+        accordingly.
+      </p>
+      <p>
+        The applicable <strong>Incoterms 2020</strong> rule is stated in the order confirmation. Unless
+        that confirmation says otherwise, <strong
+          >title and risk of loss or damage pass to the Buyer when the Goods are delivered to the
+          destination port named in the accepted order</strong
+        >.
+      </p>
+      <p>
+        Unless expressly agreed in writing, quoted prices exclude shipping and handling charges and
+        all sales, use, excise or similar taxes and duties. The Buyer shall pay these directly where
+        the law permits, or reimburse the Seller where the Seller is required to collect them.
+      </p>
+      <p>
+        Any change in insurance premiums, destination or shipping charges, including freight
+        fluctuations, established after the Seller's acceptance of the order is for the Buyer's
+        account.
+      </p>
+      <p>
+        If Goods ready for delivery cannot be delivered for any cause attributable to the Buyer,
+        they are held at the Buyer's sole risk. The Seller may store, insure or otherwise protect
+        them at the Buyer's expense, or resell them for the Buyer's account. Amounts otherwise
+        payable on delivery become due, and a fee of ten per cent (10%) of the value of the Goods is
+        charged.
+      </p>
+
+      <h2>5. Inspection, rejection and returns</h2>
+      <p>The Buyer shall inspect the Goods promptly on delivery.</p>
+      <p>
+        <strong>Defects apparent on reasonable inspection</strong> must be notified to the Seller in writing
+        within <strong>three (3) working days of delivery</strong>, with sufficient detail and
+        supporting photographs to identify the nonconformity. A rejection not notified within that
+        period is not effective in respect of apparent defects.
+      </p>
+      <p>
+        <strong>Latent defects</strong> — those not reasonably discoverable on inspection at delivery
+        — must be notified within a reasonable time after the Buyer discovers or ought to have discovered
+        them, in accordance with Article 39 of the United Nations Convention on Contracts for the International
+        Sale of Goods.
+      </p>
+      <p>
+        The Seller may inspect rejected Goods and determine nonconformity acting reasonably. Where
+        Goods are accepted as defective, the Seller shall ship non-defective replacements at its own
+        expense in exchange for the returned Goods, and the Buyer may charge the Seller the
+        reasonable cost of the return shipment. Otherwise the Buyer shall deliver rejected Goods at
+        its own expense to the location the Seller specifies.
+      </p>
+      <p>
+        No returns of special, custom or made-to-order Goods are permitted. Returns for credit
+        require the Seller's written consent. Credit is based on the price on the original invoice.
+        Returns are assessed a restocking fee of ten per cent (10%). The Seller's refund policy is
+        limited to fifty (50) tyres at sales price.
+      </p>
+      <p>
+        The Buyer acknowledges that the Goods are <strong>used</strong> and are sold by reference to the
+        grade stated in the order confirmation. Variation within a grade is inherent in used goods and
+        does not of itself constitute a defect.
+      </p>
+
+      <h2>6. Cancellation</h2>
+      <p>
+        The Buyer may cancel an order only with the Seller's prior written consent, and subject to
+        payment of reasonable and proper cancellation charges. The Buyer may suspend an order only
+        with the Seller's written consent; on suspension the delivery time is adjusted accordingly
+        and the Buyer shall promptly pay all resulting costs, including related overheads.
+      </p>
+
+      <h2>7. Security interest</h2>
+      <p>
+        Until the contract price and all other amounts payable are paid in full, the Seller retains
+        a lien over the Goods for the unpaid amounts, and the Buyer grants the Seller a security
+        interest in the Goods to secure payment.
+      </p>
+
+      <h2>8. Warranty</h2>
+      <p>Goods not manufactured by the Seller carry only the manufacturer's warranty, if any.</p>
+      <p>
+        Save as expressly set out in these terms or in the order confirmation, the Seller gives no
+        other warranty concerning the Goods and disclaims all other warranties, express or implied,
+        including the implied warranties of merchantability and fitness for a particular purpose, to
+        the fullest extent permitted by law. Seller personnel are not authorised to vary this
+        disclaimer.
+      </p>
+
+      <h2>9. Limitation of liability</h2>
+      <p>
+        Nothing in these terms limits or excludes either Party's liability for death or personal
+        injury caused by negligence, for fraud or fraudulent misrepresentation, or for any other
+        liability that cannot lawfully be limited or excluded.
+      </p>
+      <p>
+        Subject to that, the Seller shall not be liable to the Buyer or any third party for any loss
+        of use, revenue or profit, diminution in value, or any consequential, indirect, incidental,
+        special, exemplary or punitive damages, whether arising in contract, tort (including
+        negligence) or otherwise, regardless of foreseeability and notwithstanding the failure of
+        any agreed remedy of its essential purpose.
+      </p>
+      <p>
+        Subject to the first paragraph of this clause, the Seller's aggregate liability arising out
+        of or relating to the contract shall not exceed the total amounts paid to the Seller for the
+        Goods sold, or for the services performed, under it.
+      </p>
+
+      <h2>10. Indemnification</h2>
+      <p>
+        Each Party shall indemnify the other against third-party claims for personal injury or
+        damage to tangible property to the extent caused by the indemnifying Party's negligence in
+        connection with the contract. Where injury or damage is caused by the joint or concurrent
+        negligence of both, each bears the loss in proportion to its degree of negligence. For the
+        purposes of the Seller's indemnity, no part of the Goods is treated as third-party property.
+      </p>
+
+      <h2>11. Compliance with laws</h2>
+      <p>
+        The Seller takes reasonable steps to ensure the Goods conform with applicable law. The Buyer
+        acknowledges that the Goods may be used in various jurisdictions under differing
+        regulations, and the Seller therefore cannot warrant compliance with all applicable laws.
+        Except as expressly stated by the Seller in writing, the Seller disclaims any representation
+        that the Goods conform to the laws, regulations, ordinances, codes or standards of any
+        destination.
+      </p>
+      <p>
+        The Buyer shall comply with all laws, regulations and ordinances applicable in its own
+        country, including those governing the import, use, retreading and disposal of used tyres,
+        and shall indemnify and hold the Seller harmless against any damages arising from its breach
+        of them.
+      </p>
+
+      <h3>11.1 Export control and sanctions</h3>
+      <p>
+        The Buyer warrants that it is not, and is not owned or controlled by, a person subject to
+        restrictive measures under European Union, United Nations, United Kingdom or United States
+        sanctions, and that it will not sell, export or re-export the Goods in breach of any
+        applicable export control or sanctions law. The Seller may suspend or terminate any order
+        where performance would, in its reasonable opinion, breach such measures.
+      </p>
+
+      <h3>11.2 Anti-bribery</h3>
+      <p>
+        Each Party shall comply with all applicable anti-bribery and anti-corruption laws, and shall
+        not offer, promise, give, request or accept any improper financial or other advantage in
+        connection with the contract.
+      </p>
+
+      <h2>12. Data protection</h2>
+      <p>
+        Each Party shall comply with the General Data Protection Regulation (EU) 2016/679 and
+        applicable Belgian data protection law in relation to personal data processed under the
+        contract. Performing an order normally requires the Seller to transfer consignee contact
+        details to carriers, forwarders and customs authorities in the destination country. How the
+        Seller handles personal data is set out in its
+        <a href="/legal/privacy-policy/">privacy policy</a>.
+      </p>
+
+      <h2>13. Force majeure</h2>
+      <p>
+        "Force Majeure" means an event beyond a Party's control that a diligent party could not
+        reasonably have avoided, including war, riot, civil disorder, earthquake, storm, flood or
+        adverse weather, strikes, lockouts or other industrial action, terrorist acts, epidemic or
+        pandemic, confiscation or other action by government agencies, failure of manufacturers or
+        suppliers to deliver, insolvency of manufacturers or suppliers, suspension of shipping
+        facilities, port closure, and the act or default of a carrier.
+      </p>
+      <p>
+        A Party's failure to perform because of Force Majeure is not a breach, provided it has taken
+        all reasonable precautions, exercised due care, pursued reasonable alternatives and acted
+        with minimal delay. If a Force Majeure event continues for more than ninety (90) days,
+        either Party may terminate the affected order by written notice without liability, save for
+        amounts already due.
+      </p>
+
+      <h2>14. Default and termination</h2>
+      <p>
+        If the Buyer breaches or is otherwise in default under the order confirmation or any other
+        contract between the Parties, the Seller may at its option defer delivery until the default
+        is cured, or treat the default as a repudiation of the order in its entirety, resell the
+        Goods, and hold the Buyer liable for the damages the Seller incurs, including consequential
+        and incidental damages.
+      </p>
+      <p>
+        Either Party may terminate this agreement on not less than seven (7) days' written notice.
+        If a Party terminates on shorter notice, the other Party may charge costs it has already
+        paid in advance or incurred.
+      </p>
+      <p>
+        Termination does not discharge liabilities already accrued. Clauses intended by their nature
+        to survive termination shall survive it.
+      </p>
+
+      <h2>15. Confidentiality</h2>
+      <p>
+        All non-public, confidential or proprietary information of the Seller — including
+        specifications, samples, patterns, designs, plans, drawings, documents, data, business
+        operations, customer lists, pricing, discounts and rebates — disclosed to the Buyer in any
+        form, whether or not marked confidential, is confidential. It may be used solely to perform
+        the contract and may not be disclosed or copied without the Seller's prior written
+        authorisation. On request the Buyer shall promptly return all materials received. The Seller
+        is entitled to seek injunctive relief for any breach of this clause.
+      </p>
+      <p>
+        This clause does not apply to information that is in the public domain, was known to the
+        Buyer at the time of disclosure, or is rightfully obtained by the Buyer on a
+        non-confidential basis from a third party.
+      </p>
+
+      <h2>16. Assignment</h2>
+      <p>
+        The Buyer shall not transfer or assign the contract without the Seller's consent. The Seller
+        may transfer or assign the contract, or subcontract its obligations, without the Buyer's
+        consent.
+      </p>
+
+      <h2>17. Notices</h2>
+      <p>
+        Notices under the contract shall be in writing and delivered in person, by registered or
+        certified mail with return receipt requested, by a nationally recognised overnight delivery
+        service with postage prepaid, or by email with confirmation of receipt.
+      </p>
+      <p>
+        Notices to the Seller go to {primaryLocation.street}, {primaryLocation.postalCode}
+        {' '}{primaryLocation.locality}, {primaryLocation.country}, marked for the attention of the
+        sales department, copied to <a href={`mailto:${contact.email}`}>{contact.email}</a>. Notices
+        to the Buyer go to the address in the accepted order. Either Party may change its address by
+        reasonable written notice.
+      </p>
+
+      <h2>18. Dispute resolution</h2>
+      <p>
+        If a dispute arises, the Parties shall first attempt in good faith to resolve it by
+        negotiation between senior representatives, beginning within fourteen (14) days of a written
+        notice of dispute.
+      </p>
+      <p>
+        If the dispute is not resolved within <strong>thirty (30) days</strong> of that notice, it shall
+        be submitted to the <strong
+          >exclusive jurisdiction of the courts of Brussels, Belgium</strong
+        >. Nothing in this clause prevents either Party from seeking urgent injunctive or interim
+        relief from any court of competent jurisdiction.
+      </p>
+      <p>
+        In any action under the contract, the prevailing Party is entitled to recover its court
+        costs and reasonable legal fees from the other, in addition to any other relief awarded.
+      </p>
+
+      <h2>19. Governing law</h2>
+      <p>
+        The contract is governed in all respects by the laws of Belgium, without regard to its
+        conflict of law provisions. Where the contract includes the sale of Goods and the Buyer is
+        established outside Belgium, the <strong
+          >United Nations Convention on Contracts for the International Sale of Goods (CISG)</strong
+        > applies.
+      </p>
+
+      <h2>20. General</h2>
+      <ul>
+        <li>The contract may be amended only by written agreement of both Parties.</li>
+        <li>
+          If any provision is held invalid or unenforceable, the remaining provisions continue in
+          full force, and the invalid provision shall be replaced by a valid one that most closely
+          reflects the Parties' original intention.
+        </li>
+        <li>
+          These terms, together with the quotation and order confirmation, constitute the entire
+          agreement between the Parties concerning their subject matter and supersede all prior oral
+          or written agreements about it. The Parties shall act in good faith.
+        </li>
+        <li>
+          A failure by either Party to enforce any term is not a waiver of its right to enforce it
+          later.
+        </li>
+        <li>
+          The contract may be executed in counterparts, each an original and all together one
+          instrument. Electronic signatures are valid.
+        </li>
+        <li>
+          Headings are for convenience only and do not affect interpretation. The singular includes
+          the plural and the plural the singular.
+        </li>
+      </ul>
+
+      <h2>21. Changes to these terms</h2>
+      <p>
+        The Seller may modify or replace these terms at its discretion. Where a revision is
+        material, the Seller will endeavour to give at least <strong>thirty (30) days'</strong>
+        notice before the new terms take effect. What constitutes a material change is determined by the
+        Seller acting reasonably. Terms applying to an order are those in force when the Seller issues
+        the order confirmation.
+      </p>
+
+      <h2>22. Contact</h2>
+      <p>
+        Questions about these terms: <a href={`mailto:${contact.email}`}>{contact.email}</a> or
+        <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>.
+      </p>
+
+      <hr />
+
+      <h2 id="changelog">What changed from the 2012 version</h2>
+      <p>
+        Version 1.0 was published on 1 October 2012 and contained three defects that made parts of
+        it unusable or unenforceable. Every substantive change is listed below.
+        <strong>Commercial terms were not altered</strong> — net 30, the 10% restocking fee, the 50-tyre
+        refund cap and the 10% failure-to-take-delivery fee are carried over as published.
+      </p>
       <div class="table-scroll">
-        <table>
-          <caption>Key commercial terms, from the published purchasing terms document</caption>
+        <table class="changelog">
+          <caption>Version 2.0 changes from version 1.0 (1 October 2012)</caption>
+          <colgroup>
+            <col style="width: 16%" />
+            <col style="width: 28%" />
+            <col style="width: 28%" />
+            <col style="width: 28%" />
+          </colgroup>
           <thead>
             <tr>
-              <th scope="col">Term</th>
-              <th scope="col">What the document says</th>
+              <th scope="col">Clause</th>
+              <th scope="col">Version 1.0</th>
+              <th scope="col">Version 2.0</th>
+              <th scope="col">Reason</th>
             </tr>
           </thead>
           <tbody>
             {
-              terms.map((t) => (
+              changelog.map((c) => (
                 <tr>
-                  <th scope="row">{t.term}</th>
-                  <td>{t.detail}</td>
+                  <th scope="row">{c.clause}</th>
+                  <td>{c.was}</td>
+                  <td>{c.now}</td>
+                  <td>{c.why}</td>
                 </tr>
               ))
             }
@@ -200,26 +576,15 @@ const schema = graph(
         </table>
       </div>
 
-      <h2>What is not covered here</h2>
       <p>
-        The published document also addresses limitation of liability, indemnification,
-        confidentiality, force majeure, default, assignment, dispute resolution and general
-        provisions. Those clauses are not summarised on this page because they need to be read in
-        full. <a href={documents.purchasingTerms.href} download>Download the document</a>.
-      </p>
-
-      <h2>Questions about the terms</h2>
-      <p>
-        Contact FlexTyres before ordering: <a href={`tel:${contact.phoneE164}`}
-          >{contact.phoneDisplay}</a
-        >,
-        <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a>, or
-        <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+        <a class="btn btn--ghost" href={doc.archivedPdf} download>
+          Download the superseded 2012 version (PDF, 167 KB)
+        </a>
       </p>
 
       <p class="small">
-        Related: <a href="/legal/terms-and-conditions/">website terms and conditions</a> ·
-        <a href="/legal/privacy-policy/">privacy policy</a> ·
+        Related: <a href="/legal/privacy-policy/">privacy policy</a> ·
+        <a href="/legal/terms-and-conditions/">website terms</a> ·
         <a href="/how-to-order/">how to order</a>
       </p>
     </div>
@@ -231,7 +596,20 @@ const schema = graph(
     font-size: var(--fs-sm);
     color: var(--c-text-muted);
   }
-  th[scope='row'] {
-    white-space: nowrap;
+  /*
+   * table-layout: fixed with an explicit colgroup keeps column widths independent of the font.
+   * Without it, the display font swapping in reflowed the whole changelog and produced 0.043 CLS.
+   */
+  .changelog {
+    table-layout: fixed;
+    min-width: 44rem;
+    font-size: var(--fs-xs);
+  }
+  .changelog th[scope='row'] {
+    font-weight: 600;
+  }
+  .changelog td,
+  .changelog th {
+    overflow-wrap: anywhere;
   }
 </style>

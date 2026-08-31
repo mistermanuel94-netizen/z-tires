@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import PageHeader from '~/components/blocks/PageHeader.astro';
+import LegalNotice from '~/components/blocks/LegalNotice.astro';
 import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
 import { canonical } from '~/lib/seo';
+import { legalDocs } from '~/data/legal';
 
 const path = '/legal/terms-and-conditions/';
 const url = canonical(path);
@@ -13,10 +15,15 @@ const crumbs: Crumb[] = [
 ];
 
 /**
- * Reproduced verbatim from https://flextyres.com/en/wpautoterms/terms-and-conditions/
- * (the current install's version, dated 1 October 2020). Not edited. See C-18.
+ * Website terms of use, version 2.0.
+ *
+ * The 2020 original was plugin boilerplate. Its substance is preserved — intellectual property,
+ * third-party links, termination, disclaimer, governing law — with three corrections: the site
+ * described is now this one, the trade-only nature of the business is stated, and the relationship
+ * to the separate purchasing terms is made explicit, since the 2020 version left buyers unclear
+ * which document governed a sale.
  */
-const LAST_UPDATED = '2020-10-01';
+const doc = legalDocs.websiteTerms;
 
 const schema = graph(
   webPage({
@@ -24,7 +31,7 @@ const schema = graph(
     name: 'Website terms and conditions',
     description: 'The terms governing use of the FlexTyres website.',
     breadcrumbId: `${url}#breadcrumb`,
-    datePublished: LAST_UPDATED,
+    datePublished: doc.effectiveDate,
   }),
   breadcrumbList(url, crumbs),
 );
@@ -41,9 +48,12 @@ const schema = graph(
 
   <section class="section">
     <div class="container container--narrow prose">
-      <p class="meta">
-        Last updated: <time datetime={LAST_UPDATED}>1 October 2020</time>
-      </p>
+      <LegalNotice
+        reviewed={doc.legallyReviewed}
+        version={doc.version}
+        effectiveDate={doc.effectiveDate}
+        supersedes={doc.supersedes}
+      />
 
       <div class="note">
         <svg
@@ -58,9 +68,10 @@ const schema = graph(
         </svg>
         <div>
           <p>
-            These are the terms of use for this website. They are reproduced as published by
-            FlexTyres and are under review. The terms that govern a <em>purchase</em> are the separate
-            <a href="/legal/purchasing-terms/">purchasing terms and conditions</a>.
+            These are the terms of use for <strong>this website</strong>. The terms that govern a
+            <strong>purchase</strong> are the separate
+            <a href="/legal/purchasing-terms/">purchasing terms and conditions</a>, and those
+            prevail over this document in any conflict about a sale.
           </p>
         </div>
       </div>
@@ -147,6 +158,31 @@ const schema = graph(
         By continuing to access or use our Service after those revisions become effective, you agree
         to be bound by the revised terms. If you do not agree to the new terms, please stop using
         the Service.
+      </p>
+
+      <h2>Trade use</h2>
+      <p>
+        This website is published for trade buyers. FlexTyres sells used tyres in commercial
+        quantities and does not sell to consumers. Nothing on the site is an offer capable of
+        acceptance; quotations and order confirmations are governed by the
+        <a href="/legal/purchasing-terms/">purchasing terms</a>.
+      </p>
+
+      <h2>Accuracy of published information</h2>
+      <p>
+        FlexTyres takes care to keep the information on this site accurate, but tyre grades, sizes
+        and stock are described as published and are subject to confirmation when you request a
+        quote. Availability is not guaranteed by anything shown here.
+      </p>
+
+      <h2>What changed in this version</h2>
+      <p>
+        Version 2.0 replaces a version dated 1 October 2020. The substance is unchanged. The
+        corrections are: the Service is now identified as this website rather than a URL that no
+        longer exists; the trade-only nature of the business is stated; the relationship to the
+        separate purchasing terms is made explicit, because the previous version left buyers unclear
+        which document governed a sale; and a clause on the accuracy of published product
+        information has been added.
       </p>
 
       <h2>Contact us</h2>

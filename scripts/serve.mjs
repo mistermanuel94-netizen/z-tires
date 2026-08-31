@@ -66,19 +66,23 @@ if (fs.existsSync(redirFile)) {
 
 const server = http.createServer((req, res) => {
   const url = new URL(req.url ?? '/', `http://${req.headers.host}`);
-  let p = decodeURIComponent(url.pathname);
+  const rawPath = url.pathname;
+  let p = decodeURIComponent(rawPath);
+  /** The generated _redirects uses percent-encoded paths; match either form, as a host does. */
+  const lookup = (map) => (map.has(rawPath) ? rawPath : map.has(p) ? p : null);
 
   const send = (code, body, type, extra = {}) => {
     res.writeHead(code, { ...globalHeaders, 'Content-Type': type, ...extra });
     res.end(body);
   };
 
-  if (gone.has(p)) {
+  if (lookup(gone)) {
     const notFound = path.join(ROOT, '404.html');
     return send(410, fs.existsSync(notFound) ? fs.readFileSync(notFound) : 'Gone', TYPES['.html']);
   }
-  if (redirects.has(p)) {
-    res.writeHead(301, { ...globalHeaders, Location: redirects.get(p) });
+  const redirectKey = lookup(redirects);
+  if (redirectKey) {
+    res.writeHead(301, { ...globalHeaders, Location: redirects.get(redirectKey) });
     return res.end();
   }
 

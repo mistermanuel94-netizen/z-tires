@@ -32,7 +32,7 @@ these numbers reflect will not.
 
 | Metric | Worst across 22 routes | Budget | Result |
 |---|---|---|---|
-| **LCP** | **108 ms** | 2,500 ms | PASS |
+| **LCP** | **152 ms** | 2,500 ms | PASS |
 | **CLS** | **0.0000** | 0.1 | PASS |
 | TTFB (local) | 11 ms | — | — |
 | Requests | 6–15 | — | — |
@@ -42,8 +42,8 @@ these numbers reflect will not.
 
 | Metric | Worst across 22 routes | Budget | Result |
 |---|---|---|---|
-| **LCP** | **120 ms** | 2,500 ms | PASS |
-| **CLS** | **0.0175** | 0.1 | PASS |
+| **LCP** | **152 ms** | 2,500 ms | PASS |
+| **CLS** | **0.0026** | 0.1 | PASS |
 | Requests | 6–35 (gallery) | — | — |
 | Console errors | **0** | 0 | PASS |
 
@@ -54,11 +54,16 @@ pickers, embeds) are native `<details>` elements with zero JS.
 
 ### CLS analysis
 
-Mobile CLS is a flat **0.0000** on every route. The 0.0175 worst case on desktop comes from
-web-font swap on pages whose LCP element is a heading. Every image carries intrinsic
-`width`/`height` from the Astro pipeline, so no image contributes shift. Mitigations already in
-place: `font-display: swap` with only 4 faces, both above-the-fold faces preloaded, and a system
-fallback stack chosen for metric proximity.
+Mobile CLS is a flat **0.0000** on every route; desktop worst case is **0.0026**.
+
+Every image carries intrinsic `width`/`height` from the Astro pipeline, so no image contributes
+shift. The remaining source was font swap: `font-display: swap` renders a fallback first, and if
+its metrics differ from the web font, everything below the swapped text moves. On the longest text
+page that accumulated to 0.043.
+
+Fixed with **metric-adjusted fallback `@font-face` declarations** — `ascent-override`,
+`descent-override`, `line-gap-override` and `size-adjust` tuned so the fallback occupies exactly
+the space the web font will. Site-wide worst CLS fell from **0.0175 to 0.0026**.
 
 ## 3. Per-page budgets (enforced — `npm run check:budget`)
 

@@ -79,7 +79,7 @@ const year = new Date().getFullYear();
       <h2 class="footer__heading">Downloads</h2>
       <ul class="footer__dl-list">
         {
-          [documents.stockListXlsx, documents.stockListPdf, documents.purchasingTerms].map((d) => (
+          [documents.stockListXlsx, documents.stockListPdf].map((d) => (
             <li>
               <a href={d.href} download>
                 {d.label}
