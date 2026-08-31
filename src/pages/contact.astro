@@ -1,0 +1,274 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, contactPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { contact, locations, formEndpoint, social } from '~/data/site';
+
+const path = '/contact/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path },
+];
+
+const action = formEndpoint || `mailto:${contact.email}`;
+const encType = formEndpoint ? 'application/x-www-form-urlencoded' : 'text/plain';
+
+const schema = graph(contactPage(url), breadcrumbList(url, crumbs));
+---
+
+<BaseLayout
+  title="Contact FlexTyres"
+  description="Phone, WhatsApp, email and addresses for FlexTyres in Evere, Belgium, plus warehouses in Frankfurt and Florida. Opening hours and an inquiry form."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Contact"
+    title="Contact FlexTyres"
+    lede="Phone and WhatsApp get the fastest reply. FlexTyres states it responds to inquiries within 24 hours, generally within a few hours."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <AnswerBlock>
+            <p>
+              Call or WhatsApp <strong>{contact.phoneDisplay}</strong>, or email
+              <strong>{contact.email}</strong>. The office is at
+              <strong>Avenue Jules Bordet 160, box 16, 1140 Evere, Belgium</strong>, open Monday to
+              Friday 08:00–17:30 and Saturday 08:00–15:00 (CET).
+            </p>
+          </AnswerBlock>
+
+          <h2>Direct lines</h2>
+          <dl class="facts">
+            <div>
+              <dt>Phone</dt>
+              <dd><a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a></dd>
+            </div>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd>
+                <a href={contact.whatsappUrl} rel="noopener">{contact.phoneDisplay}</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+            </div>
+          </dl>
+
+          <h2>Opening hours</h2>
+          <dl class="facts">
+            {
+              contact.hours.map((h) => (
+                <div>
+                  <dt>{h.days}</dt>
+                  <dd>{h.time}</dd>
+                </div>
+              ))
+            }
+          </dl>
+          <p class="small">All times {contact.timezoneNote}.</p>
+
+          <h2>Locations</h2>
+          {
+            locations.map((l) => (
+              <div class="loc">
+                <h3 class="loc__label">{l.label}</h3>
+                <address class="loc__address">
+                  {l.street && (
+                    <>
+                      {l.street}
+                      <br />
+                      {l.postalCode} {l.locality}
+                      <br />
+                    </>
+                  )}
+                  {!l.street && (
+                    <>
+                      {l.locality}
+                      <br />
+                    </>
+                  )}
+                  {l.country}
+                </address>
+              </div>
+            ))
+          }
+          <p class="small">
+            The Evere address is the registered office. FlexTyres lists the Frankfurt and Hollywood
+            sites as warehouses; it does not publish separate hours or phone numbers for either.
+            Confirm before travelling.
+          </p>
+
+          <h2>Visiting</h2>
+          <p>
+            FlexTyres states that you are always welcome to visit, that it can provide an airport
+            service for visiting buyers, and that if you visit the warehouse you can choose the
+            tyres you would like to buy. Arrange a visit in advance by phone or WhatsApp.
+          </p>
+
+          <h2>Elsewhere</h2>
+          <ul>
+            <li><a href={social.facebook} rel="noopener">FlexTyres on Facebook</a></li>
+            <li><a href={social.youtubeVideos} rel="noopener">FlexTyres on YouTube</a></li>
+            <li>
+              <a href={social.googleBusinessProfile} rel="noopener">
+                FlexTyres Google Business Profile
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-form-col">
+          <h2 id="form-heading">Send a message</h2>
+          <p class="small">
+            For a price, use the <a href="/request-a-quote/">quote form</a> instead — it collects the
+            sizes and quantities FlexTyres needs.
+          </p>
+
+          <form
+            class="quote-form"
+            id="contact-form"
+            method="post"
+            action={action}
+            enctype={encType}
+            aria-labelledby="form-heading"
+          >
+            <input type="hidden" name="_subject" value="Website contact form" />
+
+            <div class="hp" aria-hidden="true">
+              <label for="contact-company-url">Leave this field empty</label>
+              <input
+                id="contact-company-url"
+                type="text"
+                name="company_url"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contact-name">
+                Your name <span class="field__req" aria-hidden="true">*</span>
+              </label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" required />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contact-email">
+                Email <span class="field__req" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                inputmode="email"
+                spellcheck="false"
+              />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contact-phone">Phone or WhatsApp</label>
+              <input
+                id="contact-phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                inputmode="tel"
+              />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contact-country">Country</label>
+              <input id="contact-country" name="country" type="text" autocomplete="country-name" />
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="contact-message">
+                Your message <span class="field__req" aria-hidden="true">*</span>
+              </label>
+              <textarea id="contact-message" name="message" rows="6" required></textarea>
+            </div>
+
+            <p class="quote-form__consent">
+              By sending this form you agree to FlexTyres using your details to respond to your
+              message. See the <a href="/legal/privacy-policy/">privacy policy</a>.
+            </p>
+
+            <button class="btn btn--primary btn--block" type="submit">Send message</button>
+
+            {
+              !formEndpoint && (
+                <p class="quote-form__fallback">
+                  This form opens your email client. You can also email{' '}
+                  <a href={`mailto:${contact.email}`}>{contact.email}</a> or call{' '}
+                  <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a> directly.
+                </p>
+              )
+            }
+          </form>
+        </div>
+      </div>
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Request a quote',
+            href: '/request-a-quote/',
+            hint: 'Car and truck inquiry forms',
+          },
+          { label: 'How to order', href: '/how-to-order/', hint: 'Process and minimums' },
+          { label: 'FAQs', href: '/faqs/', hint: 'Common questions answered' },
+          { label: 'Export markets', href: '/export-markets/', hint: 'Where FlexTyres ships' },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    gap: var(--s-7);
+  }
+  @media (min-width: 60em) {
+    .contact-grid {
+      grid-template-columns: 1fr 26rem;
+      gap: var(--s-8);
+      align-items: start;
+    }
+    .contact-form-col {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+  .loc {
+    margin-bottom: var(--s-4);
+  }
+  .loc__label {
+    font-size: var(--fs-base);
+    margin: 0 0 var(--s-1);
+  }
+  .loc__address {
+    font-style: normal;
+    color: var(--c-ink-700);
+    font-size: var(--fs-sm);
+  }
+  .small {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+  .contact-form-col h2 {
+    margin-top: 0;
+  }
+</style>

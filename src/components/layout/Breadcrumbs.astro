@@ -1,0 +1,83 @@
+---
+import type { Crumb } from '~/lib/schema';
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+---
+
+{
+  crumbs.length > 1 && (
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <div class="container">
+        <ol class="crumbs__list">
+          {crumbs.map((c, i) => {
+            const last = i === crumbs.length - 1;
+            return (
+              <li class="crumbs__item">
+                {last ? (
+                  <span aria-current="page">{c.name}</span>
+                ) : (
+                  <>
+                    <a href={c.path}>{c.name}</a>
+                    <svg
+                      class="crumbs__sep"
+                      width="6"
+                      height="10"
+                      viewBox="0 0 6 10"
+                      aria-hidden="true"
+                    >
+                      <path d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" />
+                    </svg>
+                  </>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </nav>
+  )
+}
+
+<style>
+  .crumbs {
+    border-bottom: 1px solid var(--c-border);
+    background: var(--c-bg-subtle);
+    font-size: var(--fs-xs);
+  }
+  .crumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+    list-style: none;
+    margin: 0;
+    padding-block: var(--s-3);
+  }
+  .crumbs__item {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin: 0;
+    max-width: none;
+  }
+  .crumbs__item a {
+    color: var(--c-text-muted);
+    text-decoration: none;
+  }
+  .crumbs__item a:hover {
+    color: var(--c-green-700);
+    text-decoration: underline;
+  }
+  .crumbs__item [aria-current='page'] {
+    color: var(--c-ink-800);
+    font-weight: 600;
+  }
+  .crumbs__sep {
+    color: var(--c-ink-300);
+    flex-shrink: 0;
+  }
+</style>

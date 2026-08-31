@@ -1,0 +1,400 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import FAQList from '~/components/blocks/FAQList.astro';
+import { graph, webPage, breadcrumbList, faqPage, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { carOrderRoutes, truckOrderRoutes } from '~/data/tyres';
+import { contact, documents } from '~/data/site';
+
+const path = '/how-to-order/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'How to order', path },
+];
+
+const steps = [
+  {
+    n: 1,
+    title: 'Send an inquiry',
+    body: 'Use the quote form, email, call or WhatsApp. Tell FlexTyres the sizes, quantity, grade and destination country. If a size you need is not on the published list, ask — the company explicitly invites that.',
+  },
+  {
+    n: 2,
+    title: 'FlexTyres sends an offer',
+    body: 'In the company’s words, "we will make you a demand-oriented offer". Price depends on quantity and quality, not on size — FlexTyres does not publish fixed prices. Expect a reply within 24 hours, generally within a few hours.',
+  },
+  {
+    n: 3,
+    title: 'Confirm the order',
+    body: 'Accept by phone or by confirmation email. FlexTyres states it will guide you through the rest of the order process from there.',
+  },
+  {
+    n: 4,
+    title: 'Quality checks and packing',
+    body: 'Tyres are checked, the paperwork is prepared, and the order is packed — doubled or tripled if you asked for it.',
+  },
+  {
+    n: 5,
+    title: 'Loading and shipping',
+    body: 'The container, truck or van is loaded by press to fit the maximum quantity, then released for transport. FlexTyres and its partners can handle customs formalities and clearance.',
+  },
+  {
+    n: 6,
+    title: 'Inspection on arrival',
+    body: 'Under the published purchasing terms you have three days from receipt of the goods to notify a defect in writing. After three days the terms deem the goods to have had no defect.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What is the minimum order for used tyres?',
+    answer:
+      'It depends on the route. FlexTyres publishes 180 tyres for Sprinter van delivery within Belgium, France and the Netherlands; approximately 1,350 tyres for a 20 ft container with at least 20 different sizes; and approximately 2,800 for a 40 ft container. The company FAQ separately states a minimum of 1,000 pieces. Confirm which applies to your order when you request a quote.',
+  },
+  {
+    question: 'How much do used tyres cost?',
+    answer:
+      'FlexTyres does not publish prices. Price depends on the quantity and the quality grade you order, not on size — the company states it charges one price for all sizes. Send an inquiry to receive an offer.',
+  },
+  {
+    question: 'How quickly does FlexTyres respond?',
+    answer:
+      'FlexTyres states it responds to inquiries within 24 hours, generally within a few hours. If you have not heard back within 24 hours, the company asks you to call or send a WhatsApp message.',
+  },
+  {
+    question: 'Can I visit the warehouse and pick the tyres myself?',
+    answer:
+      'Yes. FlexTyres states that if you visit its warehouse you can choose the second-hand tyres you would like to buy.',
+  },
+  {
+    question: 'What are the payment terms?',
+    answer:
+      'FlexTyres’ published purchasing terms state that all payments are due net thirty days from the invoice date unless otherwise specified. Read the full document before ordering.',
+  },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'How to order used tyres from FlexTyres',
+    description:
+      'The published ordering process: inquiry, offer, confirmation, quality checks, loading, shipping and the three-day inspection window.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  faqPage(url, faqs),
+  {
+    '@type': 'HowTo',
+    '@id': `${url}#howto`,
+    name: 'How to order used tyres from FlexTyres',
+    description: 'The ordering process FlexTyres publishes, from inquiry to delivery.',
+    step: steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.title,
+      text: s.body,
+    })),
+  },
+);
+---
+
+<BaseLayout
+  title="How to Order Used Tyres"
+  description="The FlexTyres ordering process step by step: minimum quantities, how pricing works, what to send with your inquiry, and the three-day inspection window."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Ordering"
+    title="How to order used tyres from FlexTyres"
+    lede="Minimums, the process, what FlexTyres needs from you, and the terms that apply once the tyres arrive."
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <AnswerBlock>
+        <p>
+          Send an inquiry with your sizes, quantity, grade and destination. FlexTyres replies with
+          an offer, usually within 24 hours. Once you confirm, the tyres are checked, packed, loaded
+          by press and shipped. The minimum order is <strong>180 tyres</strong> by van in Belgium, France
+          and the Netherlands, or a <strong>20 ft container</strong> — roughly 1,350 tyres tripled — for
+          export.
+        </p>
+      </AnswerBlock>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="minimums-heading">
+    <div class="container">
+      <span class="eyebrow">Minimums</span>
+      <h2 id="minimums-heading">How much do I have to buy?</h2>
+      <p class="section__lede">
+        FlexTyres publishes different minimums for different routes. There is no single figure —
+        which route applies depends on where the tyres are going.
+      </p>
+
+      <h3>Car tyres</h3>
+      <div class="table-scroll">
+        <table>
+          <caption>Published purchase routes — used car tyres</caption>
+          <thead>
+            <tr>
+              <th scope="col">Route</th>
+              <th scope="col">Minimum</th>
+              <th scope="col">Coverage</th>
+              <th scope="col">Conditions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              carOrderRoutes.map((r) => (
+                <tr>
+                  <th scope="row">
+                    <a href={r.href}>{r.name}</a>
+                  </th>
+                  <td class="nowrap">{r.quantity}</td>
+                  <td>{r.coverage}</td>
+                  <td>{r.notes.length ? r.notes.join('. ') : '—'}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Truck tyres</h3>
+      <div class="table-scroll">
+        <table>
+          <caption>Published purchase routes — used truck tyres</caption>
+          <thead>
+            <tr>
+              <th scope="col">Route</th>
+              <th scope="col">Minimum</th>
+              <th scope="col">Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              truckOrderRoutes.map((r) => (
+                <tr>
+                  <th scope="row">{r.name}</th>
+                  <td class="nowrap">{r.quantity}</td>
+                  <td>{r.coverage}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <svg
+          class="note__icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
+        </svg>
+        <div>
+          <p>
+            FlexTyres' FAQ separately states that "the minimum quantity we sell are 1000 pieces".
+            That figure does not match any of the container or van routes above. Confirm the minimum
+            that applies to your order in writing before you commit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="steps-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Process</span>
+      <h2 id="steps-heading">The six steps</h2>
+      <ol class="steps">
+        {
+          steps.map((s) => (
+            <li class="step">
+              <span class="step__n" aria-hidden="true">
+                {s.n}
+              </span>
+              <div>
+                <h3 class="step__title">{s.title}</h3>
+                <p>{s.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="send-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Your inquiry</span>
+      <h2 id="send-heading">What to send with your inquiry</h2>
+      <p>The more of this you include, the faster FlexTyres can quote:</p>
+      <ul>
+        <li><strong>Sizes</strong> — or the rim diameters you need, if you are flexible</li>
+        <li><strong>Quantity</strong> — or the container size you want to fill</li>
+        <li><strong>Quality grade</strong> — high, medium or low, or ask for advice</li>
+        <li><strong>Destination</strong> — country and port or delivery address</li>
+        <li><strong>Seasonal mix</strong> — if summer/winter proportion matters in your market</li>
+        <li>
+          <strong>Doubling or tripling</strong> — whether you want the tyres packed inside each other
+        </li>
+        <li><strong>Timing</strong> — any deadline you are working to</li>
+        <li><strong>Your company details</strong> — FlexTyres sells to trade buyers only</li>
+      </ul>
+      <p>
+        The <a href={documents.stockListXlsx.href} download>downloadable stock list</a> is the company's
+        own order sheet — you can mark the sizes and quantities you want directly on it and send it back.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="terms-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Terms</span>
+      <h2 id="terms-heading">Terms that apply to every order</h2>
+      <p>
+        These are taken from the purchasing terms FlexTyres publishes. Read the
+        <a href="/legal/purchasing-terms/">full document</a> before ordering — it is the authoritative
+        version.
+      </p>
+      <dl class="facts">
+        <div>
+          <dt>Payment</dt>
+          <dd>Net thirty days from the invoice date, unless otherwise specified.</dd>
+        </div>
+        <div>
+          <dt>Inspection window</dt>
+          <dd>Three days from receipt of the goods to notify a defect in writing.</dd>
+        </div>
+        <div>
+          <dt>Restocking fee</dt>
+          <dd>10% on approved returns.</dd>
+        </div>
+        <div>
+          <dt>Refund cap</dt>
+          <dd>Up to fifty tyres, at sales price.</dd>
+        </div>
+        <div>
+          <dt>Title and risk</dt>
+          <dd>
+            Pass to the buyer on delivery to the destination port named in the accepted order.
+          </dd>
+        </div>
+        <div>
+          <dt>Shipping and taxes</dt>
+          <dd>Not included in quoted prices unless agreed in writing.</dd>
+        </div>
+        <div>
+          <dt>Governing law</dt>
+          <dd>
+            Belgium. The UN Convention on Contracts for the International Sale of Goods applies to
+            cross-border sales.
+          </dd>
+        </div>
+      </dl>
+
+      <h2 id="ordering-faq-heading">Ordering questions</h2>
+      <FAQList
+        items={faqs.map((f, i) => ({
+          id: `order-faq-${i + 1}`,
+          question: f.question,
+          answer: f.answer,
+        }))}
+        level={3}
+        openCount={faqs.length}
+      />
+
+      <h2>Talk to someone</h2>
+      <p>
+        If you would rather not use a form: call
+        <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>, message the same number on
+        <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a>, or email
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+      </p>
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Request a quote',
+            href: '/request-a-quote/',
+            hint: 'Car and truck inquiry forms',
+          },
+          {
+            label: 'Purchasing terms',
+            href: '/legal/purchasing-terms/',
+            hint: 'The full published document',
+          },
+          {
+            label: 'Quality grades',
+            href: '/tyres/quality-grades/',
+            hint: 'What you are ordering',
+          },
+          {
+            label: 'Export markets',
+            href: '/export-markets/',
+            hint: 'Where FlexTyres has shipped',
+          },
+          { label: 'FAQs', href: '/faqs/', hint: 'Everything else' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .nowrap {
+    white-space: nowrap;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: step;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--s-4);
+    padding-block: var(--s-5);
+    border-bottom: 1px solid var(--c-border);
+    max-width: none;
+    margin: 0;
+  }
+  .step:last-child {
+    border-bottom: 0;
+  }
+  .step__n {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--c-green-500);
+    color: var(--c-ink-950);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-sm);
+  }
+  .step__title {
+    margin: 0 0 var(--s-2);
+    font-size: var(--fs-lg);
+  }
+  .step p {
+    margin: 0;
+  }
+</style>

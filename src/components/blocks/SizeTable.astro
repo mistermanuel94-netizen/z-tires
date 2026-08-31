@@ -1,0 +1,83 @@
+---
+import { stockCaveat } from '~/data/tyres';
+import type { TyreSizeGroup } from '~/data/sizes';
+
+interface Props {
+  groups?: readonly TyreSizeGroup[];
+  flat?: readonly string[];
+  caption: string;
+}
+
+const { groups, flat, caption } = Astro.props;
+---
+
+<div class="sizes">
+  <p class="sizes__caveat">{stockCaveat}</p>
+
+  {
+    groups && (
+      <div class="sizes__groups">
+        {groups.map((g) => (
+          <section class="sizes__group" aria-labelledby={`rim-${g.rim}`}>
+            <h3 class="sizes__rim" id={`rim-${g.rim}`}>
+              {g.rim}" rim
+              <span class="sizes__count">{g.sizes.length} sizes</span>
+            </h3>
+            <ul class="pills">
+              {g.sizes.map((s) => (
+                <li>
+                  <span class="pill">{s}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    flat && (
+      <section aria-label={caption}>
+        <ul class="pills">
+          {flat.map((s) => (
+            <li>
+              <span class="pill">{s}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</div>
+
+<style>
+  .sizes__caveat {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+    padding: var(--s-3) var(--s-4);
+    background: var(--c-ink-50);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    max-width: none;
+    margin-bottom: var(--s-5);
+  }
+  .sizes__group {
+    margin-bottom: var(--s-5);
+  }
+  .sizes__rim {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-3);
+    font-size: var(--fs-base);
+    margin: 0 0 var(--s-3);
+    padding-bottom: var(--s-2);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .sizes__count {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+  }
+</style>

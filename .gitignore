@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+
+# Crawl workspace: source-of-truth evidence for the migration audit.
+# Kept out of the deployed site; retain locally for provenance.
+_research/node_modules/
+_research/pages/
+_research/assets/orig/
+
+# Crawl workspace: the audit evidence (crawl-results.json, extract.json, img-meta.json,
+# mobile-qa.json, the raw sitemaps and the theme CSS) IS retained for provenance.
+# Excluded: node_modules, saved page HTML, downloaded originals, and binaries that are already
+# mirrored byte-identically in public/documents/.
+_research/*.log
+_research/shots/
+_research/assets/
+_research/contact/
+_research/package.json
+_research/package-lock.json

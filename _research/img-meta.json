@@ -1,0 +1,877 @@
+[
+ {
+  "file": "1_stars_icon_v1.png",
+  "w": 896,
+  "h": 260,
+  "fmt": "PNG",
+  "bytes": 32228
+ },
+ {
+  "file": "20190130_133849-1.jpg",
+  "w": 4032,
+  "h": 1960,
+  "fmt": "JPEG",
+  "bytes": 470058
+ },
+ {
+  "file": "20190130_133849-1024x498.jpg",
+  "w": 1024,
+  "h": 498,
+  "fmt": "JPEG",
+  "bytes": 76688
+ },
+ {
+  "file": "20190130_133948-1024x498.jpg",
+  "w": 1024,
+  "h": 498,
+  "fmt": "JPEG",
+  "bytes": 57658
+ },
+ {
+  "file": "20190130_134423-1.jpg",
+  "w": 4032,
+  "h": 1960,
+  "fmt": "JPEG",
+  "bytes": 647228
+ },
+ {
+  "file": "20190130_134423-1024x498.jpg",
+  "w": 1024,
+  "h": 498,
+  "fmt": "JPEG",
+  "bytes": 99702
+ },
+ {
+  "file": "20190130_134611-1.jpg",
+  "w": 4032,
+  "h": 1960,
+  "fmt": "JPEG",
+  "bytes": 452046
+ },
+ {
+  "file": "2_stars_icon_v1.png",
+  "w": 896,
+  "h": 260,
+  "fmt": "PNG",
+  "bytes": 36423
+ },
+ {
+  "file": "35847_en_f0319_38388_granutech-s80-tdf-production.jpg",
+  "w": 360,
+  "h": 478,
+  "fmt": "JPEG",
+  "bytes": 69794
+ },
+ {
+  "file": "3_stars_v1_icon.png",
+  "w": 896,
+  "h": 260,
+  "fmt": "PNG",
+  "bytes": 24878
+ },
+ {
+  "file": "Bridgestone-logo.png",
+  "w": 5500,
+  "h": 1500,
+  "fmt": "PNG",
+  "bytes": 167954
+ },
+ {
+  "file": "Continental-logo-1.png",
+  "w": 800,
+  "h": 167,
+  "fmt": "PNG",
+  "bytes": 30695
+ },
+ {
+  "file": "Dunlop-Logo.png",
+  "w": 970,
+  "h": 238,
+  "fmt": "PNG",
+  "bytes": 40467
+ },
+ {
+  "file": "IMG-20190513-WA0005.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 118309
+ },
+ {
+  "file": "IMG-20190513-WA0007.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 146624
+ },
+ {
+  "file": "IMG-20190513-WA0008.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 124743
+ },
+ {
+  "file": "IMG-20190513-WA0009.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 102353
+ },
+ {
+  "file": "IMG-20190513-WA0010.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 118116
+ },
+ {
+  "file": "IMG-20190513-WA0011.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 134636
+ },
+ {
+  "file": "IMG-20190513-WA0013.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 183254
+ },
+ {
+  "file": "IMG-20190513-WA0016.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 170901
+ },
+ {
+  "file": "IMG-20190513-WA0018.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 90887
+ },
+ {
+  "file": "IMG-20190513-WA0020.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 92928
+ },
+ {
+  "file": "IMG-20190513-WA0021.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 96908
+ },
+ {
+  "file": "IMG-20190513-WA0023.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 99661
+ },
+ {
+  "file": "IMG-20190513-WA0027.jpg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 150716
+ },
+ {
+  "file": "IMG-20190513-WA0045.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 152782
+ },
+ {
+  "file": "IMG-20190513-WA0046.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 100871
+ },
+ {
+  "file": "IMG-20190513-WA0047.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 161376
+ },
+ {
+  "file": "IMG-20190513-WA0050.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 180499
+ },
+ {
+  "file": "IMG-20190513-WA0052.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 132616
+ },
+ {
+  "file": "IMG-20190513-WA0053.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 64493
+ },
+ {
+  "file": "IMG-20190513-WA0054.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 81791
+ },
+ {
+  "file": "IMG-20190513-WA0057-Personnalis\u00e9.jpg",
+  "w": 2500,
+  "h": 1214,
+  "fmt": "JPEG",
+  "bytes": 301068
+ },
+ {
+  "file": "IMG-20190513-WA0058.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 113191
+ },
+ {
+  "file": "IMG-20190513-WA0059.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 141808
+ },
+ {
+  "file": "IMG-20190513-WA0062.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 123021
+ },
+ {
+  "file": "IMG-20190513-WA0063.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 117400
+ },
+ {
+  "file": "IMG-20190513-WA0066.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 188660
+ },
+ {
+  "file": "IMG-20190513-WA0067.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 130402
+ },
+ {
+  "file": "IMG-20190513-WA0075.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 141973
+ },
+ {
+  "file": "IMG-20190513-WA0083.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 164705
+ },
+ {
+  "file": "IMG-20190513-WA0087.jpg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 188394
+ },
+ {
+  "file": "IMG-20190513-WA0088.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 154296
+ },
+ {
+  "file": "IMG-20190516-WA0001.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 219457
+ },
+ {
+  "file": "IMG_7935.jpg",
+  "w": 602,
+  "h": 452,
+  "fmt": "JPEG",
+  "bytes": 92545
+ },
+ {
+  "file": "Loose.29182121_std.jpg",
+  "w": 650,
+  "h": 250,
+  "fmt": "JPEG",
+  "bytes": 165793
+ },
+ {
+  "file": "Michelin-logo.png",
+  "w": 4000,
+  "h": 1000,
+  "fmt": "PNG",
+  "bytes": 478484
+ },
+ {
+  "file": "Pirelli-logo-1.png",
+  "w": 3453,
+  "h": 1021,
+  "fmt": "PNG",
+  "bytes": 80060
+ },
+ {
+  "file": "TDA.jpg",
+  "w": 448,
+  "h": 336,
+  "fmt": "JPEG",
+  "bytes": 42922
+ },
+ {
+  "file": "The-Credit-Dude-Got-Credit-Google-Reviews.jpg",
+  "w": 124,
+  "h": 67,
+  "fmt": "JPEG",
+  "bytes": 3712
+ },
+ {
+  "file": "UT8V0gSXqVbXXagOFbXd.jpg",
+  "w": 300,
+  "h": 180,
+  "fmt": "JPEG",
+  "bytes": 32744
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-28-at-12.39.08-497x1024.jpeg",
+  "w": 497,
+  "h": 1024,
+  "fmt": "JPEG",
+  "bytes": 115181
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-29-at-22.07.16-1024x576.jpeg",
+  "w": 1024,
+  "h": 576,
+  "fmt": "JPEG",
+  "bytes": 102010
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-29-at-22.07.161-576x1024.jpeg",
+  "w": 576,
+  "h": 1024,
+  "fmt": "JPEG",
+  "bytes": 131619
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-30-at-08.46.40-1024x576.jpeg",
+  "w": 1024,
+  "h": 576,
+  "fmt": "JPEG",
+  "bytes": 88825
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-30-at-08.46.402-1024x576.jpeg",
+  "w": 1024,
+  "h": 576,
+  "fmt": "JPEG",
+  "bytes": 106476
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-30-at-08.46.403-1024x576.jpeg",
+  "w": 1024,
+  "h": 576,
+  "fmt": "JPEG",
+  "bytes": 132085
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-30-at-08.46.404-1024x576.jpeg",
+  "w": 1024,
+  "h": 576,
+  "fmt": "JPEG",
+  "bytes": 167565
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-30-at-08.46.405-1024x576.jpeg",
+  "w": 1024,
+  "h": 576,
+  "fmt": "JPEG",
+  "bytes": 75867
+ },
+ {
+  "file": "WhatsApp-Image-2019-03-30-at-08.46.408-1024x576.jpeg",
+  "w": 1024,
+  "h": 576,
+  "fmt": "JPEG",
+  "bytes": 100174
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.43.59-PM-copy-1.jpg",
+  "w": 1600,
+  "h": 900,
+  "fmt": "JPEG",
+  "bytes": 1144794
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.46.06-PM.jpeg",
+  "w": 1600,
+  "h": 901,
+  "fmt": "JPEG",
+  "bytes": 287662
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.48.27-PM-1.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 208897
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.50.37-PM2-1.jpeg",
+  "w": 901,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 218080
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.51.51-PM.jpeg",
+  "w": 899,
+  "h": 1599,
+  "fmt": "JPEG",
+  "bytes": 282687
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.52.19-PM-1.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 225547
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.52.19-PM-2.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 225547
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.53.20-PM-1.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 196908
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.55.56-PM-1.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 203392
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.55.56-PM-2.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 203392
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.57.00-PM-1.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 395634
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.57.14-PM-1.jpeg",
+  "w": 900,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 250528
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-10.58.45-PM.jpeg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 227452
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-11.02.26-PM-1.jpeg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 213360
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-11.02.27-PM-1.jpeg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 175255
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-11.02.27-PM.jpeg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 175255
+ },
+ {
+  "file": "WhatsApp-Image-2020-10-04-at-11.02.28-PM1.jpeg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 169158
+ },
+ {
+  "file": "a1.jpg",
+  "w": 600,
+  "h": 394,
+  "fmt": "JPEG",
+  "bytes": 117698
+ },
+ {
+  "file": "a2.jpg",
+  "w": 600,
+  "h": 394,
+  "fmt": "JPEG",
+  "bytes": 201815
+ },
+ {
+  "file": "about3.jpg",
+  "w": 600,
+  "h": 394,
+  "fmt": "JPEG",
+  "bytes": 244262
+ },
+ {
+  "file": "bg-why-1-2.jpg",
+  "w": 1200,
+  "h": 669,
+  "fmt": "JPEG",
+  "bytes": 180161
+ },
+ {
+  "file": "excel-1-129882.png",
+  "w": 256,
+  "h": 256,
+  "fmt": "PNG",
+  "bytes": 4040
+ },
+ {
+  "file": "flextyres-website-logo-1.png",
+  "w": 449,
+  "h": 305,
+  "fmt": "PNG",
+  "bytes": 136374
+ },
+ {
+  "file": "footer-logo-new.png",
+  "w": 100,
+  "h": 68,
+  "fmt": "PNG",
+  "bytes": 9925
+ },
+ {
+  "file": "free-pdf-icon-19.png",
+  "w": 256,
+  "h": 256,
+  "fmt": "PNG",
+  "bytes": 39943
+ },
+ {
+  "file": "gallery-1-848x439-1-2.jpg",
+  "w": 848,
+  "h": 439,
+  "fmt": "JPEG",
+  "bytes": 94217
+ },
+ {
+  "file": "gallery-1-848x439-3.jpg",
+  "w": 848,
+  "h": 439,
+  "fmt": "JPEG",
+  "bytes": 94217
+ },
+ {
+  "file": "gallery-1-full-2.jpg",
+  "w": 1024,
+  "h": 683,
+  "fmt": "JPEG",
+  "bytes": 170227
+ },
+ {
+  "file": "gallery-2-848x439-1-2.jpg",
+  "w": 848,
+  "h": 439,
+  "fmt": "JPEG",
+  "bytes": 87359
+ },
+ {
+  "file": "gallery-2-848x439-3.jpg",
+  "w": 848,
+  "h": 439,
+  "fmt": "JPEG",
+  "bytes": 87359
+ },
+ {
+  "file": "gallery-2-full-2.jpg",
+  "w": 1024,
+  "h": 683,
+  "fmt": "JPEG",
+  "bytes": 145823
+ },
+ {
+  "file": "gallery-3-848x439-1-2.jpg",
+  "w": 848,
+  "h": 439,
+  "fmt": "JPEG",
+  "bytes": 111223
+ },
+ {
+  "file": "gallery-3-848x439-3.jpg",
+  "w": 848,
+  "h": 439,
+  "fmt": "JPEG",
+  "bytes": 111223
+ },
+ {
+  "file": "index-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 227452
+ },
+ {
+  "file": "index10-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 148987
+ },
+ {
+  "file": "index2-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 213360
+ },
+ {
+  "file": "index3-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 147971
+ },
+ {
+  "file": "index4-1.jpg",
+  "w": 1600,
+  "h": 777,
+  "fmt": "JPEG",
+  "bytes": 172709
+ },
+ {
+  "file": "index5-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 135071
+ },
+ {
+  "file": "index6-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 175255
+ },
+ {
+  "file": "index7-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 169158
+ },
+ {
+  "file": "index8-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 143167
+ },
+ {
+  "file": "index9-1.jpg",
+  "w": 777,
+  "h": 1600,
+  "fmt": "JPEG",
+  "bytes": 123221
+ },
+ {
+  "file": "logo-new2.png",
+  "w": 470,
+  "h": 319,
+  "fmt": "PNG",
+  "bytes": 84001
+ },
+ {
+  "file": "member-1-303x363-2.jpg",
+  "w": 303,
+  "h": 363,
+  "fmt": "JPEG",
+  "bytes": 48471
+ },
+ {
+  "file": "member-2-303x363-2.jpg",
+  "w": 303,
+  "h": 363,
+  "fmt": "JPEG",
+  "bytes": 95052
+ },
+ {
+  "file": "member-3-303x363-2.jpg",
+  "w": 303,
+  "h": 363,
+  "fmt": "JPEG",
+  "bytes": 54592
+ },
+ {
+  "file": "member-4-303x363-2.jpg",
+  "w": 303,
+  "h": 363,
+  "fmt": "JPEG",
+  "bytes": 111538
+ },
+ {
+  "file": "service-copy.jpg",
+  "w": 600,
+  "h": 394,
+  "fmt": "JPEG",
+  "bytes": 166676
+ },
+ {
+  "file": "service1.jpg",
+  "w": 600,
+  "h": 394,
+  "fmt": "JPEG",
+  "bytes": 247158
+ },
+ {
+  "file": "service3.jpg",
+  "w": 600,
+  "h": 394,
+  "fmt": "JPEG",
+  "bytes": 176980
+ },
+ {
+  "file": "service4.jpg",
+  "w": 600,
+  "h": 394,
+  "fmt": "JPEG",
+  "bytes": 201164
+ },
+ {
+  "file": "slider-bg-2-2.jpg",
+  "w": 1920,
+  "h": 620,
+  "fmt": "JPEG",
+  "bytes": 873448
+ },
+ {
+  "file": "slider-bg-3.jpg",
+  "w": 1918,
+  "h": 620,
+  "fmt": "JPEG",
+  "bytes": 157846
+ },
+ {
+  "file": "technicial-3.png",
+  "w": 396,
+  "h": 589,
+  "fmt": "PNG",
+  "bytes": 317742
+ },
+ {
+  "file": "tyre-image-bg.png",
+  "w": 546,
+  "h": 543,
+  "fmt": "PNG",
+  "bytes": 165509
+ },
+ {
+  "file": "whatsapp-1-3.png",
+  "w": 107,
+  "h": 30,
+  "fmt": "PNG",
+  "bytes": 6732
+ },
+ {
+  "file": "work-1-640x640-2.jpg",
+  "w": 640,
+  "h": 640,
+  "fmt": "JPEG",
+  "bytes": 134058
+ },
+ {
+  "file": "work-2-640x640-2.jpg",
+  "w": 640,
+  "h": 640,
+  "fmt": "JPEG",
+  "bytes": 107073
+ },
+ {
+  "file": "work-3-640x640-2.jpg",
+  "w": 640,
+  "h": 640,
+  "fmt": "JPEG",
+  "bytes": 152616
+ },
+ {
+  "file": "work-5-640x640-2.jpg",
+  "w": 640,
+  "h": 640,
+  "fmt": "JPEG",
+  "bytes": 193948
+ },
+ {
+  "file": "work-7-640x640-2.jpg",
+  "w": 640,
+  "h": 640,
+  "fmt": "JPEG",
+  "bytes": 163833
+ },
+ {
+  "file": "work-8-640x640-2.jpg",
+  "w": 640,
+  "h": 640,
+  "fmt": "JPEG",
+  "bytes": 119730
+ },
+ {
+  "file": "yt.png",
+  "w": 500,
+  "h": 200,
+  "fmt": "PNG",
+  "bytes": 6475
+ }
+]

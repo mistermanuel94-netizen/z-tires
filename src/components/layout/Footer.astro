@@ -1,0 +1,277 @@
+---
+import { footerNav, legalNav } from '~/data/nav';
+import { contact, locations, social, company, documents, site } from '~/data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <p class="footer__wordmark">
+          <span class="footer__flex">FLEX</span><span class="footer__tyres">TYRES</span>
+        </p>
+        <p class="footer__blurb">
+          Wholesale used car and truck tyres, supplied to trade buyers by container and van. Trading
+          since {company.tradingSince}.
+        </p>
+        <ul class="footer__social" aria-label="FlexTyres on other platforms">
+          <li>
+            <a href={social.facebook} rel="noopener">Facebook</a>
+          </li>
+          <li>
+            <a href={social.youtubeVideos} rel="noopener">YouTube</a>
+          </li>
+          <li>
+            <a href={social.googleBusinessProfile} rel="noopener">Google Business Profile</a>
+          </li>
+        </ul>
+      </div>
+
+      {
+        footerNav.map((group) => (
+          <nav class="footer__col" aria-label={group.heading}>
+            <h2 class="footer__heading">{group.heading}</h2>
+            <ul class="footer__list">
+              {group.items.map((item) => (
+                <li>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Contact</h2>
+        <ul class="footer__list footer__list--contact">
+          <li>
+            <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>
+          </li>
+          <li>
+            <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a>
+          </li>
+          <li>
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          </li>
+        </ul>
+        <h3 class="footer__subheading">Locations</h3>
+        <ul class="footer__list footer__list--plain">
+          {
+            locations.map((l) => (
+              <li>
+                <span class="footer__loc-role">{l.role}</span>
+                <span>
+                  {l.street
+                    ? `${l.street}, ${l.postalCode} ${l.locality}, ${l.country}`
+                    : `${l.locality}, ${l.country}`}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__downloads">
+      <h2 class="footer__heading">Downloads</h2>
+      <ul class="footer__dl-list">
+        {
+          [documents.stockListXlsx, documents.stockListPdf, documents.purchasingTerms].map((d) => (
+            <li>
+              <a href={d.href} download>
+                {d.label}
+                <span class="footer__dl-meta">
+                  {d.type} · {d.sizeLabel}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="footer__bar">
+      <p class="footer__copy">© {company.tradingSince}–{year} {site.name}. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <ul class="footer__legal">
+          {
+            legalNav.map((l) => (
+              <li>
+                <a href={l.href}>{l.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--c-ink-900);
+    color: var(--c-text-inverse-muted);
+    padding-block: var(--s-8) var(--s-5);
+    font-size: var(--fs-sm);
+  }
+  .footer a {
+    color: var(--c-text-inverse-muted);
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: var(--c-green-300);
+    text-decoration: underline;
+  }
+
+  .footer__top {
+    display: grid;
+    gap: var(--s-6);
+    padding-bottom: var(--s-6);
+  }
+  @media (min-width: 40em) {
+    .footer__top {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 64em) {
+    .footer__top {
+      grid-template-columns: 1.6fr repeat(4, minmax(0, 1fr));
+      gap: var(--s-6) var(--s-5);
+    }
+  }
+
+  .footer__wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 var(--s-3);
+  }
+  .footer__flex {
+    color: var(--c-white);
+  }
+  .footer__tyres {
+    color: var(--c-green-500);
+  }
+  .footer__blurb {
+    margin-bottom: var(--s-4);
+    max-width: 34ch;
+  }
+
+  .footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer__social li {
+    margin: 0;
+  }
+
+  .footer__heading {
+    font-family: var(--font-display);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--c-white);
+    margin: 0 0 var(--s-3);
+  }
+  .footer__subheading {
+    font-family: var(--font-display);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--c-white);
+    margin: var(--s-5) 0 var(--s-3);
+  }
+
+  .footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer__list li {
+    margin: 0 0 var(--s-2);
+  }
+  .footer__list--plain li {
+    display: grid;
+    gap: 2px;
+    margin-bottom: var(--s-3);
+  }
+  .footer__loc-role {
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--c-ink-400);
+  }
+
+  .footer__downloads {
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    padding-block: var(--s-5);
+  }
+  .footer__dl-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer__dl-list li {
+    margin: 0;
+  }
+  .footer__dl-list a {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--s-3) var(--s-4);
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: var(--r-md);
+    font-weight: 600;
+    color: var(--c-white);
+  }
+  .footer__dl-list a:hover {
+    background: rgb(134 180 58 / 0.14);
+    border-color: var(--c-green-500);
+    text-decoration: none;
+  }
+  .footer__dl-meta {
+    font-size: var(--fs-xs);
+    font-weight: 400;
+    color: var(--c-ink-400);
+  }
+
+  .footer__bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-5);
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    padding-top: var(--s-5);
+  }
+  .footer__copy {
+    margin: 0;
+    font-size: var(--fs-xs);
+  }
+  .footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--fs-xs);
+  }
+  .footer__legal li {
+    margin: 0;
+  }
+</style>

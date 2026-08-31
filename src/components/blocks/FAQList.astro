@@ -1,0 +1,59 @@
+---
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  expandsAt?: string | undefined;
+  expandsLabel?: string | undefined;
+}
+
+interface Props {
+  items: FaqItem[];
+  /** Heading level for each question, so the FAQ nests correctly in the page outline. */
+  level?: 2 | 3;
+  /** First N items rendered open, so the answers are visible without interaction. */
+  openCount?: number;
+}
+
+const { items, level = 3, openCount = 2 } = Astro.props;
+const Heading = `h${level}` as 'h2' | 'h3';
+---
+
+<div class="faq-list">
+  {
+    items.map((item, i) => (
+      <details class="faq-item" id={item.id} open={i < openCount}>
+        <summary>
+          <Heading class="faq-item__q">{item.question}</Heading>
+        </summary>
+        <div class="faq-item__body">
+          <p>{item.answer}</p>
+          {item.expandsAt && (
+            <p class="faq-item__more">
+              <a href={item.expandsAt}>{item.expandsLabel ?? 'Read more'}</a>
+            </p>
+          )}
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq-list {
+    border-top: 1px solid var(--c-border);
+  }
+  .faq-item__q {
+    margin: 0;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    display: inline;
+  }
+  .faq-item__more {
+    margin-bottom: 0;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+</style>

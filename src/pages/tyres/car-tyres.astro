@@ -1,0 +1,240 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import GradeTable from '~/components/blocks/GradeTable.astro';
+import SizeTable from '~/components/blocks/SizeTable.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { carGrades, gradeCaveat, carOrderRoutes } from '~/data/tyres';
+import { carTyreSizes, carTyreSizeCount } from '~/data/sizes';
+import { documents, brandsCarried } from '~/data/site';
+
+import heroImg from '~/assets/images/warehouse-tyre-stack-close.jpg';
+
+const path = '/tyres/car-tyres/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Tyres', path: '/tyres/' },
+  { name: 'Used car tyres', path },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Used car tyres — wholesale',
+    description:
+      'FlexTyres used car tyres: three quality grades, 348 published sizes from 12 to 22 inch, and container or van quantities.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Used Car Tyres Wholesale"
+  description="Wholesale used car tyres from FlexTyres: three quality grades by tread depth, 348 published sizes from 12 to 22 inch, sold by container or Sprinter van."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Used car tyres"
+    title="Used car tyres, wholesale"
+    lede="Graded used passenger-car tyres sold to trade buyers by the container or by the van. Everything on this page is what FlexTyres publishes."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div>
+          <AnswerBlock>
+            <p>
+              FlexTyres sells used car tyres in <strong>three quality grades</strong> — high (4–8 mm tread),
+              medium (2.5–5 mm) and low (1–3 mm) — across
+              <strong>{carTyreSizeCount} published sizes</strong> from 12&Prime; to 22&Prime;, in all
+              brands. The smallest order is <strong>180 tyres</strong> by Sprinter van in Belgium, France
+              and the Netherlands; for export the minimum is a
+              <strong>20 ft container</strong>, approximately 1,350 tyres tripled, with at least 20
+              different sizes.
+            </p>
+          </AnswerBlock>
+
+          <h2>Who this is for</h2>
+          <p>
+            Trade buyers only — wholesalers, retailers and exporters. FlexTyres does not sell to
+            consumers, and the smallest published order is 180 tyres.
+          </p>
+
+          <h2>What is publicly known about quality</h2>
+          <p>
+            FlexTyres grades car tyres on tread depth and a quality letter. Every grade covers all
+            brands, including {brandsCarried.slice(0, 5).join(', ')} and {brandsCarried[5]}.
+          </p>
+        </div>
+        <figure>
+          <Image
+            src={heroImg}
+            alt="A close stack of used car tyres graded and ready for loading"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+
+      <GradeTable grades={carGrades} caption="Car tyre quality grades as published by FlexTyres" />
+      <div class="note">
+        <svg
+          class="note__icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
+        </svg>
+        <div>
+          <p>{gradeCaveat}</p>
+          <p>
+            <a href="/tyres/quality-grades/">How FlexTyres grades tyres</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="quantities-heading">
+    <div class="container">
+      <span class="eyebrow">Quantities</span>
+      <h2 id="quantities-heading">How much do I have to buy?</h2>
+      <p class="section__lede">
+        FlexTyres publishes three purchase routes. Container quantities assume the tyres are tripled
+        — packed three inside one — which is what roughly doubles what fits in the box.
+      </p>
+      <div class="table-scroll">
+        <table>
+          <caption>Published minimum orders for used car tyres</caption>
+          <thead>
+            <tr>
+              <th scope="col">Route</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Coverage</th>
+              <th scope="col">Conditions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              carOrderRoutes.map((r) => (
+                <tr>
+                  <th scope="row">
+                    <a href={r.href}>{r.name}</a>
+                  </th>
+                  <td class="nowrap">{r.quantity}</td>
+                  <td>{r.coverage}</td>
+                  <td>{r.notes.length ? r.notes.join('. ') : '—'}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="small">
+        FlexTyres' FAQ also states a minimum of 1,000 pieces. The routes above are what the order
+        forms publish. Confirm which minimum applies to your order when you request a quote — see
+        <a href="/how-to-order/">how to order</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sizes-heading">
+    <div class="container">
+      <span class="eyebrow">Sizes</span>
+      <h2 id="sizes-heading">Published car tyre sizes</h2>
+      <p class="section__lede">
+        {carTyreSizeCount} sizes across 11 rim diameters, combined from every list FlexTyres publishes:
+        both quote forms, the Sprinter order form and the downloadable stock sheet.
+      </p>
+
+      <div class="downloads">
+        <a class="btn btn--ghost" href={documents.stockListXlsx.href} download>
+          Download stock list ({documents.stockListXlsx.type}, {documents.stockListXlsx.sizeLabel})
+        </a>
+        <a class="btn btn--ghost" href={documents.stockListPdf.href} download>
+          Download stock list ({documents.stockListPdf.type}, {documents.stockListPdf.sizeLabel})
+        </a>
+      </div>
+
+      <SizeTable groups={carTyreSizes} caption="Published used car tyre sizes" />
+
+      <p class="small">
+        If the size you need is not listed, ask anyway. FlexTyres' own FAQ says: "If there are no
+        sizes on the list that you need, please let us know."
+      </p>
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Quality grades explained',
+            href: '/tyres/quality-grades/',
+            hint: 'What each grade means for car and truck tyres',
+          },
+          {
+            label: 'Doubling and tripling',
+            href: '/services/doubling-and-tripling/',
+            hint: 'Why container quantities are quoted tripled',
+          },
+          {
+            label: 'How to order',
+            href: '/how-to-order/',
+            hint: 'Process, minimums and what to send us',
+          },
+          {
+            label: 'Sprinter van delivery',
+            href: '/offers/sprinter-van-delivery/',
+            hint: '180 tyres to Belgium, France and the Netherlands',
+          },
+          {
+            label: 'Used truck tyres',
+            href: '/tyres/truck-tyres/',
+            hint: 'Truck grading and sizes',
+          },
+          {
+            label: 'Frequently asked questions',
+            href: '/faqs/',
+            hint: 'Pricing, pairs, warehouse visits',
+          },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Get a price for used car tyres"
+    text="Send the sizes, grade and quantity you need with your destination country. FlexTyres responds within 24 hours."
+    primaryLabel="Request a car tyre quote"
+    primaryHref="/request-a-quote/car-tyres/"
+  />
+</BaseLayout>
+
+<style>
+  .nowrap {
+    white-space: nowrap;
+  }
+  .small {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+  .downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-bottom: var(--s-5);
+  }
+</style>

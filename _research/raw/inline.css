@@ -1,0 +1,741 @@
+img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }
+
+.wpautoterms-footer{background-color:#ffffff;text-align:center;}
+.wpautoterms-footer a{color:#000000;font-family:Arial, sans-serif;font-size:14px;}
+.wpautoterms-footer .separator{color:#cccccc;font-family:Arial, sans-serif;font-size:14px;}
+
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+
+
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+
+
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+
+
+#rs-demo-id {}
+
+
+
+			@font-face {
+				font-family: 'FontAwesome';
+				src: url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot?#iefix') format('embedded-opentype'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff2') format('woff2'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff') format('woff'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.ttf') format('truetype'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.svg#fontawesome') format('svg');
+			}
+
+			@font-face {
+				font-family: 'FontAwesome';
+				src: url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot?#iefix') format('embedded-opentype'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff2') format('woff2'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff') format('woff'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.ttf') format('truetype'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.svg#fontawesome') format('svg');
+			}
+
+			@font-face {
+				font-family: 'FontAwesome';
+				src: url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot?#iefix') format('embedded-opentype'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff2') format('woff2'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff') format('woff'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.ttf') format('truetype'),
+				url('https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.svg#fontawesome') format('svg');
+				unicode-range: U+F004-F005,U+F007,U+F017,U+F022,U+F024,U+F02E,U+F03E,U+F044,U+F057-F059,U+F06E,U+F070,U+F075,U+F07B-F07C,U+F080,U+F086,U+F089,U+F094,U+F09D,U+F0A0,U+F0A4-F0A7,U+F0C5,U+F0C7-F0C8,U+F0E0,U+F0EB,U+F0F3,U+F0F8,U+F0FE,U+F111,U+F118-F11A,U+F11C,U+F133,U+F144,U+F146,U+F14A,U+F14D-F14E,U+F150-F152,U+F15B-F15C,U+F164-F165,U+F185-F186,U+F191-F192,U+F1AD,U+F1C1-F1C9,U+F1CD,U+F1D8,U+F1E3,U+F1EA,U+F1F6,U+F1F9,U+F20A,U+F247-F249,U+F24D,U+F254-F25B,U+F25D,U+F267,U+F271-F274,U+F279,U+F28B,U+F28D,U+F2B5-F2B6,U+F2B9,U+F2BB,U+F2BD,U+F2C1-F2C2,U+F2D0,U+F2D2,U+F2DC,U+F2ED,U+F328,U+F358-F35B,U+F3A5,U+F3D1,U+F410,U+F4AD;
+			}
+		
+
+
+.banner-text {
+padding-left: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+ .banner-text {
+    margin-left: -40px;
+  }  
+}
+
+#header-aside .header-aside-btn a{
+	background-color:#86b43a;
+}
+
+#site-header-inner .wrap-inner #header-aside .header-aside-btn a{
+	background-color:transparent !important;
+}
+
+#site-header-wrap #top-bar .icons a{
+	background-color:rgb(134, 180, 58) !important;
+	color:#ffffff !important;
+}
+
+
+@media (max-width:991px){
+
+	#site-logo-inner .main-logo img{
+		width:120px;
+		margin-top:10px;
+		margin-bottom:10px;
+	}
+	
+}
+
+@media (max-width:767px){
+
+	#site-logo-inner .main-logo img{
+		width:105px;
+	}
+	
+}
+
+@media (max-width:479px){
+
+	#slider-1-slide-2-layer-3{
+		height:115px !important;
+		padding-bottom:3px;
+		position:relative;
+		top:-1px;
+	}
+	
+}
+
+@media (min-width:992px){
+
+	#header-aside .header-info{
+		position:relative;
+		top:2px;
+	}
+	
+}
+
+.resp-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+.resp-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#wrapper .wpb_wrapper{
+	text-align:center;
+}
+
+.init ol li{
+	font-weight:700;
+list-style: none;
+text-align: left;
+}
+
+
+
+.resp-container-stock {
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+}
+.resp-iframe-stock {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+min-height: 600px;
+    padding-top: 30px;
+}
+
+@media (max-width:1024px){
+.resp-iframe-stock {
+min-height: 550px;
+	}
+}
+@media (max-width:834px){
+.resp-iframe-stock {
+min-height: 400px;
+	}
+}
+@media (max-width:728px){
+.resp-iframe-stock {
+min-height: 400px;
+	}
+}
+@media (max-width:600px){
+.resp-iframe-stock {
+min-height: 320px;
+	}
+}
+@media (max-width:414px){
+.resp-iframe-stock {
+min-height: 200px;
+	}
+}
+@media (max-width:320px){
+.resp-iframe-stock {
+min-height: 160px;
+	}
+}
+
+
+			.wprt-button.accent,
+			.wprt-button.outline.accent:hover,
+			.wprt-button.dark:hover,
+			.wprt-button.light:hover,
+			.wprt-button.very-light:hover,
+			.wprt-button.outline.dark:hover,
+			.wprt-button.outline.light:hover,
+			.wprt-button.outline.very-light:hover,
+			.wprt-headings .sep,
+			.wprt-counter .sep,
+			.wprt-icon.style-3 .icon,
+			.wprt-icon-box .elm-btn .simple-link2:after,.wprt-icon-box .elm-btn .simple-link:after,
+			.wprt-icon-box.accent-bg .icon-wrap,
+			.wprt-icon-box.grey-bg:hover .icon-wrap,
+			.wprt-icon-box.grey-bg .icon-wrap:after,
+			.wprt-icon-box.accent-outline:hover .icon-wrap,
+			.wprt-icon-box.accent-outline .icon-wrap:after,
+			.wprt-icon-box.grey-outline:hover .icon-wrap,
+			.wprt-icon-box.grey-outline .icon-wrap:after,
+			.wprt-thumb-slider #wprt-slider .flex-direction-nav a,
+			.wprt-navbar .menu>li.current-nav-item,
+			.wprt-image-box .item .simple-link:after,
+			.wprt-news .news-item .meta,
+			.wprt-news .news-item .simple-link:after,
+			#gallery-filter .cbp-filter-item.cbp-filter-item-active:before,
+			.gallery-box .hover-effect .icon>a,
+			.wprt-tabs.style-2 .tab-title .item-title.active,
+			.wprt-tabs.style-3 .tab-title .item-title.active,
+			.wprt-lines .line-1,
+			.wprt-images-grid .cbp-nav-next,.wprt-images-grid .cbp-nav-prev,
+			.wprt-progress.numb-accent .perc>span,
+			.wprt-progress.style-1 .progress-animate,
+			.wprt-progress.style-2 .progress-animate,
+			.wprt-accordions.style-1 .accordion-item.active .accordion-heading,
+			.wprt-team .socials li a:hover,
+			.wprt-price-table .price-table-price,
+			.owl-theme .owl-nav [class*=owl-],
+			.owl-theme .owl-dots .owl-dot.active span,
+			blockquote:before,
+			button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,button:focus,input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,
+			.bg-accent,
+			#top-bar .top-bar-socials .icons a:hover,
+			#top-bar.style-3,
+			#site-header .site-navigation-wrap,
+			.header-style-2 #site-header #main-nav > ul > li > a:hover:before,.header-style-2 #site-header #main-nav > ul > li.current-menu-item > a:before,
+			.nav-top-cart-wrapper .shopping-cart-items-count,
+			.nav-top-cart-wrapper .nav-shop-cart .buttons > a:first-child,
+			#main-nav li.megamenu > ul.sub-menu > .menu-item-has-children > a:before,
+			.post-media > .post-cat a,
+			.hentry .post-link a,
+			.hentry .post-tags a:hover,
+			.comment-reply:after,
+			#footer-widgets .widget .widget-title > span:after,
+			.widget.widget_nav_menu .menu > li:before,
+			.widget.widget_nav_menu .menu > li.current-menu-item > a,.widget.widget_nav_menu .menu > li.current-menu-item,
+			#footer-widgets .widget.widget_nav_menu .menu > li.current-menu-item > a,#footer-widgets .widget.widget_nav_menu .menu > li.current-menu-item,
+			#sidebar .widget.widget ul.info li .inner:before,#footer-widgets .widget ul.info li .inner:before,
+			#footer-widgets .widget ul.links li a:before,
+			#sidebar .widget .socials a:hover,#footer-widgets .widget .socials a:hover,#footer-widgets .widget .socials a.active,
+			#footer-widgets .widget.widget_recent_posts .recent-news .thumb.icon,
+			#sidebar .widget.widget_tag_cloud .tagcloud a:hover,#footer-widgets .widget.widget_tag_cloud .tagcloud a:hover,.widget_product_tag_cloud .tagcloud a:hover,
+			#scroll-top:hover:before,
+			.wprt-pagination ul li a.page-numbers:hover,.woocommerce-pagination .page-numbers li .page-numbers:hover,.wprt-pagination ul li .page-numbers.current,.woocommerce-pagination .page-numbers li .page-numbers.current,
+			.widget.widget_nav_menu .menu > li.current-nav-item,
+			.woocommerce-page .content-woocommerce .products li .onsale ,
+			.woocommerce nav.woocommerce-pagination ul li a:focus, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current,
+			.woocommerce-page .content-woocommerce .products li .added_to_cart.wc-forward ,
+			.woocommerce-page .content-woocommerce .products li .add_to_cart_button.added ,
+			.woocommerce-page .woo-single-post-class .summary .cart .single_add_to_cart_button ,
+			.woocommerce-page .cart_totals .wc-proceed-to-checkout a ,
+			.woocommerce-page #payment #place_order ,
+			.woocommerce .widget_price_filter .ui-slider .ui-slider-range{background-color: #86b43a;}
+
+			/*Border Color*/ 
+
+			.wprt-button.outline.accent, 
+			.wprt-button.outline.dark:hover, 
+			.wprt-button.outline.light:hover, 
+			.wprt-button.outline.very-light:hover, 
+			.wprt-icon.outline .icon, 
+			.wprt-icon-box.accent-outline .icon-wrap, 
+			.wprt-icon-box.grey-outline:hover .icon-wrap, 
+			.wprt-thumb-slider #wprt-carousel .slides>li.flex-active-slide:after,.wprt-thumb-slider #wprt-carousel .slides>li:hover:after, 
+			.wprt-navbar .menu>li.current-nav-item, 
+			.divider-icon-after.accent,.divider-icon-before.accent,.wprt-divider.has-icon .divider-double.accent, 
+			.wprt-images-grid .cbp-nav-pagination-active, 
+			.wprt-accordions.style-2 .accordion-item.active .accordion-heading, 
+			.owl-theme .owl-dots .owl-dot.active span, 
+			.hentry .post-tags a:hover, 
+			#sidebar .widget .socials a:hover,#footer-widgets .widget .socials a:hover,#footer-widgets .widget .socials a.active, 
+			#sidebar .widget.widget_tag_cloud .tagcloud a:hover,#footer-widgets .widget.widget_tag_cloud .tagcloud a:hover,.widget_product_tag_cloud .tagcloud a:hover, 
+			.wprt-pagination ul li a.page-numbers:hover,.woocommerce-pagination .page-numbers li .page-numbers:hover,.wprt-pagination ul li .page-numbers.current,.woocommerce-pagination .page-numbers li .page-numbers.current, 
+			.widget.widget_nav_menu .menu > li.current-nav-item, 
+			.wpb-js-composer div.vc_tta-color-grey.vc_tta-style-classic.vc_tta-tabs-position-top li.vc_tta-tab.vc_active>a, 
+			.wpb-js-composer div.vc_tta-tabs:not([class*=vc_tta-gap]):not(.vc_tta-o-no-fill).vc_tta-tabs-position-top .vc_tta-tab.vc_active>a,
+			.woocommerce-page .content-woocommerce .products li .product-thumbnail:hover, 
+			.woocommerce-page .content-woocommerce .products li .product-thumbnail:after , 
+			.woocommerce-page .content-woocommerce .products li .added_to_cart.wc-forward , 
+			.woocommerce-page .content-woocommerce .products li .add_to_cart_button.added , 
+			.woocommerce-page .woo-single-post-class .summary .cart .single_add_to_cart_button{border-color: #86b43a;}
+			
+			/*Border Top*/ 
+
+			.wprt-tabs.style-1 .tab-title .item-title.active>span, 
+			.wprt-tabs.style-2 .tab-title .item-title.active>span, 
+			.wprt-progress.numb-accent .perc>span:after{border-top-color: #86b43a;}
+
+			/*Border Left*/ 
+
+			.wprt-tabs.style-4 .tab-title .item-title.active>span{border-left-color:#86b43a;}
+
+			/*Color*/ 
+
+			.wprt-button.outline.accent, 
+			.wprt-fancy-text.typed .heading, 
+			.wprt-fancy-text.typed .typed-cursor, 
+			.wprt-counter .prefix,.wprt-counter .suffix, 
+			.wprt-counter.style-1 .number-wrap, 
+			.wprt-counter.style-2 .icon, 
+			.wprt-icon.outline .icon, 
+			.wprt-icon.style-1 .icon, 
+			.wprt-icon-box .heading a:hover,.wprt-icon-box.simple .icon-wrap, 
+			.wprt-icon.style-5 .icon, 
+			.wprt-icon-box.grey-bg .icon-wrap, 
+			.wprt-icon-box.accent-outline .icon-wrap, 
+			.wprt-icon-box.grey-outline .icon-wrap, 
+			.wprt-navbar .menu>li>a:hover, 
+			.wprt-image-box .item .title a:hover, 
+			.wprt-news .news-item .text-wrap .title a:hover, 
+			#gallery-filter .cbp-filter-item:hover, 
+			#gallery-filter .cbp-filter-item.cbp-filter-item-active, 
+			.wprt-list.style-1 .icon,ul.wprt-list.style-1 i, 
+			.wprt-divider.has-icon .icon-wrap>span, 
+			.wprt-accordions .accordion-item .accordion-heading:hover, 
+			.wprt-accordions.style-2 .accordion-item.active .accordion-heading, 
+			.wprt-accordions.style-2 .accordion-item.active .accordion-heading:after, 
+			.wprt-accordions.style-2 .accordion-item .accordion-heading:hover, 
+			.wprt-accordions.style-1 .accordion-item .accordion-heading:after, 
+			a, 
+			.text-accent-color, 
+			.heading b, 
+			.header-style-2 #top-bar .top-bar-socials .icons a:hover, 
+			#site-logo .site-logo-text:hover, 
+			#site-header .header-search-icon:hover, 
+			.header-style-2 #site-header .header-search-icon:hover, 
+			.nav-top-cart-wrapper .nav-shop-cart ul li a:hover, 
+			.nav-top-cart-wrapper .nav-shop-cart ul li a.remove, 
+			#site-header .header-info .info-c > .title, 
+			#main-nav > ul > li > a:hover,#main-nav > ul > li.current-menu-item > a, 
+			#main-nav-mobi ul > li > a:hover, 
+			.hentry .post-title a:hover, 
+			.hentry .post-meta a:hover, 
+			.comment-author a:hover, 
+			#sidebar .widget.widget_calendar caption,#footer-widgets .widget.widget_calendar caption, 
+			.widget.widget_categories ul li a:hover,.widget.widget_meta ul li a:hover,.widget.widget_pages ul li a:hover,.widget.widget_archive ul li a:hover,.widget.widget_recent_entries ul li a:hover,.widget.widget_recent_comments ul li a:hover, .widget.widget_product_categories ul li a:hover,
+			#footer-widgets .widget.widget_categories ul li a:hover,#footer-widgets .widget.widget_meta ul li a:hover,#footer-widgets .widget.widget_pages ul li a:hover,#footer-widgets .widget.widget_archive ul li a:hover,#footer-widgets .widget.widget_recent_entries ul li a:hover,#footer-widgets .widget.widget_recent_comments ul li a:hover, 
+			#sidebar .widget.widget_recent_news h3 a:hover, 
+			.widget.widget_nav_menu .menu > li > a:hover, 
+			#footer-widgets .widget.widget_nav_menu .menu > li > a:hover, 
+			#sidebar .widget.widget_calendar tbody #today,#sidebar .widget.widget_calendar tbody #today a, 
+			#sidebar .widget.widget_links ul li a:hover,#footer-widgets .widget ul.links li a:hover, 
+			#sidebar .widget.widget_recent_posts .recent-news .thumb.icon,#footer-widgets .widget.widget_recent_posts .recent-news .thumb.icon, 
+			#sidebar .widget.widget_recent_posts h3 a:hover,#footer-widgets .widget.widget_recent_posts h3 a:hover, 
+			.widget.widget_nav_menu .menu > li > a:hover,
+			.woocommerce-page .content-woocommerce .products li h3:hover , 
+			.woocommerce ul.products li.product .price , 
+			.woocommerce-page .woo-single-post-class .summary .price{color: #86b43a;}
+
+			
+body, p, .font-heading, .blog-content p, span, .wprt-button{font-weight: 300;letter-spacing: 0px;}
+
+/* START Styles Simple Side Tab v2.2.0 */
+#rum_sst_tab {
+    font-family: Tahoma, sans-serif;
+    top: 300px;
+    background-color: #86b440;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 0px;
+}
+
+#rum_sst_tab:hover {
+    background-color: #A4A4A4;
+}
+.rum_sst_contents {
+    position:fixed;
+    margin:0;
+    padding:6px 13px 8px 13px;
+    text-decoration:none;
+    text-align:center;
+    font-size:15px;
+    font-weight:bold;
+    border-style:solid;
+    display:block;
+    z-index:100000;
+}
+.rum_sst_left {
+    left:-2px;
+    cursor: pointer;
+    -webkit-transform-origin:0 0;
+    -moz-transform-origin:0 0;
+    -o-transform-origin:0 0;
+    -ms-transform-origin:0 0;
+    -webkit-transform:rotate(270deg);
+    -moz-transform:rotate(270deg);
+    -ms-transform:rotate(270deg);
+    -o-transform:rotate(270deg);
+    transform:rotate(270deg);
+    -moz-border-radius-bottomright:10px;
+    border-bottom-right-radius:10px;
+    -moz-border-radius-bottomleft:10px;
+    border-bottom-left-radius:10px;
+}
+.rum_sst_right {
+    right:-1px;
+    cursor: pointer;
+    -webkit-transform-origin:100% 100%;
+    -moz-transform-origin:100% 100%;
+    -o-transform-origin:100% 100%;
+    -ms-transform-origin:100% 100%;
+    -webkit-transform:rotate(-90deg);
+    -moz-transform:rotate(-90deg);
+    -ms-transform:rotate(-90deg);
+    -o-transform:rotate(-90deg);
+    transform:rotate(-90deg);
+    -moz-border-radius-topright:10px;
+    border-top-right-radius:10px;
+    -moz-border-radius-topleft:10px;
+    border-top-left-radius:10px;
+}
+.rum_sst_right.less-ie-9 {
+    right:-120px;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+.rum_sst_left.less-ie-9 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+/* END Styles Simple Side Tab */
+
+
+
+.reifen-button {
+    display: none; /* Hide by default */
+    position: absolute;
+    right: -133px; /* Keep original placement */
+    top: 27px; /* Keep original placement */
+    z-index: 10; /* Lower than the menu toggle */
+}
+
+@media screen and (max-width: 768px) { 
+    .reifen-button {
+        display: block;
+    }
+
+    .reifen-button img {
+        width: 35%; /* Keep original size */
+        height: auto;
+    }
+}
+	
+.mobile-button {
+    position: relative; /* Ensures normal stacking */
+    z-index: 999; /* Keeps toggle on top */
+    top: 28px;
+
+
+			.hentry .post-title{
+	margin-bottom: 10px;
+}
+.wprt-content-box > .vc_column-inner{
+  width: auto!important;
+}
+.wprt-icon-box.style-7 .icon-wrap{ width: auto; }
+@media (max-width: 767px){
+	.wprt-icon-box.style-7 .icon-wrap{ position: relative; }
+}
+@media (max-width: 479px){
+	.tp-caption br{ display: none; }
+}		
+#site-logo-inner img{width:135px;}#site-logo-inner{margin-top:-20px;margin-bottom:-15px;margin-left:0;margin-right:0;}#featured-title .featured-title-inner-wrap{min-height:120px;padding-top:30px;}#featured-title .featured-title-heading{font-size:18px;}/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://flextyres.com/en/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+.vc_custom_1533636501715{padding-top: 83px !important;padding-bottom: 104px !important;background-color: #f7f7f7 !important;}.vc_custom_1601533529778{padding-top: 55px !important;padding-bottom: 60px !important;background-color: #f7f7f7 !important;}.vc_custom_1533711481797{padding-top: 83px !important;padding-bottom: 70px !important;}.vc_custom_1533789178358{background-color: #f7f7f7 !important;}.vc_custom_1601999935371{background-image: url(https://flextyres.com/en/wp-content/uploads/2020/10/WhatsApp-Image-2020-10-04-at-10.55.19-PM.jpeg?id=1267) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1601533563009{padding-bottom: 20px !important;}.vc_custom_1601533600411{padding-bottom: 20px !important;}
+
+/*
+	The following CSS generated by YellowPencil Plugin.
+	http://waspthemes.com/yellow-pencil
+*/
+.top-bar-content .fa{font-weight:600;}.wpautoterms-footer{background-color:#1f252a;padding-bottom:1px;z-index:1;}.wpautoterms-footer a{color:#8e8e8e;}#scroll-top{visibility:hidden !important;}@media (max-width:853px){#top-bar-inner .top-bar-content{display:none;}}@media (max-width:735px){#rum_sst_tab{top:270px;}}@media (min-width:991px){#wrapper #site-header-wrap #header-style #site-header #site-header-inner .wrap-inner #site-logo #site-logo-inner .main-logo img{display:inline-block !important;}}@media (min-width:994px){#wrapper #site-header-wrap #header-style #site-header #site-header-inner .wrap-inner #site-logo #site-logo-inner .main-logo img{margin-top:-10px !important;margin-bottom:-10px !important;width:165px !important;}}.top-bar-content .fa{font-weight:600;}@media (max-width:414px){#slider-1-slide-2-layer-3{position:relative;height:135px !important;top:-4px;}#slider-1-slide-2-layer-1{position:relative;top:auto !important;}}@media (max-width:374px){#slider-1-slide-2-layer-1{position:relative;top:auto !important;}#slider-1-slide-2-layer-3{position:relative;top:10px;}}@media (max-width:321px){#slider-1-slide-2-layer-3{position:relative;top:11px;}}@media (min-width:374px){#slider-1-slide-2-layer-1{position:relative;top:-1px;}}
+
+
+#goog-gt-tt {display:none !important;}
+.goog-te-banner-frame {display:none !important;}
+.goog-te-menu-value:hover {text-decoration:none !important;}
+.goog-text-highlight {background-color:transparent !important;box-shadow:none !important;}
+body {top:0 !important;}
+#google_translate_element2 {display:none!important;}
+
+#wprev-slider-1 .wprev_preview_bradius_T1 {border-radius: 0px;}#wprev-slider-1 .wprev_preview_bg1_T1::after{ border-top: 30px solid ; }
+

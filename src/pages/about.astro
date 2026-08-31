@@ -1,0 +1,301 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import Testimonials from '~/components/blocks/Testimonials.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { company, locations, contact, videos } from '~/data/site';
+
+import teamImg from '~/assets/images/warehouse-worker-sorting-tyres.jpg';
+import yardImg from '~/assets/images/warehouse-yard-panorama.jpg';
+
+const path = '/about/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'About', path },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'About FlexTyres',
+    description:
+      'FlexTyres is a Belgian family business wholesaling used car and truck tyres to trade buyers since 2011.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  {
+    '@type': 'AboutPage',
+    '@id': `${url}#about`,
+    url,
+    mainEntity: { '@id': `${canonical('/')}#organization` },
+  },
+);
+---
+
+<BaseLayout
+  title="About FlexTyres"
+  description="FlexTyres is a Belgian family business wholesaling used car and truck tyres to trade buyers, with an office in Evere and a warehouse in Frankfurt."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Company"
+    title="About FlexTyres"
+    lede="A Belgian family business that buys, grades and exports used tyres to trade buyers."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div>
+          <AnswerBlock>
+            <p>
+              FlexTyres is a <strong>Belgian wholesaler of used car and truck tyres</strong>, with
+              an office in Evere, Brussels and a warehouse in Frankfurt, Germany. It has been
+              trading since <strong>{company.tradingSince}</strong>. It sells to trade buyers —
+              wholesalers, retailers and exporters — by the container and, within Belgium, France
+              and the Netherlands, by the van.
+            </p>
+          </AnswerBlock>
+
+          <h2>How the business started</h2>
+          <p>{company.originStory}</p>
+
+          <h2>Who FlexTyres sells to</h2>
+          <p>
+            Trade buyers only. FlexTyres has described its customers as wholesalers on one page and
+            as retailers on another; what is consistent across the whole site is that this is a
+            business-to-business operation. The smallest published order is 180 tyres and the
+            standard route is a container of well over a thousand. FlexTyres does not sell single
+            tyres to consumers.
+          </p>
+
+          <h2>What FlexTyres says about how it works</h2>
+          <blockquote>
+            <p>
+              We know that honesty and transparency, coupled with reliable and friendly customer
+              service, is what really builds customer trust.
+            </p>
+          </blockquote>
+          <p>
+            The operational promise is consistent across the site: "Our professionals will perform
+            thorough quality checks, prepare all the paperwork, pack, load and ship your tires."
+          </p>
+        </div>
+        <figure>
+          <Image
+            src={teamImg}
+            alt="A FlexTyres worker moving used tyres between storage racks in the warehouse"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="values-heading">
+    <div class="container">
+      <span class="eyebrow">What FlexTyres publishes about itself</span>
+      <h2 id="values-heading">Three commitments</h2>
+      <ul class="grid grid--3 value-grid">
+        <li>
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__title">Eco-friendly</h3>
+              <p class="card__text">
+                "We reduce environmental harm by giving tyres a second life." Tyres past reuse are
+                supplied as <a href="/tyre-recycling/">chips and bales</a> rather than discarded.
+              </p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__title">Trade only</h3>
+              <p class="card__text">
+                FlexTyres sells strictly to the trade, which is how it holds container-scale stock
+                across <a href="/tyres/car-tyres/">348 published car sizes</a>.
+              </p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__title">Checked before loading</h3>
+              <p class="card__text">
+                Tyres are checked before they are packed and loaded. See
+                <a href="/tyres/quality-grades/">how grading works</a> for exactly what that covers.
+              </p>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="facts-heading">
+    <div class="container">
+      <div class="split split--reverse">
+        <figure>
+          <Image
+            src={yardImg}
+            alt="Wide view of the FlexTyres yard with long rows of stacked used tyres"
+            widths={[400, 700, 900]}
+            quality={68}
+            sizes="(min-width: 56em) 45vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+        <div>
+          <span class="eyebrow">Company facts</span>
+          <h2 id="facts-heading">The published numbers</h2>
+          <dl class="facts">
+            <div>
+              <dt>Trading since</dt>
+              <dd>{company.tradingSince}</dd>
+            </div>
+            <div>
+              <dt>Stock</dt>
+              <dd>FlexTyres states it holds {company.statedStock}.</dd>
+            </div>
+            <div>
+              <dt>Tyres exported</dt>
+              <dd>{company.statedFigures.tyresExported.toLocaleString('en-GB')}</dd>
+            </div>
+            <div>
+              <dt>Customers</dt>
+              <dd>{company.statedFigures.customers}</dd>
+            </div>
+            <div>
+              <dt>Legal jurisdiction</dt>
+              <dd>Belgium</dd>
+            </div>
+          </dl>
+          <p class="small">{company.statedFigures.note}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="where-heading">
+    <div class="container">
+      <span class="eyebrow">Locations</span>
+      <h2 id="where-heading">Where FlexTyres operates</h2>
+      <ul class="grid grid--3 loc-grid">
+        {
+          locations.map((l) => (
+            <li>
+              <article class="card">
+                <div class="card__body">
+                  <h3 class="card__title">{l.label}</h3>
+                  <p class="card__text">
+                    {l.street
+                      ? `${l.street}, ${l.postalCode} ${l.locality}, ${l.country}`
+                      : `${l.locality}, ${l.country}`}
+                  </p>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="small">
+        The Belgium office is the registered address. FlexTyres also lists a warehouse in Hollywood,
+        Florida on its contact page; no other published content describes operations there.
+        <a href="/contact/">Full contact details and opening hours</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="video-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">See the operation</span>
+      <h2 id="video-heading">FlexTyres on video</h2>
+      <p>
+        FlexTyres publishes video of its warehouse and loading operation on its YouTube channel. The
+        player loads from YouTube, so it only appears once you choose to load it.
+      </p>
+      <details class="embed">
+        <summary>Load video from YouTube</summary>
+        <div class="video">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${videos.homepage}`}
+            title="FlexTyres warehouse and loading operation"
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <h2>Talk to FlexTyres</h2>
+      <p>
+        Call <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>, message the same
+        number on <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a>, or email
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>. FlexTyres also states that you are
+        always welcome to visit, and that it can arrange an airport pickup for visiting buyers.
+      </p>
+
+      <RelatedLinks
+        links={[
+          { label: 'Export markets', href: '/export-markets/', hint: 'Published destinations' },
+          { label: 'Franchise programme', href: '/franchise/', hint: 'For tyre professionals' },
+          { label: 'Gallery', href: '/gallery/', hint: 'Warehouse and loading photography' },
+          { label: 'Contact', href: '/contact/', hint: 'Addresses, hours and form' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <Testimonials />
+
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .value-grid,
+  .loc-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .value-grid li,
+  .loc-grid li {
+    margin: 0;
+    max-width: none;
+  }
+  .small {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+  .embed {
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    padding: var(--s-3);
+    margin-bottom: var(--s-5);
+  }
+  .embed > summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    padding: var(--s-2) var(--s-3);
+  }
+  .embed[open] > summary {
+    margin-bottom: var(--s-3);
+  }
+</style>

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "how-do-i-order",
+    "question": "How do I make an order?",
+    "answer": "Send us an inquiry and we will make you a demand-oriented offer. If you accept our offer, give us a call or send a confirmation email and we will guide you through the rest of the order process.",
+    "category": "ordering",
+    "expandsAt": "/how-to-order/",
+    "expandsLabel": "See the full ordering process"
+  },
+  {
+    "id": "what-is-the-price",
+    "question": "What is the price of your tyres?",
+    "answer": "It depends on the quantity and quality of the tyres. Contact us via the contact form or the inquiry form and we will send you an offer. FlexTyres does not publish fixed prices.",
+    "category": "pricing",
+    "expandsAt": "/request-a-quote/",
+    "expandsLabel": "Request a quote"
+  },
+  {
+    "id": "minimum-quantity",
+    "question": "How many tyres do I have to take?",
+    "answer": "The minimum quantity we sell is 1,000 pieces. In practice FlexTyres publishes three purchase routes with different minimums: a Sprinter van of 180 tyres for Belgium, France and the Netherlands, a 20 ft container of approximately 1,350 tyres, and a 40 ft container of approximately 2,800 tyres. Confirm the minimum that applies to your order when you request a quote.",
+    "category": "ordering",
+    "expandsAt": "/how-to-order/",
+    "expandsLabel": "Compare the three purchase routes"
+  },
+  {
+    "id": "buy-in-pairs",
+    "question": "Is it possible to buy pairs of tyres?",
+    "answer": "Yes. For a small extra charge you can buy pairs of used tyres.",
+    "category": "product"
+  },
+  {
+    "id": "choose-tyres",
+    "question": "Can I choose the used tyres when I order?",
+    "answer": "Yes. If you visit our warehouse you can choose the second-hand tyres you would like to buy.",
+    "category": "product",
+    "expandsAt": "/contact/",
+    "expandsLabel": "Arrange a visit"
+  },
+  {
+    "id": "doubling-tripling",
+    "question": "Do you offer doubling and tripling?",
+    "answer": "Yes. For a small extra charge we double or triple the tyres, which roughly doubles the quantity that fits into a container.",
+    "category": "logistics",
+    "expandsAt": "/services/doubling-and-tripling/",
+    "expandsLabel": "How doubling and tripling works"
+  },
+  {
+    "id": "send-inquiry",
+    "question": "Can I send you an inquiry for used tyres?",
+    "answer": "Yes. You can write us an email, give us a call or use our inquiry form. If there are no sizes on the list that you need, please let us know — it is very important for us to know which tyre sizes are interesting for you.",
+    "category": "ordering",
+    "expandsAt": "/tyres/car-tyres/",
+    "expandsLabel": "See the published size list"
+  },
+  {
+    "id": "how-fast-reply",
+    "question": "How quickly will FlexTyres reply to my inquiry?",
+    "answer": "FlexTyres states it responds to inquiries within 24 hours, and generally within a few hours. If you have not heard back within 24 hours, call or send a WhatsApp message on +32 489 33 13 32.",
+    "category": "company",
+    "expandsAt": "/contact/",
+    "expandsLabel": "All the ways to reach us"
+  },
+  {
+    "id": "where-based",
+    "question": "Where is FlexTyres based?",
+    "answer": "FlexTyres is a Belgian company. The office is at Avenue Jules Bordet 160, box 16, 1140 Evere, Belgium, and there is a warehouse in Frankfurt, Germany. A warehouse in Hollywood, Florida is also listed on the company's contact page.",
+    "category": "company",
+    "expandsAt": "/contact/",
+    "expandsLabel": "Addresses and opening hours"
+  },
+  {
+    "id": "where-do-you-ship",
+    "question": "Which countries does FlexTyres ship to?",
+    "answer": "FlexTyres describes itself as a worldwide importer and exporter and has published deliveries to Senegal, Ghana, the Democratic Republic of the Congo, South Africa, Belgium, France, Portugal, Spain, Morocco, Russia and the United States. Sprinter van delivery is limited to Belgium, France and the Netherlands.",
+    "category": "logistics",
+    "expandsAt": "/export-markets/",
+    "expandsLabel": "See published export markets"
+  }
+]

@@ -1,0 +1,998 @@
+[
+  {
+    "url": "https://flextyres.com/",
+    "status": 200,
+    "redirect": "https://flextyres.com/en/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/",
+        "status": 301,
+        "to": "https://flextyres.com/en/"
+      }
+    ],
+    "error": null,
+    "file": "pages\\en.html",
+    "bytes": 148276,
+    "finalUrl": "https://flextyres.com/en/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/about-us/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\about-us.html",
+    "bytes": 50634,
+    "finalUrl": "https://flextyres.com/about-us/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/category/uncategorized/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\category_uncategorized.html",
+    "bytes": 53911,
+    "finalUrl": "https://flextyres.com/category/uncategorized/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/contact-us/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\contact-us.html",
+    "bytes": 52039,
+    "finalUrl": "https://flextyres.com/contact-us/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en.html",
+    "bytes": 148528,
+    "finalUrl": "https://flextyres.com/en/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/about-us/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_about-us.html",
+    "bytes": 105016,
+    "finalUrl": "https://flextyres.com/en/about-us/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/bad-reviews/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_bad-reviews.html",
+    "bytes": 97003,
+    "finalUrl": "https://flextyres.com/en/bad-reviews/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/bot/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_bot.html",
+    "bytes": 96117,
+    "finalUrl": "https://flextyres.com/en/bot/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/cart/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_cart.html",
+    "bytes": 95938,
+    "finalUrl": "https://flextyres.com/en/cart/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/categories/brakes/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_categories_brakes.html",
+    "bytes": 100314,
+    "finalUrl": "https://flextyres.com/en/categories/brakes/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/categories/electrical/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_categories_electrical.html",
+    "bytes": 100409,
+    "finalUrl": "https://flextyres.com/en/categories/electrical/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/categories/engine/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_categories_engine.html",
+    "bytes": 102295,
+    "finalUrl": "https://flextyres.com/en/categories/engine/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/categories/fluid/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_categories_fluid.html",
+    "bytes": 102299,
+    "finalUrl": "https://flextyres.com/en/categories/fluid/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/categories/wheel/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_categories_wheel.html",
+    "bytes": 100318,
+    "finalUrl": "https://flextyres.com/en/categories/wheel/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/checkout/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_checkout.html",
+    "bytes": 96006,
+    "finalUrl": "https://flextyres.com/en/checkout/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/contact-us/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_contact-us.html",
+    "bytes": 102432,
+    "finalUrl": "https://flextyres.com/en/contact-us/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/faqs/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_faqs.html",
+    "bytes": 105039,
+    "finalUrl": "https://flextyres.com/en/faqs/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/franchise-opportunity/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_franchise-opportunity.html",
+    "bytes": 99305,
+    "finalUrl": "https://flextyres.com/en/franchise-opportunity/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/good-reviews/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_good-reviews.html",
+    "bytes": 97041,
+    "finalUrl": "https://flextyres.com/en/good-reviews/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/my-account/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_my-account.html",
+    "bytes": 96383,
+    "finalUrl": "https://flextyres.com/en/my-account/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/neutral-reviews/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_neutral-reviews.html",
+    "bytes": 96854,
+    "finalUrl": "https://flextyres.com/en/neutral-reviews/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/our-services/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_our-services.html",
+    "bytes": 108273,
+    "finalUrl": "https://flextyres.com/en/our-services/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/our-stock-new/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_our-stock-new.html",
+    "bytes": 99705,
+    "finalUrl": "https://flextyres.com/en/our-stock-new/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/portfolio/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_portfolio.html",
+    "bytes": 107813,
+    "finalUrl": "https://flextyres.com/en/portfolio/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/portfolio/brake-fluid-exchange/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_portfolio_brake-fluid-exchange.html",
+    "bytes": 103416,
+    "finalUrl": "https://flextyres.com/en/portfolio/brake-fluid-exchange/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/portfolio/checking-car-engine/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_portfolio_checking-car-engine.html",
+    "bytes": 103397,
+    "finalUrl": "https://flextyres.com/en/portfolio/checking-car-engine/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/portfolio/electrical-system/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_portfolio_electrical-system.html",
+    "bytes": 103355,
+    "finalUrl": "https://flextyres.com/en/portfolio/electrical-system/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/portfolio/oil-change/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_portfolio_oil-change.html",
+    "bytes": 103208,
+    "finalUrl": "https://flextyres.com/en/portfolio/oil-change/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/portfolio/tune-ups-system/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_portfolio_tune-ups-system.html",
+    "bytes": 103323,
+    "finalUrl": "https://flextyres.com/en/portfolio/tune-ups-system/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/portfolio/wheel-alignment/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_portfolio_wheel-alignment.html",
+    "bytes": 103323,
+    "finalUrl": "https://flextyres.com/en/portfolio/wheel-alignment/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/quote-car-tires/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_quote-car-tires.html",
+    "bytes": 139538,
+    "finalUrl": "https://flextyres.com/en/quote-car-tires/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/quote-truck-tires/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_quote-truck-tires.html",
+    "bytes": 104931,
+    "finalUrl": "https://flextyres.com/en/quote-truck-tires/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/request-a-free-quote/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_request-a-free-quote.html",
+    "bytes": 95384,
+    "finalUrl": "https://flextyres.com/en/request-a-free-quote/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/shop-3/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_shop-3.html",
+    "bytes": 96153,
+    "finalUrl": "https://flextyres.com/en/shop-3/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/shop/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_shop.html",
+    "bytes": 96129,
+    "finalUrl": "https://flextyres.com/en/shop/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/sprinter-delivery-180-tires/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_sprinter-delivery-180-tires.html",
+    "bytes": 155992,
+    "finalUrl": "https://flextyres.com/en/sprinter-delivery-180-tires/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team.html",
+    "bytes": 110827,
+    "finalUrl": "https://flextyres.com/en/team/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/james-hoult-2/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_james-hoult-2.html",
+    "bytes": 100077,
+    "finalUrl": "https://flextyres.com/en/team/james-hoult-2/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/james-hoult/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_james-hoult.html",
+    "bytes": 100048,
+    "finalUrl": "https://flextyres.com/en/team/james-hoult/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/oscar-helman-2/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_oscar-helman-2.html",
+    "bytes": 100097,
+    "finalUrl": "https://flextyres.com/en/team/oscar-helman-2/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/oscar-helman/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_oscar-helman.html",
+    "bytes": 100070,
+    "finalUrl": "https://flextyres.com/en/team/oscar-helman/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/sophie-lana-2/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_sophie-lana-2.html",
+    "bytes": 100080,
+    "finalUrl": "https://flextyres.com/en/team/sophie-lana-2/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/sophie-lana/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_sophie-lana.html",
+    "bytes": 100048,
+    "finalUrl": "https://flextyres.com/en/team/sophie-lana/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/waylon-dalton-2/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_waylon-dalton-2.html",
+    "bytes": 100123,
+    "finalUrl": "https://flextyres.com/en/team/waylon-dalton-2/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/team/waylon-dalton/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_team_waylon-dalton.html",
+    "bytes": 100092,
+    "finalUrl": "https://flextyres.com/en/team/waylon-dalton/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/thank-you/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_thank-you.html",
+    "bytes": 97244,
+    "finalUrl": "https://flextyres.com/en/thank-you/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/tire-recycling/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_tire-recycling.html",
+    "bytes": 100765,
+    "finalUrl": "https://flextyres.com/en/tire-recycling/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/tripling-techniques/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_tripling-techniques.html",
+    "bytes": 103723,
+    "finalUrl": "https://flextyres.com/en/tripling-techniques/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/wpautoterms/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_wpautoterms.html",
+    "bytes": 99447,
+    "finalUrl": "https://flextyres.com/en/wpautoterms/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/wpautoterms/privacy-policy/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_wpautoterms_privacy-policy.html",
+    "bytes": 103031,
+    "finalUrl": "https://flextyres.com/en/wpautoterms/privacy-policy/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/wpautoterms/terms-and-conditions/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_wpautoterms_terms-and-conditions.html",
+    "bytes": 102455,
+    "finalUrl": "https://flextyres.com/en/wpautoterms/terms-and-conditions/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/frequently-asked-questions/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\frequently-asked-questions.html",
+    "bytes": 42545,
+    "finalUrl": "https://flextyres.com/frequently-asked-questions/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/hello-world/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\hello-world.html",
+    "bytes": 38232,
+    "finalUrl": "https://flextyres.com/hello-world/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/home/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\home.html",
+    "bytes": 54872,
+    "finalUrl": "https://flextyres.com/home/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/image-gallery/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\image-gallery.html",
+    "bytes": 68778,
+    "finalUrl": "https://flextyres.com/image-gallery/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/layout_category/sections/",
+    "status": 301,
+    "redirect": "https://flextyres.com/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/layout_category/sections/",
+        "status": 301,
+        "to": "https://flextyres.com/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/layout_type/row/",
+    "status": 301,
+    "redirect": "https://flextyres.com/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/layout_type/row/",
+        "status": 301,
+        "to": "https://flextyres.com/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/layout_type/section/",
+    "status": 301,
+    "redirect": "https://flextyres.com/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/layout_type/section/",
+        "status": 301,
+        "to": "https://flextyres.com/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/module_width/regular/",
+    "status": 301,
+    "redirect": "https://flextyres.com/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/module_width/regular/",
+        "status": 301,
+        "to": "https://flextyres.com/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/our-stock/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\our-stock.html",
+    "bytes": 56221,
+    "finalUrl": "https://flextyres.com/our-stock/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/privacy-policy/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\privacy-policy.html",
+    "bytes": 48560,
+    "finalUrl": "https://flextyres.com/privacy-policy/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/recycling/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\recycling.html",
+    "bytes": 44445,
+    "finalUrl": "https://flextyres.com/recycling/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/request-a-quote/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\request-a-quote.html",
+    "bytes": 119942,
+    "finalUrl": "https://flextyres.com/request-a-quote/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/scope/global/",
+    "status": 301,
+    "redirect": "https://flextyres.com/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/scope/global/",
+        "status": 301,
+        "to": "https://flextyres.com/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/scope/not_global/",
+    "status": 301,
+    "redirect": "https://flextyres.com/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/scope/not_global/",
+        "status": 301,
+        "to": "https://flextyres.com/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/special-offers/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\special-offers.html",
+    "bytes": 38018,
+    "finalUrl": "https://flextyres.com/special-offers/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/thank-you/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\thank-you.html",
+    "bytes": 31951,
+    "finalUrl": "https://flextyres.com/thank-you/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/tyres-for-cars/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\tyres-for-cars.html",
+    "bytes": 48159,
+    "finalUrl": "https://flextyres.com/tyres-for-cars/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/tyres-for-trucks/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\tyres-for-trucks.html",
+    "bytes": 45068,
+    "finalUrl": "https://flextyres.com/tyres-for-trucks/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/wpautoterms/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\wpautoterms.html",
+    "bytes": 54698,
+    "finalUrl": "https://flextyres.com/wpautoterms/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/wpautoterms/privacy-policy/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\wpautoterms_privacy-policy.html",
+    "bytes": 39781,
+    "finalUrl": "https://flextyres.com/wpautoterms/privacy-policy/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/wpautoterms/terms-and-conditions/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\wpautoterms_terms-and-conditions.html",
+    "bytes": 39323,
+    "finalUrl": "https://flextyres.com/wpautoterms/terms-and-conditions/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/Terms%20&",
+    "status": 404,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\en_Terms_20.html",
+    "bytes": 66215,
+    "finalUrl": "https://flextyres.com/en/Terms%20&",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en/our-stock/",
+    "status": 301,
+    "redirect": "https://flextyres.com/en/our-stock-new/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/en/our-stock/",
+        "status": 301,
+        "to": "https://flextyres.com/en/our-stock-new/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/image-gallery",
+    "status": 301,
+    "redirect": "https://flextyres.com/image-gallery/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/image-gallery",
+        "status": 301,
+        "to": "https://flextyres.com/image-gallery/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/request-a-quote",
+    "status": 301,
+    "redirect": "https://flextyres.com/request-a-quote/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/request-a-quote",
+        "status": 301,
+        "to": "https://flextyres.com/request-a-quote/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/author/flextyres/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\author_flextyres.html",
+    "bytes": 53918,
+    "finalUrl": "https://flextyres.com/author/flextyres/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/2018/12/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\2018_12.html",
+    "bytes": 53847,
+    "finalUrl": "https://flextyres.com/2018/12/",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/wp-login.php",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\wp-login.php.html",
+    "bytes": 3901,
+    "finalUrl": "https://flextyres.com/wp-login.php",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/feed/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": null,
+    "bytes": 0,
+    "finalUrl": "https://flextyres.com/feed/",
+    "contentType": "application/rss+xml; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/comments/feed/",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": null,
+    "bytes": 0,
+    "finalUrl": "https://flextyres.com/comments/feed/",
+    "contentType": "application/rss+xml; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/en",
+    "status": 301,
+    "redirect": "https://flextyres.com/en/",
+    "chain": [
+      {
+        "from": "https://flextyres.com/en",
+        "status": 301,
+        "to": "https://flextyres.com/en/"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/en/author/flextyres/",
+    "status": 301,
+    "redirect": "https://flextyres.com/en",
+    "chain": [
+      {
+        "from": "https://flextyres.com/en/author/flextyres/",
+        "status": 301,
+        "to": "https://flextyres.com/en"
+      }
+    ],
+    "error": null,
+    "file": null,
+    "bytes": 0
+  },
+  {
+    "url": "https://flextyres.com/EUSIZESFLEX.xlsx",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": null,
+    "bytes": 0,
+    "finalUrl": "https://flextyres.com/EUSIZESFLEX.xlsx",
+    "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  },
+  {
+    "url": "https://flextyres.com/hello-world/?replytocom=1",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\hello-world_replytocom_1.html",
+    "bytes": 38292,
+    "finalUrl": "https://flextyres.com/hello-world/?replytocom=1",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://flextyres.com/wp-login.php?action=lostpassword",
+    "status": 200,
+    "redirect": null,
+    "chain": [],
+    "error": null,
+    "file": "pages\\wp-login.php_action_lostpassword.html",
+    "bytes": 3572,
+    "finalUrl": "https://flextyres.com/wp-login.php?action=lostpassword",
+    "contentType": "text/html; charset=UTF-8"
+  }
+]

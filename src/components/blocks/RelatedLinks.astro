@@ -1,0 +1,82 @@
+---
+interface Link {
+  label: string;
+  href: string;
+  hint?: string | undefined;
+}
+
+interface Props {
+  heading?: string;
+  links: Link[];
+}
+
+const { heading = 'Related', links } = Astro.props;
+---
+
+{
+  links.length > 0 && (
+    <nav class="related" aria-labelledby="related-heading">
+      <h2 id="related-heading" class="related__heading">
+        {heading}
+      </h2>
+      <ul class="related__list">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} class="related__link">
+              <span class="related__label">{l.label}</span>
+              {l.hint && <span class="related__hint">{l.hint}</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+  .related {
+    margin-top: var(--s-7);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--c-border);
+  }
+  .related__heading {
+    font-size: var(--fs-lg);
+    margin: 0 0 var(--s-4);
+  }
+  .related__list {
+    display: grid;
+    gap: var(--s-2);
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .related__list li {
+    margin: 0;
+    max-width: none;
+  }
+  .related__link {
+    display: block;
+    padding: var(--s-3) var(--s-4);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    text-decoration: none;
+    height: 100%;
+  }
+  .related__link:hover {
+    border-color: var(--c-green-500);
+    background: var(--c-green-50);
+  }
+  .related__label {
+    display: block;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-900);
+  }
+  .related__hint {
+    display: block;
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    margin-top: 2px;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import type { Grade } from '~/data/tyres';
+
+interface Props {
+  grades: readonly Grade[];
+  caption: string;
+  criteriaHeading?: string;
+}
+
+const { grades, caption, criteriaHeading = 'Criteria' } = Astro.props;
+---
+
+<div class="table-scroll">
+  <table>
+    <caption>{caption}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Grade</th>
+        <th scope="col">Tread depth</th>
+        <th scope="col">{criteriaHeading}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        grades.map((g) => (
+          <tr>
+            <th scope="row">{g.name}</th>
+            <td class="num">{g.treadDepth}</td>
+            <td>
+              <ul class="criteria">
+                {g.criteria.map((c) => (
+                  <li>{c}</li>
+                ))}
+              </ul>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .num {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .criteria {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .criteria li {
+    margin: 0 0 2px;
+    max-width: none;
+  }
+  th[scope='row'] {
+    font-family: var(--font-display);
+    white-space: nowrap;
+  }
+</style>

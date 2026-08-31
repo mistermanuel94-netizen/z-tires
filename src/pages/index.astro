@@ -1,0 +1,415 @@
+---
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import GradeTable from '~/components/blocks/GradeTable.astro';
+import Testimonials from '~/components/blocks/Testimonials.astro';
+import { graph, webPage, breadcrumbList, itemList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { carGrades, gradeCaveat, carOrderRoutes } from '~/data/tyres';
+import { carTyreSizeCount, truckTyreSizes } from '~/data/sizes';
+import { company, brandsCarried } from '~/data/site';
+import { getCollection } from 'astro:content';
+
+import hero from '~/assets/images/hero-tyre-stacks.jpg';
+import tripling from '~/assets/images/tripling-machine-with-tyre.jpg';
+import loading from '~/assets/images/forklift-loading-container.jpg';
+import warehouse from '~/assets/images/warehouse-sorted-tyre-wall.jpg';
+
+const path = '/';
+const url = canonical(path);
+const crumbs: Crumb[] = [{ name: 'Home', path: '/' }];
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const heroOptimised = await getImage({
+  src: hero,
+  widths: [960],
+  format: 'avif',
+  quality: 62,
+});
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'FlexTyres — wholesale used car and truck tyres',
+    description:
+      'FlexTyres is a Belgian wholesaler of used car and truck tyres, supplying trade buyers worldwide by container and by van.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  itemList(
+    url,
+    'FlexTyres services',
+    services.map((s) => ({ name: s.data.title, path: `/services/${s.id}/` })),
+  ),
+);
+---
+
+<BaseLayout
+  title="FlexTyres | Wholesale Used Car & Truck Tyres"
+  bareTitle
+  description="Belgian wholesaler of used car and truck tyres. Graded stock, 348 published car sizes, container and van delivery, export worldwide. Request a free quote."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+  preloadImage={heroOptimised.src}
+>
+  <section class="hero">
+    <div class="hero__media">
+      <Image
+        src={hero}
+        alt="Rows of sorted used tyres stacked in the FlexTyres warehouse yard"
+        widths={[640, 960, 1280, 1680]}
+        quality={58}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        quality={62}
+      />
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="eyebrow">Used tyres wholesale · Belgium</span>
+        <h1>Wholesale used tyres, by the container</h1>
+        <p class="hero__lede">
+          FlexTyres sells graded used car and truck tyres to trade buyers, and handles the tripling,
+          loading, transport and export paperwork that gets them to you.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/request-a-quote/">Request a free quote</a>
+          <a class="btn btn--ghost" href="/tyres/">See grades and sizes</a>
+        </div>
+        <ul class="hero__facts">
+          <li><strong>{carTyreSizeCount}</strong> published car sizes, 12&Prime;–22&Prime;</li>
+          <li><strong>{truckTyreSizes.length}</strong> published truck sizes</li>
+          <li>Trading since <strong>{company.tradingSince}</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="what-heading">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">What FlexTyres sells</span>
+          <h2 id="what-heading">Graded used tyres for trade buyers</h2>
+          <p>
+            FlexTyres is a family business in Evere, Belgium, with a warehouse in Frankfurt,
+            Germany. It buys, sorts and grades used car and truck tyres and sells them to
+            wholesalers, retailers and exporters — never to consumers.
+          </p>
+          <p>
+            Stock covers {carTyreSizeCount} published car sizes from 12&Prime; to 22&Prime; and
+            {' '}{truckTyreSizes.length} truck sizes, in tyres from all major manufacturers including
+            {brandsCarried.slice(0, 4).join(', ')} and {brandsCarried[5]}. FlexTyres states it holds {
+              company.statedStock
+            } in stock.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/tyres/car-tyres/">Used car tyres</a>
+            <a class="btn btn--ghost" href="/tyres/truck-tyres/">Used truck tyres</a>
+          </div>
+        </div>
+        <figure>
+          <Image
+            src={warehouse}
+            alt="A wall of graded used tyres sorted by size inside the FlexTyres warehouse"
+            widths={[420, 640, 860]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="grades-heading">
+    <div class="container">
+      <span class="eyebrow">Quality</span>
+      <h2 id="grades-heading">Three quality grades</h2>
+      <p class="section__lede">
+        FlexTyres categorises car tyres into three grades. Each grade sets a tread-depth range and a
+        quality letter, and every grade covers all brands.
+      </p>
+      <GradeTable grades={carGrades} caption="FlexTyres car tyre quality grades" />
+      <p class="grade-note">{gradeCaveat}</p>
+      <div class="btn-row">
+        <a class="btn btn--ghost" href="/tyres/quality-grades/">How grading works</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="services-heading">
+    <div class="container">
+      <span class="eyebrow">Services</span>
+      <h2 id="services-heading">What FlexTyres does with your order</h2>
+      <p class="section__lede">
+        Quality checks, paperwork, packing, loading and shipping — in the company's own words, "our
+        professionals will perform thorough quality checks, prepare all the paperwork, pack, load
+        and ship your tires."
+      </p>
+      <ul class="grid grid--4 card-grid">
+        {
+          services.map((s) => (
+            <li>
+              <article class="card">
+                <div class="card__body">
+                  <h3 class="card__title">
+                    <a href={`/services/${s.id}/`}>{s.data.title}</a>
+                  </h3>
+                  <p class="card__text">{s.data.summary}</p>
+                  <a class="card__link" href={`/services/${s.id}/`}>
+                    Read more<span class="visually-hidden"> about {s.data.title}</span>
+                  </a>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="order-heading">
+    <div class="container">
+      <span class="eyebrow">Ordering</span>
+      <h2 id="order-heading">Three ways to buy</h2>
+      <p class="section__lede">
+        FlexTyres publishes three purchase routes for car tyres, each with its own minimum and its
+        own coverage.
+      </p>
+      <div class="table-scroll">
+        <table>
+          <caption>Published purchase routes for used car tyres</caption>
+          <thead>
+            <tr>
+              <th scope="col">Route</th>
+              <th scope="col">Minimum</th>
+              <th scope="col">Coverage</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              carOrderRoutes.map((r) => (
+                <tr>
+                  <th scope="row">
+                    <a href={r.href}>{r.name}</a>
+                  </th>
+                  <td>{r.quantity}</td>
+                  <td>{r.coverage}</td>
+                  <td>{r.notes.length ? r.notes.join('. ') : '—'}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--ghost" href="/how-to-order/">The full ordering process</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="process-heading">
+    <div class="container">
+      <div class="split split--reverse">
+        <figure>
+          <Image
+            src={tripling}
+            alt="A tyre being pressed into a tripling machine at the FlexTyres warehouse"
+            widths={[420, 640, 860]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+        <div>
+          <span class="eyebrow">Doubling and tripling</span>
+          <h2 id="process-heading">Twice the tyres in the same container</h2>
+          <p>
+            FlexTyres packs up to three used tyres inside one another, by machine or by hand. That
+            roughly doubles the number of tyres a container holds — which is why the published
+            capacities of approximately 1,350 tyres in a 20 ft container and 2,800 in a 40 ft
+            container are quoted as tripled quantities.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/services/doubling-and-tripling/">
+              How tripling works
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--inverse" aria-labelledby="export-heading">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Export</span>
+          <h2 id="export-heading">Shipped to buyers across Africa, Europe and beyond</h2>
+          <p>
+            FlexTyres describes itself as a worldwide importer and exporter of a very large range of
+            tyres, supplying customers nationally and internationally. It has published deliveries
+            to Senegal, Ghana, the Democratic Republic of the Congo, South Africa, Morocco, Belgium,
+            France, Portugal, Spain, Russia and the United States.
+          </p>
+          <p>
+            FlexTyres and its partners can handle customs formalities and clearance, and will assist
+            if problems arise.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/export-markets/">Published export markets</a>
+            <a class="btn btn--ghost" href="/services/export-and-customs/">Export and customs</a>
+          </div>
+        </div>
+        <figure>
+          <Image
+            src={loading}
+            alt="A forklift loading tripled used tyres into a shipping container"
+            widths={[420, 640, 860]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <Testimonials limit={6} />
+
+  <section class="section" aria-labelledby="sprinter-heading">
+    <div class="container">
+      <div class="offer-callout">
+        <div>
+          <span class="eyebrow">Belgium · France · Netherlands</span>
+          <h2 id="sprinter-heading">Sprinter van delivery — 180 tyres</h2>
+          <p>
+            For buyers who need less than a container: 180 used car tyres per van, 4–6 mm tread,
+            sets of two, one price for every size, delivered within seven days and free within a 400
+            km radius.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="/offers/sprinter-van-delivery/">
+              See the Sprinter offer
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    background: var(--c-ink-950);
+    color: var(--c-white);
+  }
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    /* Must sit below the overlay. ::before is generated as the first child, so without an
+       explicit lower z-index this real element paints over it. */
+    z-index: -2;
+  }
+  .hero__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      100deg,
+      rgb(16 19 21 / 0.93) 0%,
+      rgb(16 19 21 / 0.85) 45%,
+      rgb(16 19 21 / 0.6) 100%
+    );
+  }
+  .hero__inner {
+    padding-block: clamp(3.5rem, 9vw, 7rem);
+  }
+  .hero__content {
+    max-width: 40rem;
+  }
+  .hero h1 {
+    color: var(--c-white);
+    margin-bottom: var(--s-4);
+  }
+  .hero .eyebrow {
+    color: var(--c-green-300);
+  }
+  .hero__lede {
+    font-size: var(--fs-lg);
+    color: #dfe3e6;
+    margin-bottom: 0;
+  }
+  .hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-6);
+    list-style: none;
+    margin: var(--s-6) 0 0;
+    padding: var(--s-5) 0 0;
+    border-top: 1px solid rgb(255 255 255 / 0.16);
+    font-size: var(--fs-sm);
+    color: #cfd4d8;
+  }
+  .hero__facts li {
+    margin: 0;
+    max-width: none;
+  }
+  .hero__facts strong {
+    color: var(--c-white);
+    font-variant-numeric: tabular-nums;
+  }
+  .hero .btn--ghost {
+    border-color: rgb(255 255 255 / 0.35);
+    color: var(--c-white);
+  }
+  .hero .btn--ghost:hover {
+    border-color: var(--c-green-500);
+    color: var(--c-green-300);
+  }
+
+  .card-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .card-grid li {
+    margin: 0;
+    max-width: none;
+  }
+
+  .grade-note {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+
+  .offer-callout {
+    background: var(--c-green-50);
+    border: 1px solid var(--c-green-300);
+    border-radius: var(--r-lg);
+    padding: var(--s-6);
+  }
+  .offer-callout h2 {
+    margin-top: 0;
+  }
+  .offer-callout > div > p:last-of-type {
+    margin-bottom: 0;
+  }
+</style>

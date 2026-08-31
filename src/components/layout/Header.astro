@@ -1,0 +1,440 @@
+---
+import { Image } from 'astro:assets';
+import logo from '~/assets/images/flextyres-logo.png';
+import { mainNav } from '~/data/nav';
+import { contact, locations } from '~/data/site';
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+
+const locationLine = locations
+  .filter((l) => l.isPrimary || l.countryCode === 'DE')
+  .map((l) => `${l.locality}, ${l.country}`)
+  .join(' · ');
+---
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="utility">
+  <div class="container utility__inner">
+    <p class="utility__locations">{locationLine}</p>
+    <p class="utility__hours">
+      <span aria-hidden="true">&#128337;</span> Mon–Fri 08:00–17:30 · Sat 08:00–15:00 (CET)
+    </p>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container header__inner">
+    <a class="header__brand" href="/" aria-label="FlexTyres — home">
+      <Image
+        src={logo}
+        alt="FlexTyres"
+        widths={[160, 320]}
+        quality={82}
+        sizes="160px"
+        loading="eager"
+        fetchpriority="high"
+        class="header__logo"
+      />
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        {
+          mainNav.map((item) => (
+            <li class={item.children ? 'nav__item nav__item--has-menu' : 'nav__item'}>
+              <a
+                href={item.href}
+                class="nav__link"
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+                {item.children && (
+                  <svg
+                    class="nav__chevron"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    aria-hidden="true"
+                  >
+                    <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+                  </svg>
+                )}
+              </a>
+              {item.children && (
+                <div class="nav__menu">
+                  <ul class="nav__sublist">
+                    {item.children.map((child) => (
+                      <li>
+                        <a href={child.href} class="nav__sublink">
+                          <span class="nav__sublabel">{child.label}</span>
+                          {child.hint && <span class="nav__subhint">{child.hint}</span>}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__phone" href={`tel:${contact.phoneE164}`}>
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+          <path
+            d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.57 3.6 1 1 0 01-.25 1z"
+          ></path>
+        </svg>
+        <span>{contact.phoneDisplay}</span>
+      </a>
+      <a class="btn btn--primary header__cta" href="/request-a-quote/">Request a quote</a>
+      <button
+        class="header__burger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-menu-toggle
+      >
+        <span class="visually-hidden">Menu</span>
+        <span class="header__burger-bars" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" hidden>
+  <nav class="container mobile-nav__inner" aria-label="Mobile">
+    <ul class="mobile-nav__list">
+      {
+        mainNav.map((item) => (
+          <li>
+            <a href={item.href} class="mobile-nav__link">
+              {item.label}
+            </a>
+            {item.children && (
+              <ul class="mobile-nav__sublist">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.href} class="mobile-nav__sublink">
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mobile-nav__actions">
+      <a class="btn btn--primary btn--block" href="/request-a-quote/">Request a quote</a>
+      <a class="btn btn--ghost btn--block" href={`tel:${contact.phoneE164}`}>
+        Call {contact.phoneDisplay}
+      </a>
+      <a class="btn btn--ghost btn--block" href={contact.whatsappUrl} rel="noopener">WhatsApp</a>
+    </div>
+  </nav>
+</div>
+
+<script>
+  // The only client-side JavaScript on the site: a mobile drawer toggle.
+  // Dropdowns on desktop are pure CSS (:hover / :focus-within) and work without this.
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.getElementById('mobile-nav');
+
+  if (toggle && panel) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      document.documentElement.classList.toggle('is-menu-open', open);
+      if (open) panel.querySelector<HTMLAnchorElement>('a')?.focus();
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .utility {
+    background: var(--c-ink-900);
+    color: var(--c-text-inverse-muted);
+    font-size: var(--fs-xs);
+  }
+  .utility__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-5);
+    justify-content: space-between;
+    padding-block: var(--s-2);
+  }
+  .utility p {
+    margin: 0;
+    max-width: none;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--c-white);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--s-5);
+    min-height: 5rem;
+  }
+  .header__brand {
+    flex-shrink: 0;
+    display: block;
+    line-height: 0;
+  }
+  .header__logo {
+    /*
+     * The mark is 470x319 (1.47:1) and carries the wordmark inside it, so it has to be sized
+     * generously to stay legible. Height-constrained so it can never overflow the header bar.
+     */
+    height: 3.25rem;
+    width: auto;
+    object-fit: contain;
+  }
+  @media (min-width: 64em) {
+    .header__logo {
+      height: 3.75rem;
+    }
+  }
+
+  .nav {
+    display: none;
+    margin-inline-start: auto;
+  }
+  .nav__list {
+    display: flex;
+    gap: var(--s-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav__item {
+    position: relative;
+    margin: 0;
+  }
+  .nav__link {
+    display: flex;
+    align-items: center;
+    gap: var(--s-1);
+    padding: var(--s-3) var(--s-3);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-800);
+    text-decoration: none;
+    border-radius: var(--r-sm);
+  }
+  .nav__link:hover,
+  .nav__link[aria-current='page'] {
+    color: var(--c-green-700);
+    background: var(--c-green-50);
+  }
+  .nav__chevron {
+    opacity: 0.6;
+  }
+
+  .nav__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 17rem;
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--s-2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition:
+      opacity var(--t-fast) var(--ease),
+      transform var(--t-fast) var(--ease),
+      visibility var(--t-fast);
+  }
+  .nav__item--has-menu:hover .nav__menu,
+  .nav__item--has-menu:focus-within .nav__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav__sublist li {
+    margin: 0;
+  }
+  .nav__sublink {
+    display: block;
+    padding: var(--s-3);
+    border-radius: var(--r-sm);
+    text-decoration: none;
+    color: var(--c-ink-800);
+  }
+  .nav__sublink:hover {
+    background: var(--c-green-50);
+  }
+  .nav__sublabel {
+    display: block;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+  }
+  .nav__subhint {
+    display: block;
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    margin-top: 2px;
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    margin-inline-start: auto;
+  }
+  .header__phone {
+    display: none;
+    align-items: center;
+    gap: var(--s-2);
+    /* WCAG 2.2 AA 2.5.8: a header control, not inline prose, so it carries a full 44px target. */
+    min-height: 44px;
+    padding-inline: var(--s-2);
+    border-radius: var(--r-sm);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    color: var(--c-ink-800);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .header__phone:hover {
+    color: var(--c-green-700);
+  }
+  .header__cta {
+    display: none;
+  }
+
+  .header__burger {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    background: var(--c-ink-900);
+    border: 0;
+    border-radius: var(--r-md);
+    cursor: pointer;
+  }
+  .header__burger-bars,
+  .header__burger-bars::before,
+  .header__burger-bars::after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--c-white);
+    border-radius: 2px;
+  }
+  .header__burger-bars {
+    position: relative;
+  }
+  .header__burger-bars::before,
+  .header__burger-bars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  .header__burger-bars::before {
+    top: -6px;
+  }
+  .header__burger-bars::after {
+    top: 6px;
+  }
+
+  .mobile-nav {
+    position: sticky;
+    top: 5rem;
+    z-index: 99;
+    background: var(--c-white);
+    border-bottom: 1px solid var(--c-border);
+    box-shadow: var(--shadow-md);
+    max-height: calc(100dvh - 7.5rem);
+    overflow-y: auto;
+  }
+  .mobile-nav__inner {
+    padding-block: var(--s-4) var(--s-6);
+  }
+  .mobile-nav__list,
+  .mobile-nav__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mobile-nav__list > li {
+    margin: 0;
+    border-bottom: 1px solid var(--c-border);
+    padding-block: var(--s-2);
+  }
+  .mobile-nav__link {
+    display: block;
+    padding: var(--s-3) 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-lg);
+    color: var(--c-ink-900);
+    text-decoration: none;
+  }
+  .mobile-nav__sublist {
+    padding-bottom: var(--s-2);
+  }
+  .mobile-nav__sublist li {
+    margin: 0;
+  }
+  .mobile-nav__sublink {
+    display: block;
+    padding: var(--s-3) 0 var(--s-3) var(--s-4);
+    font-size: var(--fs-base);
+    color: var(--c-ink-700);
+    text-decoration: none;
+  }
+  .mobile-nav__actions {
+    display: grid;
+    gap: var(--s-3);
+    margin-top: var(--s-5);
+  }
+
+  @media (min-width: 64em) {
+    .nav,
+    .header__phone,
+    .header__cta {
+      display: flex;
+    }
+    .header__burger,
+    .mobile-nav {
+      display: none;
+    }
+    .header__actions {
+      margin-inline-start: 0;
+    }
+  }
+</style>

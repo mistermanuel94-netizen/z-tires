@@ -1,0 +1,34 @@
+---
+import '~/styles/base.css';
+import '~/styles/components.css';
+import SEOHead from '~/components/seo/SEOHead.astro';
+import Header from '~/components/layout/Header.astro';
+import Footer from '~/components/layout/Footer.astro';
+import Breadcrumbs from '~/components/layout/Breadcrumbs.astro';
+import type { PageSeo } from '~/lib/seo';
+import type { Crumb } from '~/lib/schema';
+
+interface Props extends PageSeo {
+  schema?: string | undefined;
+  crumbs?: Crumb[] | undefined;
+  preloadImage?: string | undefined;
+  isErrorPage?: boolean | undefined;
+}
+
+const { crumbs = [], schema, preloadImage, isErrorPage, ...seo } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEOHead {...seo} schema={schema} preloadImage={preloadImage} isErrorPage={isErrorPage} />
+  </head>
+  <body>
+    <Header />
+    <Breadcrumbs crumbs={crumbs} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

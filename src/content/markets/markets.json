@@ -1,0 +1,56 @@
+[
+  { "id": "senegal", "name": "Senegal", "countryCode": "SN", "region": "Africa" },
+  { "id": "ghana", "name": "Ghana", "countryCode": "GH", "region": "Africa" },
+  {
+    "id": "congo-kinshasa",
+    "name": "Democratic Republic of the Congo",
+    "countryCode": "CD",
+    "region": "Africa",
+    "publishedAs": "Congo-Kinshasa"
+  },
+  {
+    "id": "south-africa",
+    "name": "South Africa",
+    "countryCode": "ZA",
+    "region": "Africa",
+    "publishedAs": "South-Africa"
+  },
+  { "id": "morocco", "name": "Morocco", "countryCode": "MA", "region": "Africa" },
+  {
+    "id": "belgium",
+    "name": "Belgium",
+    "countryCode": "BE",
+    "region": "Europe",
+    "note": "Home market. Sprinter van delivery available."
+  },
+  {
+    "id": "france",
+    "name": "France",
+    "countryCode": "FR",
+    "region": "Europe",
+    "note": "Sprinter van delivery available."
+  },
+  {
+    "id": "netherlands",
+    "name": "Netherlands",
+    "countryCode": "NL",
+    "region": "Europe",
+    "note": "Sprinter van delivery available."
+  },
+  { "id": "portugal", "name": "Portugal", "countryCode": "PT", "region": "Europe" },
+  { "id": "spain", "name": "Spain", "countryCode": "ES", "region": "Europe" },
+  {
+    "id": "russia",
+    "name": "Russia",
+    "countryCode": "RU",
+    "region": "Europe",
+    "publishedAs": "Rusia"
+  },
+  {
+    "id": "united-states",
+    "name": "United States",
+    "countryCode": "US",
+    "region": "North America",
+    "publishedAs": "Florida, California"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "name": "FlexTyres — Wholesale Used Tyres",
+  "short_name": "FlexTyres",
+  "description": "Belgian wholesaler of used car and truck tyres.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#1f252a",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

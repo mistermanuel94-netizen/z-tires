@@ -1,0 +1,102 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, service as serviceNode, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+
+export const getStaticPaths = (async () => {
+  const services = await getCollection('services');
+  const bySlug = new Map(services.map((s) => [s.id, s]));
+
+  // Fail the build if a `related` slug does not resolve — no broken internal links can ship.
+  for (const s of services) {
+    for (const r of s.data.related) {
+      if (!bySlug.has(r)) {
+        throw new Error(`services/${s.id}.md lists related service "${r}", which does not exist`);
+      }
+    }
+  }
+
+  return services.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry, all: services },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry, all } = Astro.props;
+const { Content } = await render(entry);
+
+const path = `/services/${entry.id}/`;
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services/' },
+  { name: entry.data.title, path },
+];
+
+const bySlug = new Map(all.map((s) => [s.id, s]));
+const related = entry.data.related
+  .map((slug) => bySlug.get(slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s))
+  .map((s) => ({ label: s.data.title, href: `/services/${s.id}/`, hint: s.data.description }));
+
+const schema = graph(
+  webPage({
+    url,
+    name: entry.data.heading,
+    description: entry.data.description,
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  serviceNode({
+    url,
+    name: entry.data.heading,
+    description: entry.data.description,
+    serviceType: entry.data.title,
+  }),
+);
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader eyebrow="Service" title={entry.data.heading} />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <AnswerBlock>
+        <p>{entry.data.summary}</p>
+      </AnswerBlock>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <RelatedLinks
+        heading="Related services"
+        links={[
+          ...related,
+          {
+            label: 'How to order',
+            href: '/how-to-order/',
+            hint: 'Minimums, process and what to send us',
+          },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Arrange this with your order"
+    text="Mention it when you request a quote and FlexTyres will confirm what it can do for your route."
+  />
+</BaseLayout>

@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import { graph, webPage, breadcrumbList, itemList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+
+const path = '/offers/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Offers', path },
+];
+
+const offers = (await getCollection('offers')).sort((a, b) => a.data.order - b.data.order);
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'FlexTyres offers',
+    description:
+      'Delivery options and offers FlexTyres publishes beyond standard container export.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  itemList(
+    url,
+    'FlexTyres offers',
+    offers.map((o) => ({ name: o.data.title, path: `/offers/${o.id}/` })),
+  ),
+);
+---
+
+<BaseLayout
+  title="Offers & Delivery Options"
+  description="Delivery options FlexTyres publishes beyond standard container export, including Sprinter van delivery to Belgium, France and the Netherlands."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Offers"
+    title="Offers and delivery options"
+    lede="Ways to buy from FlexTyres other than a standard export container."
+  />
+
+  <section class="section">
+    <div class="container">
+      <ul class="grid grid--2 offer-grid">
+        {
+          offers.map((o) => (
+            <li>
+              <article class="card">
+                <div class="card__body">
+                  <p class="card__eyebrow">{o.data.coverage.join(' · ')}</p>
+                  <h2 class="card__title">
+                    <a href={`/offers/${o.id}/`}>{o.data.title}</a>
+                  </h2>
+                  <p class="card__text">{o.data.summary}</p>
+                  <a class="card__link" href={`/offers/${o.id}/`}>
+                    See the details<span class="visually-hidden"> of {o.data.title}</span>
+                  </a>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="note">
+        <svg
+          class="note__icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
+        </svg>
+        <div>
+          <p>
+            FlexTyres does not publish dated promotional terms. Confirm current pricing, discounts
+            and availability when you request a quote.
+          </p>
+        </div>
+      </div>
+
+      <h2>Standard routes</h2>
+      <p>
+        For everywhere else, the standard routes are a 20 ft container of approximately 1,350
+        tripled car tyres or a 40 ft container of approximately 2,800. See
+        <a href="/how-to-order/">how to order</a> for the full comparison, or
+        <a href="/tyres/car-tyres/">used car tyres</a> and
+        <a href="/tyres/truck-tyres/">used truck tyres</a> for grades and sizes.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .offer-grid {
+    list-style: none;
+    margin: 0 0 var(--s-5);
+    padding: 0;
+  }
+  .offer-grid li {
+    margin: 0;
+    max-width: none;
+  }
+  .card__eyebrow {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--c-accent-text);
+    margin: 0 0 var(--s-2);
+  }
+</style>

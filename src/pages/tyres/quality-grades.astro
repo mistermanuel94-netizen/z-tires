@@ -1,0 +1,276 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import GradeTable from '~/components/blocks/GradeTable.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, faqPage, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { carGrades, truckGrades, gradeCaveat, truckGradeProvenance } from '~/data/tyres';
+import { brandsCarried } from '~/data/site';
+
+import inspectImg from '~/assets/images/tyre-tread-inspection.jpg';
+import compareImg from '~/assets/images/used-tyre-tread-comparison.jpg';
+
+const path = '/tyres/quality-grades/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Tyres', path: '/tyres/' },
+  { name: 'Quality grades', path },
+];
+
+const faqs = [
+  {
+    question: 'What tread depth do high quality used car tyres have?',
+    answer:
+      'FlexTyres publishes 4 mm to 8 mm of tread for its high quality car grade, with a quality letter of A, covering all brands.',
+  },
+  {
+    question: 'Are all FlexTyres tyres inspected?',
+    answer:
+      'FlexTyres states that its professionals perform thorough quality checks before packing and loading. The company has separately published that tyres can be inspected and tested on request. Confirm the inspection arrangement for your order in writing before shipping.',
+  },
+  {
+    question: 'Can I choose which used tyres I buy?',
+    answer:
+      'Yes. FlexTyres states that if you visit its warehouse you can choose the second-hand tyres you would like to buy.',
+  },
+  {
+    question: 'Which brands do the grades cover?',
+    answer: `Every grade FlexTyres publishes is marked "all brands". Manufacturers named by the company include ${brandsCarried.join(', ')}.`,
+  },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'How FlexTyres grades used tyres',
+    description:
+      'Tread depth, quality letters, repaired damage and export restrictions — how FlexTyres grades used car and truck tyres.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  faqPage(url, faqs),
+);
+---
+
+<BaseLayout
+  title="Used Tyre Quality Grades Explained"
+  description="How FlexTyres grades used tyres: tread depth ranges and quality letters for car tyres, and tread, damage and retread criteria for truck tyres."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Quality"
+    title="How FlexTyres grades used tyres"
+    lede="Grading is the whole basis of a used tyre order. This page sets out every criterion FlexTyres publishes, for cars and for trucks, and is honest about what the grades do not tell you."
+  />
+
+  <section class="section">
+    <div class="container">
+      <AnswerBlock>
+        <p>
+          FlexTyres grades <strong>car tyres</strong> on tread depth and a quality letter: high is 4–8
+          mm (A), medium 2.5–5 mm (A and B), low 1–3 mm (B). It grades
+          <strong>truck tyres</strong> differently, on tread depth, number of repaired damages and whether
+          the casing is fit for reuse or only retread: high is 5 mm and above with no damage, medium 3–5
+          mm with at most one repair, low 0–2.5 mm with two or three. All grades cover all brands.
+        </p>
+      </AnswerBlock>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="car-heading">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Cars</span>
+          <h2 id="car-heading">Car tyre grades</h2>
+          <p>
+            Car grading is measured on two things: remaining tread depth in millimetres, and a
+            quality letter. FlexTyres publishes three tiers, and the depth ranges overlap
+            deliberately — a 4.5 mm tyre can sit in either the medium or high band depending on its
+            overall condition.
+          </p>
+        </div>
+        <figure>
+          <Image
+            src={compareImg}
+            alt="Two used tyres side by side showing the difference in remaining tread depth"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+
+      <GradeTable grades={carGrades} caption="Car tyre quality grades as published by FlexTyres" />
+
+      <div class="note">
+        <svg
+          class="note__icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
+        </svg>
+        <div>
+          <p>{gradeCaveat}</p>
+          <p>
+            FlexTyres has published more than one set of figures for the medium and low car grades.
+            The ranges above are the ones the company published most consistently, across its About
+            page, its tripling page and its earlier car tyres page. Ask FlexTyres to confirm the
+            exact grade specification in writing before you commit to an order.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="truck-heading">
+    <div class="container">
+      <span class="eyebrow">Trucks</span>
+      <h2 id="truck-heading">Truck tyre grades</h2>
+      <p class="section__lede">
+        Truck grading uses different criteria. Tread depth still matters, but so does whether the
+        casing can take a retread and how many repairs it already carries — a truck casing has
+        commercial value long after its tread has gone.
+      </p>
+
+      <GradeTable
+        grades={truckGrades}
+        caption="Truck tyre quality grades as published by FlexTyres"
+        criteriaHeading="Condition and export"
+      />
+
+      <div class="note">
+        <svg
+          class="note__icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
+        </svg>
+        <div><p>{truckGradeProvenance}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="process-heading">
+    <div class="container">
+      <div class="split split--reverse">
+        <figure>
+          <Image
+            src={inspectImg}
+            alt="A used tyre being examined for tread depth and sidewall condition"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+        <div>
+          <span class="eyebrow">Process</span>
+          <h2 id="process-heading">What happens before your tyres ship</h2>
+          <p>
+            FlexTyres describes the same sequence on its homepage, its services page and its stock
+            page:
+          </p>
+          <blockquote>
+            <p>
+              Our professionals will perform thorough quality checks, prepare all the paperwork,
+              pack, load and ship your tires.
+            </p>
+          </blockquote>
+          <p>
+            The company has also published that tyres can be inspected and tested on request. If
+            independent or pre-shipment inspection matters for your order, agree it in writing
+            before loading.
+          </p>
+          <h3>Your inspection window is three days</h3>
+          <p>
+            FlexTyres' published purchasing terms give the buyer <strong
+              >three days from receipt of the goods</strong
+            > to notify a defect in writing. After that, the terms state the goods are deemed to have
+            had no defect. Plan your inspection accordingly — see the
+            <a href="/legal/purchasing-terms/">purchasing terms</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-heading">
+    <div class="container container--narrow">
+      <h2 id="faq-heading">Grading questions</h2>
+      <dl class="qa">
+        {
+          faqs.map((f) => (
+            <div class="qa__item">
+              <dt>{f.question}</dt>
+              <dd>{f.answer}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Used car tyres',
+            href: '/tyres/car-tyres/',
+            hint: '348 sizes and container quantities',
+          },
+          {
+            label: 'Used truck tyres',
+            href: '/tyres/truck-tyres/',
+            hint: '16 sizes and export restrictions',
+          },
+          {
+            label: 'Purchasing terms',
+            href: '/legal/purchasing-terms/',
+            hint: 'Inspection window and returns',
+          },
+          { label: 'How to order', href: '/how-to-order/', hint: 'What FlexTyres needs from you' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Not sure which grade you need?"
+    text="Tell FlexTyres what market you sell into and it will advise which grade fits."
+  />
+</BaseLayout>
+
+<style>
+  .qa {
+    margin: 0;
+  }
+  .qa__item {
+    padding-block: var(--s-4);
+    border-bottom: 1px solid var(--c-border);
+  }
+  .qa dt {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-md);
+    color: var(--c-ink-900);
+    margin-bottom: var(--s-2);
+  }
+  .qa dd {
+    margin: 0;
+    max-width: 68ch;
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import { contact } from '~/data/site';
+
+interface Props {
+  heading?: string;
+  text?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+}
+
+const {
+  heading = 'Tell us what you need and we will quote it',
+  text = 'Send the sizes, quantity and destination. FlexTyres responds to inquiries within 24 hours.',
+  primaryLabel = 'Request a quote',
+  primaryHref = '/request-a-quote/',
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>{heading}</h2>
+        <p>{text}</p>
+      </div>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href={primaryHref}>{primaryLabel}</a>
+        <a class="btn btn--ghost" href={`tel:${contact.phoneE164}`}>
+          Call {contact.phoneDisplay}
+        </a>
+        <a class="btn btn--ghost" href={contact.whatsappUrl} rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>

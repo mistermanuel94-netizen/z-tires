@@ -1,0 +1,172 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, itemList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { contact, documents } from '~/data/site';
+import { carTyreSizeCount, truckTyreSizes } from '~/data/sizes';
+
+const path = '/request-a-quote/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Request a quote', path },
+];
+
+const options = [
+  {
+    name: 'Used car tyres',
+    href: '/request-a-quote/car-tyres/',
+    text: `Pick from ${carTyreSizeCount} published sizes across 11 rim diameters, choose a quality grade, and tell us your container or van quantity.`,
+  },
+  {
+    name: 'Used truck tyres',
+    href: '/request-a-quote/truck-tyres/',
+    text: `Pick from ${truckTyreSizes.length} published truck sizes and a 20 ft, 40 ft or custom order.`,
+  },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Request a free quote from FlexTyres',
+    description:
+      'Start a used tyre inquiry. Separate forms for car and truck tyres, with the sizes FlexTyres publishes.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  itemList(
+    url,
+    'Quote forms',
+    options.map((o) => ({ name: o.name, path: o.href })),
+  ),
+);
+---
+
+<BaseLayout
+  title="Request a Free Quote"
+  description="Start a used tyre inquiry with FlexTyres. Choose car or truck tyres, pick your sizes and quantity, and get an offer — usually within 24 hours."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Get a price"
+    title="Request a free quote"
+    lede="Fill in the form for the tyres you need and FlexTyres will respond with a quotation. There is no obligation."
+  />
+
+  <section class="section">
+    <div class="container">
+      <AnswerBlock>
+        <p>
+          Choose <strong>car tyres</strong> or <strong>truck tyres</strong> below, tick the sizes you
+          want, add your quantity and destination, and send. FlexTyres states it responds within <strong
+            >24 hours</strong
+          >, generally within a few hours. Price depends on quantity and quality grade, not on size.
+        </p>
+      </AnswerBlock>
+
+      <ul class="grid grid--2 choose">
+        {
+          options.map((o) => (
+            <li>
+              <article class="card">
+                <div class="card__body">
+                  <h2 class="card__title">
+                    <a href={o.href}>{o.name}</a>
+                  </h2>
+                  <p class="card__text">{o.text}</p>
+                  <a class="btn btn--primary" href={o.href}>
+                    Quote {o.name.toLowerCase()}
+                  </a>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="faster-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Alternatives</span>
+      <h2 id="faster-heading">Prefer not to use a form?</h2>
+      <ul class="ways">
+        <li>
+          <strong>Call</strong>
+          <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a> — Monday to Friday 08:00–17:30,
+          Saturday 08:00–15:00 CET
+        </li>
+        <li>
+          <strong>WhatsApp</strong>
+          <a href={contact.whatsappUrl} rel="noopener">{contact.phoneDisplay}</a>
+        </li>
+        <li>
+          <strong>Email</strong>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </li>
+        <li>
+          <strong>Mark up the stock sheet</strong> — download
+          <a href={documents.stockListXlsx.href} download>the Excel order sheet</a> or
+          <a href={documents.stockListPdf.href} download>the PDF version</a>, mark the sizes and
+          quantities you want, and email it back
+        </li>
+      </ul>
+
+      <h2>What to include</h2>
+      <p>
+        Sizes or rim diameters, quantity or container size, quality grade, destination country and
+        port, seasonal mix if it matters in your market, and whether you want the tyres doubled or
+        tripled. See <a href="/how-to-order/">how to order</a> for the full checklist.
+      </p>
+
+      <RelatedLinks
+        links={[
+          { label: 'How to order', href: '/how-to-order/', hint: 'Minimums, process and terms' },
+          {
+            label: 'Quality grades',
+            href: '/tyres/quality-grades/',
+            hint: 'Choose the right grade',
+          },
+          {
+            label: 'Purchasing terms',
+            href: '/legal/purchasing-terms/',
+            hint: 'Payment and inspection terms',
+          },
+          { label: 'Contact FlexTyres', href: '/contact/', hint: 'All contact routes' },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .choose {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .choose li {
+    margin: 0;
+    max-width: none;
+  }
+  .choose .btn {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+  .ways {
+    list-style: none;
+    margin: 0 0 var(--s-5);
+    padding: 0;
+  }
+  .ways li {
+    padding-block: var(--s-3);
+    border-bottom: 1px solid var(--c-border);
+    max-width: none;
+    margin: 0;
+  }
+</style>

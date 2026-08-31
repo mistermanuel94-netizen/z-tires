@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import { social } from '~/data/site';
+
+interface Props {
+  limit?: number;
+  heading?: string;
+}
+
+const { limit, heading = 'What customers say' } = Astro.props;
+
+const all = (await getCollection('testimonials')).sort((a, b) =>
+  a.data.date < b.data.date ? 1 : -1,
+);
+const items = limit ? all.slice(0, limit) : all;
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? '')
+    .join('');
+
+const fmt = (iso: string) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    timeZone: 'UTC',
+  });
+---
+
+<section class="section section--subtle" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <span class="eyebrow">Customer feedback</span>
+    <h2 id="testimonials-heading">{heading}</h2>
+    <p class="section__lede">
+      Reviews published by customers on FlexTyres' Google Business Profile, reproduced as written.
+    </p>
+
+    <ul class="grid grid--3 quote-grid">
+      {
+        items.map((t) => (
+          <li>
+            <figure class="quote-card">
+              <blockquote cite={social.googleBusinessProfile}>
+                <p>{t.data.quote}</p>
+              </blockquote>
+              <figcaption class="quote-card__meta">
+                <span class="quote-card__initials" aria-hidden="true">
+                  {initials(t.data.author)}
+                </span>
+                <span class="quote-card__who">
+                  <span class="quote-card__name">{t.data.author}</span>
+                  <span class="quote-card__date">
+                    <time datetime={t.data.date}>{fmt(t.data.date)}</time> · {t.data.source}
+                  </span>
+                </span>
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="quote-grid__more">
+      <a href={social.googleBusinessProfile} rel="noopener">
+        Read all reviews on FlexTyres' Google Business Profile
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .quote-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .quote-grid li {
+    margin: 0;
+    max-width: none;
+  }
+  .quote-grid figure {
+    margin: 0;
+  }
+  .quote-grid__more {
+    margin: var(--s-5) 0 0;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+</style>

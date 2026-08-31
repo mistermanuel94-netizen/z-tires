@@ -1,0 +1,115 @@
+/*
+ * FlexTyres design tokens.
+ *
+ * Palette is derived from the source, not invented: the green is the accent the live site declares
+ * in its own theme override (#86b43a), and the charcoal is the dominant colour of the FlexTyres
+ * logo mark (#343435, sampled from 15,404 opaque pixels). The autoser theme's stock blue (#1c63b8)
+ * is deliberately absent — it never surfaces on the live site and only ships as dead CSS.
+ */
+
+:root {
+  /* ---- Brand ---------------------------------------------------------- */
+  --c-green-50: #f4f8ea;
+  --c-green-100: #e4eecd;
+  --c-green-300: #b9d472;
+  --c-green-500: #86b43a; /* declared brand accent */
+  --c-green-600: #6f9a2c; /* AA on white for large text; used for hover */
+  --c-green-700: #55771f; /* AA on white for body text */
+  --c-green-800: #3d5715;
+
+  /* ---- Neutral ramp, anchored on the logo charcoal --------------------- */
+  --c-ink-950: #16191b;
+  --c-ink-900: #1f252a; /* theme footer surface */
+  --c-ink-800: #2a2f33;
+  --c-ink-700: #343435; /* logo charcoal */
+  --c-ink-500: #62686d;
+  --c-ink-400: #8b9197;
+  --c-ink-300: #c7ccd1;
+  --c-ink-200: #e2e6e9;
+  --c-ink-100: #f0f2f4;
+  --c-ink-50: #f7f7f7; /* theme light surface */
+  --c-white: #ffffff;
+
+  /* ---- Semantic -------------------------------------------------------- */
+  --c-bg: var(--c-white);
+  --c-bg-subtle: var(--c-ink-50);
+  --c-bg-inverse: var(--c-ink-900);
+  --c-text: var(--c-ink-900);
+  --c-text-muted: var(--c-ink-500);
+  --c-text-inverse: var(--c-white);
+  --c-text-inverse-muted: #b9bfc4;
+  --c-border: var(--c-ink-200);
+  --c-border-strong: var(--c-ink-300);
+  --c-accent: var(--c-green-500);
+  /* Text-on-white and link colour: 5.19:1. */
+  --c-accent-text: var(--c-green-700);
+  /*
+   * Solid button background. The brand green (#86b43a) and its 600 step (#6f9a2c) reach only
+   * 2.1:1 and 3.32:1 against white text, so neither can carry white label text at AA. The 700
+   * step is the lightest brand green that clears 4.5:1 (5.19:1), and 800 carries the hover.
+   */
+  --c-accent-solid: var(--c-green-700);
+  --c-accent-solid-hover: var(--c-green-800);
+  --c-focus: #0b6bcb;
+  --c-danger: #b3261e;
+
+  /* ---- Type ------------------------------------------------------------ */
+  --font-display: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9062rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: clamp(1.125rem, 0.35vw + 1.05rem, 1.25rem);
+  --fs-xl: clamp(1.375rem, 0.7vw + 1.2rem, 1.625rem);
+  --fs-2xl: clamp(1.625rem, 1.3vw + 1.35rem, 2.125rem);
+  --fs-3xl: clamp(2rem, 2.4vw + 1.5rem, 3rem);
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-normal: 1.65;
+
+  --tracking-wide: 0.06em;
+
+  /* ---- Space (8pt) ------------------------------------------------------ */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --container: 74rem;
+  --container-narrow: 48rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --section-y: clamp(3rem, 7vw, 5.5rem);
+
+  /* ---- Radii, shadows, borders ------------------------------------------ */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgb(22 25 27 / 0.06), 0 1px 3px rgb(22 25 27 / 0.08);
+  --shadow-md: 0 4px 6px -2px rgb(22 25 27 / 0.06), 0 12px 20px -6px rgb(22 25 27 / 0.12);
+
+  --ring: 3px solid var(--c-focus);
+  --ring-offset: 2px;
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --t-fast: 120ms;
+  --t-base: 200ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-fast: 1ms;
+    --t-base: 1ms;
+  }
+}

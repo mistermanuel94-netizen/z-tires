@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import { graph, webPage, breadcrumbList, itemList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+
+import loadImg from '~/assets/images/container-loading-in-progress.jpg';
+
+const path = '/services/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path },
+];
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'FlexTyres services',
+    description:
+      'Doubling and tripling, container loading, transportation, and export and customs assistance.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  itemList(
+    url,
+    'FlexTyres services',
+    services.map((s) => ({ name: s.data.title, path: `/services/${s.id}/` })),
+  ),
+);
+---
+
+<BaseLayout
+  title="Services — Tripling, Loading, Transport, Export"
+  description="What FlexTyres does with your order: doubling and tripling, container loading by press, transportation, and export and customs assistance."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Services"
+    title="What FlexTyres does with your order"
+    lede="Four services, all of them logistics. FlexTyres is a tyre wholesaler and exporter — it does not service vehicles."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div>
+          <AnswerBlock>
+            <p>
+              FlexTyres publishes four services: <strong>doubling and tripling</strong> (packing up to
+              three tyres inside one, roughly doubling container capacity),
+              <strong>container loading by press</strong>,
+              <strong>transportation</strong> from its warehouse to your destination, and
+              <strong>export and customs assistance</strong> handled with partners. All four are arranged
+              as part of your order rather than bought separately.
+            </p>
+          </AnswerBlock>
+          <p>
+            The company describes the standard sequence the same way across its site: "Our
+            professionals will perform thorough quality checks, prepare all the paperwork, pack,
+            load and ship your tires."
+          </p>
+        </div>
+        <figure>
+          <Image
+            src={loadImg}
+            alt="Tyres being loaded into a shipping container at the FlexTyres warehouse"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+
+      <ul class="grid grid--2 svc-grid">
+        {
+          services.map((s) => (
+            <li>
+              <article class="card">
+                <div class="card__body">
+                  <h2 class="card__title">
+                    <a href={`/services/${s.id}/`}>{s.data.title}</a>
+                  </h2>
+                  <p class="card__text">{s.data.summary}</p>
+                  <a class="card__link" href={`/services/${s.id}/`}>
+                    How it works<span class="visually-hidden"> — {s.data.title}</span>
+                  </a>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="not-heading">
+    <div class="container container--narrow">
+      <h2 id="not-heading">What FlexTyres does not do</h2>
+      <p>
+        FlexTyres is a wholesale supplier and exporter of used tyres. It does not fit tyres, service
+        vehicles, or sell single tyres to consumers. The smallest published order is 180 tyres.
+      </p>
+      <p>
+        For anything outside the four services above, the honest answer is that it is not published
+        — ask when you <a href="/request-a-quote/">request a quote</a>.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .svc-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .svc-grid li {
+    margin: 0;
+    max-width: none;
+  }
+</style>

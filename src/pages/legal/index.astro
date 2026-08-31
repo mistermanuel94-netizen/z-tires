@@ -1,0 +1,119 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { legalNav } from '~/data/nav';
+import { documents } from '~/data/site';
+
+const path = '/legal/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Legal', path },
+];
+
+const notes: Record<string, string> = {
+  '/legal/purchasing-terms/': `The terms that govern a purchase from FlexTyres. Last updated ${documents.purchasingTerms.lastUpdated}.`,
+  '/legal/terms-and-conditions/':
+    'The terms that govern use of this website. Last updated 1 October 2020.',
+  '/legal/privacy-policy/':
+    'How FlexTyres handles personal information. Last updated 1 October 2020.',
+};
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Legal information',
+    description: 'Purchasing terms, website terms and conditions, and the privacy policy.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Legal Information"
+  description="FlexTyres legal documents: purchasing terms and conditions for orders, website terms of use, and the privacy policy."
+  path={path}
+  noindex
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Legal"
+    title="Legal information"
+    lede="The documents FlexTyres publishes. Read the purchasing terms before placing an order — they are the ones with commercial effect."
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <ul class="legal-list">
+        {
+          legalNav.map((l) => (
+            <li>
+              <a href={l.href}>
+                <span class="legal-list__title">{l.label}</span>
+                <span class="legal-list__note">{notes[l.href]}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="note">
+        <svg
+          class="note__icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
+        </svg>
+        <div>
+          <p>
+            These documents are reproduced from the versions FlexTyres publishes. They are dated
+            2012 and 2020 respectively and are under review. Contact FlexTyres for the current
+            version before entering into a contract.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-list {
+    list-style: none;
+    margin: 0 0 var(--s-5);
+    padding: 0;
+  }
+  .legal-list li {
+    margin: 0 0 var(--s-3);
+    max-width: none;
+  }
+  .legal-list a {
+    display: grid;
+    gap: var(--s-1);
+    padding: var(--s-4) var(--s-5);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    text-decoration: none;
+  }
+  .legal-list a:hover {
+    border-color: var(--c-green-500);
+    background: var(--c-green-50);
+  }
+  .legal-list__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-md);
+    color: var(--c-ink-900);
+  }
+  .legal-list__note {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+</style>

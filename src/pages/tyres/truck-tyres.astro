@@ -1,0 +1,221 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import GradeTable from '~/components/blocks/GradeTable.astro';
+import SizeTable from '~/components/blocks/SizeTable.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { truckGrades, truckGradeProvenance, gradeCaveat, truckOrderRoutes } from '~/data/tyres';
+import { truckTyreSizes } from '~/data/sizes';
+import { documents } from '~/data/site';
+
+import heroImg from '~/assets/images/truck-tyres-warehouse.jpg';
+
+const path = '/tyres/truck-tyres/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Tyres', path: '/tyres/' },
+  { name: 'Used truck tyres', path },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Used truck tyres — wholesale',
+    description:
+      'FlexTyres used truck tyres: three grades by tread depth and repaired damage, 16 published sizes, and container quantities.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Used Truck Tyres Wholesale"
+  description="Wholesale used truck tyres from FlexTyres: three grades by tread depth and repaired damage, 16 published sizes from 17 to 22.5 inch, sold by container."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Used truck tyres"
+    title="Used truck tyres, wholesale"
+    lede="Graded used commercial-vehicle tyres for reuse, retread and export, sold by the container."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div>
+          <AnswerBlock>
+            <p>
+              FlexTyres grades used truck tyres in <strong>three tiers</strong>, on tread depth, the
+              number of repaired damages, and whether the tyre is fit for reuse or only for retread.
+              High grade is <strong>5 mm and above</strong> with no damage; medium is
+              <strong>3–5 mm</strong> with at most one repaired damage; low is
+              <strong>0–2.5 mm</strong> with two or three. Sizes run from 17&Prime; to 22.5&Prime;. A
+              20 ft container holds approximately 130 truck tyres, a 40 ft container approximately 270.
+            </p>
+          </AnswerBlock>
+
+          <h2>Who this is for</h2>
+          <p>
+            Retreaders, commercial-vehicle tyre traders and exporters. Truck grading is deliberately
+            different from car grading: what matters is not only how much tread is left but whether
+            the casing can be retreaded and how many repairs it already carries.
+          </p>
+        </div>
+        <figure>
+          <Image
+            src={heroImg}
+            alt="Used truck tyres stored on their sides inside the FlexTyres warehouse"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+
+      <h2>Truck tyre quality grades</h2>
+      <GradeTable
+        grades={truckGrades}
+        caption="Truck tyre quality grades as published by FlexTyres"
+        criteriaHeading="Condition and export"
+      />
+      <div class="note">
+        <svg
+          class="note__icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          fill="currentColor"
+        >
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z"></path>
+        </svg>
+        <div>
+          <p><strong>{truckGradeProvenance}</strong></p>
+          <p>{gradeCaveat}</p>
+        </div>
+      </div>
+
+      <h3>What the export restrictions mean</h3>
+      <p>
+        Two of the three grades carry a geographic restriction in FlexTyres' published criteria.
+        High-grade truck tyres are published as "only export to Europe"; low-grade tyres, which are
+        for retread only, as "only for export". Medium grade is published as available for export
+        including within Europe. Confirm the restrictions that apply to your destination before
+        ordering — see <a href="/services/export-and-customs/">export and customs</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="quantities-heading">
+    <div class="container">
+      <span class="eyebrow">Quantities</span>
+      <h2 id="quantities-heading">Container quantities</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>Published container quantities for used truck tyres</caption>
+          <thead>
+            <tr>
+              <th scope="col">Route</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Coverage</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              truckOrderRoutes.map((r) => (
+                <tr>
+                  <th scope="row">{r.name}</th>
+                  <td class="nowrap">{r.quantity}</td>
+                  <td>{r.coverage}</td>
+                  <td>{r.notes.length ? r.notes.join('. ') : '—'}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="small">
+        Unlike car tyres, truck tyres are not tripled — the published quantities are for tyres
+        loaded whole.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sizes-heading">
+    <div class="container">
+      <span class="eyebrow">Sizes</span>
+      <h2 id="sizes-heading">Published truck tyre sizes</h2>
+      <p class="section__lede">
+        {truckTyreSizes.length} sizes, combined from the truck quote form and the truck block of FlexTyres'
+        downloadable stock sheet.
+      </p>
+
+      <div class="downloads">
+        <a class="btn btn--ghost" href={documents.stockListXlsx.href} download>
+          Download stock list ({documents.stockListXlsx.type}, {documents.stockListXlsx.sizeLabel})
+        </a>
+        <a class="btn btn--ghost" href={documents.stockListPdf.href} download>
+          Download stock list ({documents.stockListPdf.type}, {documents.stockListPdf.sizeLabel})
+        </a>
+      </div>
+
+      <SizeTable flat={truckTyreSizes} caption="Published used truck tyre sizes" />
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Quality grades explained',
+            href: '/tyres/quality-grades/',
+            hint: 'Car and truck grading side by side',
+          },
+          {
+            label: 'Export and customs',
+            href: '/services/export-and-customs/',
+            hint: 'Documentation and clearance',
+          },
+          {
+            label: 'Container loading',
+            href: '/services/container-loading/',
+            hint: 'How the container is filled',
+          },
+          { label: 'How to order', href: '/how-to-order/', hint: 'Process and what to send us' },
+          { label: 'Used car tyres', href: '/tyres/car-tyres/', hint: '348 published sizes' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Get a price for used truck tyres"
+    text="Send the sizes, grade and container size you need with your destination country."
+    primaryLabel="Request a truck tyre quote"
+    primaryHref="/request-a-quote/truck-tyres/"
+  />
+</BaseLayout>
+
+<style>
+  .nowrap {
+    white-space: nowrap;
+  }
+  .small {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+  .downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-bottom: var(--s-5);
+  }
+</style>

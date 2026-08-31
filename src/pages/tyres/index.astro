@@ -1,0 +1,174 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import { graph, webPage, breadcrumbList, itemList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { carTyreSizeCount, truckTyreSizes } from '~/data/sizes';
+import { brandsCarried, brandDisclaimer } from '~/data/site';
+
+import carImg from '~/assets/images/warehouse-sorted-tyre-wall.jpg';
+import truckImg from '~/assets/images/truck-tyres-stacked.jpg';
+import gradesImg from '~/assets/images/used-tyre-tread-comparison.jpg';
+import recycleImg from '~/assets/images/tyre-chips-pile.jpg';
+
+const path = '/tyres/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Tyres', path },
+];
+
+const ranges = [
+  {
+    title: 'Used car tyres',
+    href: '/tyres/car-tyres/',
+    text: `${carTyreSizeCount} published sizes from 12" to 22", in three quality grades. Sold by 20 ft or 40 ft container, or by Sprinter van in Belgium, France and the Netherlands.`,
+    img: carImg,
+    alt: 'A wall of graded used car tyres sorted by size in the FlexTyres warehouse',
+  },
+  {
+    title: 'Used truck tyres',
+    href: '/tyres/truck-tyres/',
+    text: `${truckTyreSizes.length} published sizes from 17" to 22.5", graded by tread depth, repaired damage and whether they are fit for reuse or retread.`,
+    img: truckImg,
+    alt: 'Used truck tyres stacked in rows at the FlexTyres yard',
+  },
+  {
+    title: 'Quality grades',
+    href: '/tyres/quality-grades/',
+    text: 'How FlexTyres grades car and truck tyres, what tread depth each grade carries, and what the grading does and does not guarantee.',
+    img: gradesImg,
+    alt: 'Close-up of used tyre tread showing remaining depth',
+  },
+  {
+    title: 'Tyre recycling',
+    href: '/tyre-recycling/',
+    text: 'Tyres that are past reuse, supplied as chips in two grades and as bales.',
+    img: recycleImg,
+    alt: 'A pile of shredded tyre chips at a recycling yard',
+  },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Used tyres from FlexTyres',
+    description:
+      'The used car tyres, truck tyres and recycling products FlexTyres sells, with published grades, sizes and container quantities.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  itemList(
+    url,
+    'FlexTyres tyre range',
+    ranges.map((r) => ({ name: r.title, path: r.href })),
+  ),
+);
+---
+
+<BaseLayout
+  title="Used Tyres — Grades, Sizes & Quantities"
+  description="What FlexTyres sells: used car tyres in 348 published sizes, used truck tyres in 16 sizes, three quality grades, and recycled tyre chips and bales."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Product range"
+    title="Used tyres, graded and sold by the container"
+    lede="FlexTyres sorts and grades used car and truck tyres and sells them to trade buyers. Everything below is what the company publishes about what it stocks."
+  />
+
+  <section class="section">
+    <div class="container">
+      <AnswerBlock>
+        <p>
+          FlexTyres sells <strong>used car tyres</strong> in {carTyreSizeCount} published sizes from 12&Prime;
+          to 22&Prime;, <strong>used truck tyres</strong> in
+          {truckTyreSizes.length} published sizes from 17&Prime; to 22.5&Prime;, and
+          <strong>recycled tyre chips and bales</strong>. Car tyres come in three quality grades
+          defined by tread depth. Minimum order is 180 tyres by van within Belgium, France and the
+          Netherlands, or a 20 ft container of roughly 1,350 tyres for export.
+        </p>
+      </AnswerBlock>
+
+      <ul class="grid grid--2 range-grid">
+        {
+          ranges.map((r) => (
+            <li>
+              <article class="card">
+                <div class="card__media">
+                  <Image
+                    src={r.img}
+                    alt={r.alt}
+                    widths={[380, 600, 780]}
+                    quality={70}
+                    sizes="(min-width: 40em) 45vw, 100vw"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card__body">
+                  <h2 class="card__title">
+                    <a href={r.href}>{r.title}</a>
+                  </h2>
+                  <p class="card__text">{r.text}</p>
+                  <a class="card__link" href={r.href}>
+                    View {r.title.toLowerCase()}
+                  </a>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="brands-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Brands</span>
+      <h2 id="brands-heading">Which brands are in stock?</h2>
+      <p>
+        Every quality grade FlexTyres publishes carries the same note: <strong>all brands</strong>.
+        Stock includes tyres from all major manufacturers, and FlexTyres has named
+        {' '}{brandsCarried.join(', ')} among them.
+      </p>
+      <ul class="pills">
+        {
+          brandsCarried.map((b) => (
+            <li>
+              <span class="pill">{b}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="disclaimer">{brandDisclaimer}</p>
+      <p>
+        Because stock is sourced from the used market it is not brand-selectable in the way new
+        stock is. If a particular brand matters for your order, say so when you
+        <a href="/request-a-quote/">request a quote</a> and FlexTyres will tell you what is available.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .range-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .range-grid li {
+    margin: 0;
+    max-width: none;
+  }
+  .disclaimer {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+</style>

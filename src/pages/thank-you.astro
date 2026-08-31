@@ -1,0 +1,85 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { contact } from '~/data/site';
+
+const path = '/thank-you/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Thank you', path },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Thank you for your inquiry',
+    description: 'Confirmation that your inquiry has been sent to FlexTyres.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Thank You"
+  description="Your inquiry has been sent to FlexTyres. The team responds within 24 hours, generally within a few hours."
+  path={path}
+  noindex
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Inquiry sent"
+    title="Thank you — we have your inquiry"
+    lede="FlexTyres responds to inquiries within 24 hours, and generally within a few hours."
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <h2>If you do not hear back within 24 hours</h2>
+      <p>
+        Call <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a> or send a message on
+        <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a> to the same number. The office is open
+        Monday to Friday 08:00–17:30 and Saturday 08:00–15:00 CET.
+      </p>
+
+      <h2>While you wait</h2>
+      <ul class="next">
+        <li>
+          <a href="/tyres/quality-grades/">Read how FlexTyres grades tyres</a> — worth knowing before
+          you compare offers
+        </li>
+        <li>
+          <a href="/legal/purchasing-terms/">Read the purchasing terms</a> — note the three-day inspection
+          window from receipt of goods
+        </li>
+        <li>
+          <a href="/how-to-order/">Review the ordering process</a> — what happens between offer and delivery
+        </li>
+        <li>
+          <a href="/gallery/">See the warehouse and loading operation</a>
+        </li>
+      </ul>
+
+      <p>
+        <a class="btn btn--ghost" href="/">Back to the homepage</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .next {
+    list-style: none;
+    margin: 0 0 var(--s-6);
+    padding: 0;
+  }
+  .next li {
+    padding-block: var(--s-3);
+    border-bottom: 1px solid var(--c-border);
+    margin: 0;
+  }
+</style>

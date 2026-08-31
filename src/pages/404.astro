@@ -1,0 +1,114 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import { graph } from '~/lib/schema';
+import { contact } from '~/data/site';
+
+const path = '/404/';
+
+const destinations = [
+  {
+    label: 'Used car tyres',
+    href: '/tyres/car-tyres/',
+    hint: 'Grades, 348 published sizes, container quantities',
+  },
+  {
+    label: 'Used truck tyres',
+    href: '/tyres/truck-tyres/',
+    hint: 'Grading criteria and 16 published sizes',
+  },
+  { label: 'Request a quote', href: '/request-a-quote/', hint: 'Car and truck inquiry forms' },
+  { label: 'How to order', href: '/how-to-order/', hint: 'Minimums, process and terms' },
+  { label: 'Services', href: '/services/', hint: 'Tripling, loading, transport, export' },
+  { label: 'FAQs', href: '/faqs/', hint: 'Pricing, minimums, warehouse visits' },
+  { label: 'Export markets', href: '/export-markets/', hint: 'Where FlexTyres ships' },
+  { label: 'Contact', href: '/contact/', hint: 'Phone, WhatsApp, email and addresses' },
+];
+
+/*
+ * Only the organisation and website nodes. A 404 is served at whatever URL the visitor asked
+ * for, so asserting a WebPage with a fixed url would describe a document that does not exist.
+ */
+const schema = graph();
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The page you asked for is not on this site. Here are the main sections of flextyres.com and the fastest ways to reach the team."
+  path={path}
+  noindex
+  isErrorPage
+  schema={schema}
+>
+  <PageHeader
+    eyebrow="404"
+    title="That page is not here"
+    lede="The address you followed does not match a page on this site. It may have moved when the site was rebuilt, or the link may have a typo."
+  />
+
+  <section class="section">
+    <div class="container">
+      <h2>Where you probably wanted to go</h2>
+      <ul class="dest">
+        {
+          destinations.map((d) => (
+            <li>
+              <a href={d.href}>
+                <span class="dest__label">{d.label}</span>
+                <span class="dest__hint">{d.hint}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h2>Or just ask</h2>
+      <p>
+        If you were looking for something specific — a tyre size, a price, a document — the fastest
+        route is to ask directly: call
+        <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>, message
+        <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a>, or email
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dest {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    list-style: none;
+    margin: 0 0 var(--s-6);
+    padding: 0;
+  }
+  .dest li {
+    margin: 0;
+    max-width: none;
+  }
+  .dest a {
+    display: block;
+    height: 100%;
+    padding: var(--s-4);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    text-decoration: none;
+  }
+  .dest a:hover {
+    border-color: var(--c-green-500);
+    background: var(--c-green-50);
+  }
+  .dest__label {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--c-ink-900);
+  }
+  .dest__hint {
+    display: block;
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    margin-top: 2px;
+  }
+</style>

@@ -1,0 +1,157 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import QuoteForm from '~/components/blocks/QuoteForm.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { truckOrderRoutes, truckGrades } from '~/data/tyres';
+import { truckTyreSizes } from '~/data/sizes';
+import { contact, documents } from '~/data/site';
+
+const path = '/request-a-quote/truck-tyres/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Request a quote', path: '/request-a-quote/' },
+  { name: 'Truck tyres', path },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Request a used truck tyre quote',
+    description: 'Inquiry form for wholesale used truck tyres, with all 16 published sizes.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Truck Tyre Quote Request"
+  description="Request a quote for wholesale used truck tyres. Pick from 16 published sizes, choose a container size, and get an offer within 24 hours."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Truck tyres"
+    title="Request a used truck tyre quote"
+    lede="Tell FlexTyres the sizes, grade and container size you need, and where the tyres are going."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="quote-layout">
+        <div class="quote-layout__form">
+          <QuoteForm
+            id="quote-truck"
+            kind="truck"
+            routes={truckOrderRoutes}
+            sizesFlat={truckTyreSizes}
+          />
+        </div>
+
+        <aside class="quote-layout__aside" aria-labelledby="aside-heading">
+          <h2 id="aside-heading">Before you send</h2>
+
+          <h3>Quality grades</h3>
+          <ul class="aside-list">
+            {
+              truckGrades.map((g) => (
+                <li>
+                  <strong>{g.name}</strong> — {g.treadDepth}
+                  <br />
+                  <span class="small">{g.criteria.join(' · ')}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="small">
+            Two grades carry published export restrictions.
+            <a href="/tyres/truck-tyres/">Read the grading criteria</a>.
+          </p>
+
+          <h3>Container quantities</h3>
+          <ul class="aside-list">
+            {
+              truckOrderRoutes.map((r) => (
+                <li>
+                  <strong>{r.name}</strong> — {r.quantity}
+                </li>
+              ))
+            }
+          </ul>
+          <p class="small">Truck tyres are loaded whole, not tripled.</p>
+
+          <h3>Sizes</h3>
+          <p class="small">
+            {truckTyreSizes.length} published sizes from 17&Prime; to 22.5&Prime;. If you need a size
+            that is not listed, put it in the message box.
+          </p>
+          <p class="small">
+            <a href={documents.stockListPdf.href} download>Download the stock sheet</a>.
+          </p>
+
+          <h3>Faster routes</h3>
+          <p class="small">
+            Call <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a> ·
+            <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a> ·
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quote-layout {
+    display: grid;
+    gap: var(--s-6);
+  }
+  @media (min-width: 64em) {
+    .quote-layout {
+      grid-template-columns: 1fr 20rem;
+      gap: var(--s-7);
+      align-items: start;
+    }
+    .quote-layout__aside {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+  .quote-layout__aside {
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    padding: var(--s-5);
+  }
+  .quote-layout__aside h2 {
+    margin-top: 0;
+    font-size: var(--fs-lg);
+  }
+  .quote-layout__aside h3 {
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--c-text-muted);
+    margin-top: var(--s-5);
+    margin-bottom: var(--s-2);
+  }
+  .aside-list {
+    list-style: none;
+    margin: 0 0 var(--s-3);
+    padding: 0;
+    font-size: var(--fs-sm);
+  }
+  .aside-list li {
+    margin: 0 0 var(--s-3);
+    max-width: none;
+  }
+  .small {
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    margin-bottom: var(--s-2);
+  }
+</style>

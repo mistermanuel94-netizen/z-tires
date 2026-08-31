@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import FAQList from '~/components/blocks/FAQList.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, faqPage, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { contact } from '~/data/site';
+
+const path = '/faqs/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'FAQs', path },
+];
+
+const faqs = await getCollection('faqs');
+
+const categories = [
+  { id: 'ordering', label: 'Ordering' },
+  { id: 'pricing', label: 'Pricing' },
+  { id: 'product', label: 'The tyres' },
+  { id: 'logistics', label: 'Shipping and logistics' },
+  { id: 'company', label: 'About FlexTyres' },
+] as const;
+
+const grouped = categories
+  .map((c) => ({
+    ...c,
+    items: faqs
+      .filter((f) => f.data.category === c.id)
+      .map((f) => ({
+        id: f.data.id,
+        question: f.data.question,
+        answer: f.data.answer,
+        expandsAt: f.data.expandsAt,
+        expandsLabel: f.data.expandsLabel,
+      })),
+  }))
+  .filter((g) => g.items.length > 0);
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'FlexTyres frequently asked questions',
+    description:
+      'Answers to the questions buyers ask FlexTyres about minimum orders, pricing, quality, warehouse visits and shipping.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+  faqPage(
+    url,
+    faqs.map((f) => ({ question: f.data.question, answer: f.data.answer })),
+  ),
+);
+---
+
+<BaseLayout
+  title="Frequently Asked Questions"
+  description="Minimum order, pricing, buying in pairs, choosing your own tyres, doubling and tripling, response times and where FlexTyres ships — answered."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="FAQs"
+    title="Frequently asked questions"
+    lede="Before contacting the team, take a few minutes to browse these answers — most buyers find what they need here."
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <AnswerBlock label="The three most asked">
+        <ul class="quick">
+          <li>
+            <strong>Minimum order:</strong> 180 tyres by van in Belgium, France and the Netherlands; approximately
+            1,350 tyres for a 20 ft container for export.
+          </li>
+          <li>
+            <strong>Price:</strong> not published — it depends on quantity and quality grade, not on size.
+            Send an inquiry for an offer.
+          </li>
+          <li>
+            <strong>Response time:</strong> within 24 hours, generally within a few hours.
+          </li>
+        </ul>
+      </AnswerBlock>
+
+      {
+        grouped.map((g) => (
+          <section class="faq-group" aria-labelledby={`cat-${g.id}`}>
+            <h2 id={`cat-${g.id}`}>{g.label}</h2>
+            <FAQList items={g.items} level={3} openCount={g.items.length} />
+          </section>
+        ))
+      }
+
+      <h2>Still have a question?</h2>
+      <p>
+        Call <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>, message the same
+        number on <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a>, email
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>, or use the
+        <a href="/contact/">contact form</a>.
+      </p>
+
+      <RelatedLinks
+        links={[
+          { label: 'How to order', href: '/how-to-order/', hint: 'The full process, step by step' },
+          {
+            label: 'Quality grades',
+            href: '/tyres/quality-grades/',
+            hint: 'What each grade means',
+          },
+          { label: 'Used car tyres', href: '/tyres/car-tyres/', hint: 'Sizes and quantities' },
+          {
+            label: 'Purchasing terms',
+            href: '/legal/purchasing-terms/',
+            hint: 'Payment, returns, liability',
+          },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
+
+<style>
+  .quick {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+  .quick li {
+    max-width: 62ch;
+  }
+  .faq-group {
+    margin-bottom: var(--s-7);
+  }
+  .faq-group h2 {
+    font-size: var(--fs-xl);
+  }
+</style>

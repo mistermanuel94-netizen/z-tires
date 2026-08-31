@@ -1,0 +1,270 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { videos } from '~/data/site';
+
+import g01 from '~/assets/images/warehouse-yard-panorama.jpg';
+import g02 from '~/assets/images/warehouse-outdoor-tyre-rows.jpg';
+import g03 from '~/assets/images/warehouse-tyre-yard-winter.jpg';
+import g04 from '~/assets/images/stock-tyres-stacked-outdoor.jpg';
+import g05 from '~/assets/images/stock-tyre-rows-warehouse.jpg';
+import g06 from '~/assets/images/stock-tyres-on-pallet-racks.jpg';
+import g07 from '~/assets/images/stock-graded-tyres-yard.jpg';
+import g08 from '~/assets/images/stock-tyre-wall-outdoor.jpg';
+import g09 from '~/assets/images/stock-tyres-loading-bay.jpg';
+import g10 from '~/assets/images/stock-tyre-stacks-daylight.jpg';
+import g11 from '~/assets/images/stock-tyres-steel-racking.jpg';
+import g12 from '~/assets/images/stock-mixed-tyre-inventory.jpg';
+import g13 from '~/assets/images/stock-tyre-yard-wide.jpg';
+import g14 from '~/assets/images/warehouse-interior-tyre-racks.jpg';
+import g15 from '~/assets/images/warehouse-tyre-stack-close.jpg';
+import g16 from '~/assets/images/warehouse-tyre-inspection-area.jpg';
+import g17 from '~/assets/images/warehouse-graded-tyre-pile.jpg';
+import g18 from '~/assets/images/warehouse-tyre-column.jpg';
+import g19 from '~/assets/images/tripling-machine-with-tyre.jpg';
+import g20 from '~/assets/images/tripling-machine-warehouse.jpg';
+import g21 from '~/assets/images/tripling-press-in-use.jpg';
+import g22 from '~/assets/images/tripled-tyres-bundle.jpg';
+import g23 from '~/assets/images/tripled-tyres-stacked.jpg';
+import g24 from '~/assets/images/forklift-loading-container.jpg';
+import g25 from '~/assets/images/container-packed-with-tyres.jpg';
+import g26 from '~/assets/images/container-loading-in-progress.jpg';
+import g27 from '~/assets/images/truck-loaded-with-tyres.jpg';
+import g28 from '~/assets/images/container-doors-open-loaded.jpg';
+import g29 from '~/assets/images/container-interior-packed.jpg';
+import g30 from '~/assets/images/lorry-trailer-tyre-load.jpg';
+import g31 from '~/assets/images/loaded-container-exterior.jpg';
+import g32 from '~/assets/images/truck-tyres-stacked.jpg';
+import g33 from '~/assets/images/truck-tyres-warehouse.jpg';
+import g34 from '~/assets/images/gallery-yard-01.jpg';
+import g35 from '~/assets/images/gallery-yard-02.jpg';
+import g36 from '~/assets/images/gallery-racking-01.jpg';
+import g37 from '~/assets/images/gallery-loading-01.jpg';
+import g38 from '~/assets/images/gallery-container-01.jpg';
+import g39 from '~/assets/images/tyre-chips-pile.jpg';
+import g40 from '~/assets/images/baled-tyres-stacked.jpg';
+
+const path = '/gallery/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Gallery', path },
+];
+
+const groups = [
+  {
+    id: 'warehouse',
+    title: 'Warehouse and yard',
+    lede: 'Where the stock is held, sorted and graded.',
+    images: [
+      { src: g01, alt: 'Wide view of the FlexTyres yard with long rows of stacked used tyres' },
+      { src: g02, alt: 'Outdoor rows of used tyres stacked against the warehouse wall' },
+      { src: g03, alt: 'The FlexTyres tyre yard under snow, with stock stacked in long rows' },
+      { src: g14, alt: 'Interior of the FlexTyres warehouse with tyres stored on racks' },
+      { src: g16, alt: 'The area of the warehouse where tyres are checked before packing' },
+      { src: g13, alt: 'Wide view across the yard showing the scale of the tyre inventory' },
+    ],
+  },
+  {
+    id: 'stock',
+    title: 'Stock and grading',
+    lede: 'Tyres sorted by size and grade, ready to be selected for an order.',
+    images: [
+      { src: g04, alt: 'Used tyres stacked outdoors and sorted by size' },
+      { src: g05, alt: 'Rows of used tyres standing upright inside the warehouse' },
+      { src: g06, alt: 'Used tyres stored on pallet racking, sorted by size' },
+      { src: g07, alt: 'Graded used tyres arranged in the yard ready for loading' },
+      { src: g08, alt: 'A wall of used tyres stacked several metres high outdoors' },
+      { src: g10, alt: 'Stacks of used tyres in daylight, sorted for despatch' },
+      { src: g11, alt: 'Used tyres arranged on steel racking' },
+      { src: g12, alt: 'Mixed used car tyre inventory of varied sizes and tread patterns' },
+      { src: g15, alt: 'Close view of a stack of used car tyres showing remaining tread' },
+      { src: g17, alt: 'A pile of graded used tyres awaiting packing' },
+      { src: g18, alt: 'A tall column of used tyres stacked in the warehouse' },
+      { src: g36, alt: 'Used tyres arranged on racking in the sorted-stock area' },
+    ],
+  },
+  {
+    id: 'tripling',
+    title: 'Doubling and tripling',
+    lede: 'Packing up to three tyres inside one, by machine and by hand.',
+    images: [
+      { src: g19, alt: 'A tyre being pressed into the tripling machine' },
+      { src: g20, alt: 'The tripling machine set up in the FlexTyres warehouse' },
+      { src: g21, alt: 'The tripling press being operated on a used tyre' },
+      { src: g22, alt: 'A bundle of tripled tyres packed one inside another' },
+      { src: g23, alt: 'Tripled tyres stacked and ready for container loading' },
+    ],
+  },
+  {
+    id: 'loading',
+    title: 'Loading and transport',
+    lede: 'Containers, trucks and vans being filled by press.',
+    images: [
+      { src: g24, alt: 'A forklift loading tripled tyres into a shipping container' },
+      { src: g25, alt: 'A shipping container packed wall to wall with used tyres' },
+      { src: g26, alt: 'Tyres being loaded into a container at the warehouse' },
+      { src: g27, alt: 'A truck loaded with used tyres ready to leave the yard' },
+      { src: g28, alt: 'Container doors open showing a full load of tyres' },
+      { src: g29, alt: 'Interior of a container packed tightly with tyres' },
+      { src: g30, alt: 'A lorry trailer being loaded with used tyres' },
+      { src: g31, alt: 'A loaded shipping container closed and ready for export' },
+      { src: g37, alt: 'Workers loading tyres at the despatch bay' },
+      { src: g38, alt: 'A container part-loaded with tyres at the yard' },
+      { src: g09, alt: 'Tyres staged at the loading bay before despatch' },
+      { src: g34, alt: 'Rows of tyres in the yard beside the loading area' },
+      { src: g35, alt: 'Stacked tyres beside a container in the FlexTyres yard' },
+    ],
+  },
+  {
+    id: 'truck-and-recycling',
+    title: 'Truck tyres and recycling',
+    lede: 'Commercial-vehicle stock, and material for tyres past reuse.',
+    images: [
+      { src: g32, alt: 'Used truck tyres stacked in rows at the yard' },
+      { src: g33, alt: 'Used truck tyres stored on their sides in the warehouse' },
+      { src: g39, alt: 'A large pile of shredded tyre chips' },
+      { src: g40, alt: 'Compressed bales of whole tyres bound and stacked' },
+    ],
+  },
+];
+
+const total = groups.reduce((n, g) => n + g.images.length, 0);
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'FlexTyres gallery',
+    description:
+      'Photographs of the FlexTyres warehouse, graded stock, tripling operation and container loading.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Gallery — Warehouse, Stock & Loading"
+  description="Photographs of the FlexTyres operation: the warehouse and yard, graded stock, the tripling machines, and containers being loaded for export."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Gallery"
+    title="Inside the FlexTyres operation"
+    lede={`${total} photographs of the warehouse, the stock, the tripling machines and the loading bay — all published by FlexTyres.`}
+  />
+
+  {
+    groups.map((group, gi) => (
+      <section
+        class={gi % 2 === 1 ? 'section section--subtle' : 'section'}
+        aria-labelledby={`g-${group.id}`}
+      >
+        <div class="container">
+          <h2 id={`g-${group.id}`}>{group.title}</h2>
+          <p class="section__lede">{group.lede}</p>
+          <ul class="gallery">
+            {group.images.map((img) => (
+              <li>
+                <figure>
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    widths={[340, 620]}
+                    sizes="(min-width: 75em) 22vw, (min-width: 48em) 30vw, 90vw"
+                    loading="lazy"
+                    decoding="async"
+                    quality={64}
+                  />
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section" aria-labelledby="video-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Video</span>
+      <h2 id="video-heading">FlexTyres on video</h2>
+      <p>
+        FlexTyres publishes video of the warehouse and loading operation on its YouTube channel. The
+        player loads from YouTube, so it only appears once you choose to load it.
+      </p>
+      <details class="embed">
+        <summary>Load video from YouTube</summary>
+        <div class="video">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${videos.stock}`}
+            title="FlexTyres stock and warehouse video"
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </details>
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Used car tyres',
+            href: '/tyres/car-tyres/',
+            hint: 'Grades, sizes and quantities',
+          },
+          {
+            label: 'Used truck tyres',
+            href: '/tyres/truck-tyres/',
+            hint: 'Grading and export rules',
+          },
+          {
+            label: 'Doubling and tripling',
+            href: '/services/doubling-and-tripling/',
+            hint: 'The machines in these photos',
+          },
+          {
+            label: 'Container loading',
+            href: '/services/container-loading/',
+            hint: 'How the container is filled',
+          },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Come and see it in person"
+    text="FlexTyres states that visitors are always welcome, and that you can choose your own tyres at the warehouse."
+    primaryLabel="Arrange a visit"
+    primaryHref="/contact/"
+  />
+</BaseLayout>
+
+<style>
+  .embed {
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    padding: var(--s-3);
+    margin-bottom: var(--s-5);
+  }
+  .embed > summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    padding: var(--s-2) var(--s-3);
+  }
+  .embed[open] > summary {
+    margin-bottom: var(--s-3);
+  }
+</style>

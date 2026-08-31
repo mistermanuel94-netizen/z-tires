@@ -1,0 +1,251 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { exportMapEmbedId, locations } from '~/data/site';
+
+import shipImg from '~/assets/images/loaded-container-exterior.jpg';
+
+const path = '/export-markets/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Export markets', path },
+];
+
+const markets = await getCollection('markets');
+const byRegion = ['Africa', 'Europe', 'North America', 'Asia'] as const;
+const grouped = byRegion
+  .map((region) => ({ region, items: markets.filter((m) => m.data.region === region) }))
+  .filter((g) => g.items.length > 0);
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'FlexTyres export markets',
+    description:
+      'The destinations FlexTyres has published for its used tyre exports, and the coverage of its van delivery service.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Export Markets & Destinations"
+  description="Where FlexTyres ships used tyres: the destinations the company has published across Africa, Europe and North America, plus van delivery coverage."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Geography"
+    title="Where FlexTyres ships"
+    lede="FlexTyres describes itself as a worldwide importer and exporter. These are the destinations it has actually named."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div>
+          <AnswerBlock>
+            <p>
+              FlexTyres has published deliveries to <strong>{markets.length} destinations</strong>
+              across Africa, Europe and North America — Senegal, Ghana, the Democratic Republic of the
+              Congo, South Africa, Morocco, Belgium, France, the Netherlands, Portugal, Spain, Russia
+              and the United States. Van delivery is limited to
+              <strong>Belgium, France and the Netherlands</strong>. Everywhere else is served by
+              container.
+            </p>
+          </AnswerBlock>
+          <p>
+            In the company's own words: "As a worldwide importer and exporter of a very large range
+            of tyres, we supply customers on a national and international level."
+          </p>
+          <p>
+            This list is what FlexTyres has published, not an exhaustive list of everywhere it can
+            ship. If your country is not here, ask — the company handles export documentation and
+            customs clearance with partners.
+          </p>
+        </div>
+        <figure>
+          <Image
+            src={shipImg}
+            alt="A shipping container loaded with used tyres ready to leave the FlexTyres yard"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="destinations-heading">
+    <div class="container">
+      <span class="eyebrow">Destinations</span>
+      <h2 id="destinations-heading">Published destinations</h2>
+      {
+        grouped.map((g) => (
+          <section class="region" aria-labelledby={`region-${g.region.replace(/\s+/g, '-')}`}>
+            <h3 id={`region-${g.region.replace(/\s+/g, '-')}`}>{g.region}</h3>
+            <ul class="market-list">
+              {g.items.map((m) => (
+                <li>
+                  <span class="market-list__name">{m.data.name}</span>
+                  {m.data.publishedAs && (
+                    <span class="market-list__as">published as "{m.data.publishedAs}"</span>
+                  )}
+                  {m.data.note && <span class="market-list__note">{m.data.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="map-heading">
+    <div class="container">
+      <span class="eyebrow">Map</span>
+      <h2 id="map-heading">FlexTyres' published export map</h2>
+      <p class="section__lede">
+        The map FlexTyres publishes of its export destinations. It loads from Google Maps, so it
+        only appears once you choose to load it.
+      </p>
+      <details class="embed">
+        <summary>Load the export map from Google Maps</summary>
+        <div class="video">
+          <iframe
+            src={`https://www.google.com/maps/d/embed?mid=${exportMapEmbedId}`}
+            title="FlexTyres export destinations map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="where-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Origin</span>
+      <h2 id="where-heading">Where shipments leave from</h2>
+      <dl class="facts">
+        {
+          locations.map((l) => (
+            <div>
+              <dt>{l.label}</dt>
+              <dd>
+                {l.street
+                  ? `${l.street}, ${l.postalCode} ${l.locality}, ${l.country}`
+                  : `${l.locality}, ${l.country}`}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="small">
+        FlexTyres is a Belgian company; its purchasing terms are governed by Belgian law. The
+        Hollywood, Florida location appears on the company's contact page. No FlexTyres content
+        describes stock, hours or services at that location — ask before assuming US supply.
+      </p>
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Export and customs',
+            href: '/services/export-and-customs/',
+            hint: 'Documentation and clearance',
+          },
+          {
+            label: 'Transportation',
+            href: '/services/transportation/',
+            hint: 'Warehouse to destination',
+          },
+          {
+            label: 'Sprinter van delivery',
+            href: '/offers/sprinter-van-delivery/',
+            hint: 'Belgium, France, Netherlands',
+          },
+          { label: 'Contact FlexTyres', href: '/contact/', hint: 'Addresses, hours and phone' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Shipping somewhere not listed?"
+    text="Tell FlexTyres your destination country and port and it will tell you what it can do."
+  />
+</BaseLayout>
+
+<style>
+  .region {
+    margin-bottom: var(--s-6);
+  }
+  .region h3 {
+    margin-top: 0;
+    padding-bottom: var(--s-2);
+    border-bottom: 1px solid var(--c-border);
+    font-size: var(--fs-base);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--c-text-muted);
+  }
+  .market-list {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .market-list li {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: var(--s-3) var(--s-4);
+    background: var(--c-white);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    max-width: none;
+  }
+  .market-list__name {
+    font-weight: 600;
+    color: var(--c-ink-900);
+  }
+  .market-list__as,
+  .market-list__note {
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+  }
+  .embed {
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    padding: var(--s-3);
+  }
+  .embed > summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    padding: var(--s-2) var(--s-3);
+  }
+  .embed[open] > summary {
+    margin-bottom: var(--s-3);
+  }
+  .small {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+</style>

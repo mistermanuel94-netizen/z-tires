@@ -1,0 +1,184 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import CTABand from '~/components/blocks/CTABand.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { contact, company } from '~/data/site';
+
+import shopImg from '~/assets/images/stock-tyres-steel-racking.jpg';
+
+const path = '/franchise/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Franchise programme', path },
+];
+
+const included = [
+  { name: 'Contract', text: 'A franchise agreement with FlexTyres.' },
+  { name: 'Equipment for a tyre centre', text: 'The equipment needed to run a tyre centre.' },
+  { name: 'Container of tyres', text: 'An opening container of graded used tyres.' },
+  { name: 'Merchandise', text: 'FlexTyres-branded merchandise.' },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'FlexTyres franchise opportunity',
+    description:
+      'The FlexTyres franchise package for tyre professionals: contract, equipment, an opening container of tyres and merchandise.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Franchise Opportunity"
+  description="The FlexTyres franchise package for tyre professionals: a contract, tyre-centre equipment, an opening container of graded used tyres and merchandise."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="For tyre professionals"
+    title="FlexTyres franchise opportunity"
+    lede="A package for tyre professionals who want to open a tyre centre supplied by FlexTyres."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div>
+          <AnswerBlock>
+            <p>
+              FlexTyres publishes a franchise package containing four things: a
+              <strong>contract</strong>, <strong>equipment for a tyre centre</strong>, a
+              <strong>container of tyres</strong> and <strong>merchandise</strong>. It is aimed at
+              tyre professionals. Fees, territory, term and eligibility criteria are
+              <strong>not published</strong> — they are discussed directly with FlexTyres.
+            </p>
+          </AnswerBlock>
+
+          <h2>Who it is for</h2>
+          <p>
+            FlexTyres describes the programme as being "for tyre professionals". No further
+            eligibility criteria are published. If you are already trading in tyres and want a
+            supplied, branded operation, this is the route the company offers.
+          </p>
+
+          <h2>What FlexTyres brings to it</h2>
+          <p>
+            {company.originStory} The franchise package puts that supply chain — grading, tripling, container
+            loading and export handling — behind an individual tyre centre.
+          </p>
+        </div>
+        <figure>
+          <Image
+            src={shopImg}
+            alt="Used tyres arranged on steel racking, sorted and ready for retail display"
+            widths={[400, 640, 800]}
+            quality={68}
+            sizes="(min-width: 56em) 40vw, 100vw"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="package-heading">
+    <div class="container">
+      <span class="eyebrow">The package</span>
+      <h2 id="package-heading">What is included</h2>
+      <ul class="grid grid--4 pkg-grid">
+        {
+          included.map((i) => (
+            <li>
+              <article class="card">
+                <div class="card__body">
+                  <h3 class="card__title">{i.name}</h3>
+                  <p class="card__text">{i.text}</p>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="small">
+        This is the complete list FlexTyres publishes. The descriptions above add nothing the
+        company has not stated.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="unknown-heading">
+    <div class="container container--narrow">
+      <span class="eyebrow">Be aware</span>
+      <h2 id="unknown-heading">What is not published</h2>
+      <p>
+        A franchise is a long-term commercial commitment and FlexTyres does not publish its terms.
+        Ask about all of the following before you commit:
+      </p>
+      <ul>
+        <li>Initial fee, ongoing fees and any minimum purchase obligation</li>
+        <li>Territory — exclusive or not, and how it is defined</li>
+        <li>Term of the agreement, renewal and termination</li>
+        <li>What "equipment for a tyre centre" specifically includes</li>
+        <li>The size, grade and value of the opening container</li>
+        <li>Training, marketing and ongoing support</li>
+        <li>Which countries the programme currently operates in</li>
+        <li>Whether existing franchisees can be contacted as references</li>
+      </ul>
+      <p>
+        Take independent legal and financial advice before signing. FlexTyres' published purchasing
+        terms are governed by Belgian law.
+      </p>
+
+      <h2>Enquire</h2>
+      <p>
+        There is no separate franchise application. Call
+        <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a>, message
+        <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a>, email
+        <a href={`mailto:${contact.email}`}>{contact.email}</a> or use the
+        <a href="/contact/">contact form</a>, and say you are asking about the franchise programme.
+      </p>
+
+      <RelatedLinks
+        links={[
+          { label: 'About FlexTyres', href: '/about/', hint: 'The company behind the programme' },
+          { label: 'Used car tyres', href: '/tyres/car-tyres/', hint: 'What a container contains' },
+          { label: 'How to order', href: '/how-to-order/', hint: 'How supply works' },
+          { label: 'Contact', href: '/contact/', hint: 'Start the conversation' },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Interested in the franchise programme?"
+    text="Get in touch and FlexTyres will explain the terms, the territory and what the package costs."
+    primaryLabel="Contact FlexTyres"
+    primaryHref="/contact/"
+  />
+</BaseLayout>
+
+<style>
+  .pkg-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .pkg-grid li {
+    margin: 0;
+    max-width: none;
+  }
+  .small {
+    font-size: var(--fs-sm);
+    color: var(--c-text-muted);
+  }
+</style>

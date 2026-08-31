@@ -1,0 +1,157 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import QuoteForm from '~/components/blocks/QuoteForm.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { carOrderRoutes, carGrades } from '~/data/tyres';
+import { carTyreSizes, carTyreSizeCount } from '~/data/sizes';
+import { contact, documents } from '~/data/site';
+
+const path = '/request-a-quote/car-tyres/';
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Request a quote', path: '/request-a-quote/' },
+  { name: 'Car tyres', path },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: 'Request a used car tyre quote',
+    description: 'Inquiry form for wholesale used car tyres, with all 348 published sizes.',
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title="Car Tyre Quote Request"
+  description="Request a quote for wholesale used car tyres. Tick from 348 published sizes, choose a grade and container size, and get an offer within 24 hours."
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Car tyres"
+    title="Request a used car tyre quote"
+    lede="Tell FlexTyres what you need. The more detail you give, the more precise the offer."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="quote-layout">
+        <div class="quote-layout__form">
+          <QuoteForm id="quote-car" kind="car" routes={carOrderRoutes} sizeGroups={carTyreSizes} />
+        </div>
+
+        <aside class="quote-layout__aside" aria-labelledby="aside-heading">
+          <h2 id="aside-heading">Before you send</h2>
+
+          <h3>Quality grades</h3>
+          <ul class="aside-list">
+            {
+              carGrades.map((g) => (
+                <li>
+                  <strong>{g.name}</strong> — {g.treadDepth}, {g.criteria[0]?.toLowerCase()}
+                </li>
+              ))
+            }
+          </ul>
+          <p class="small">
+            <a href="/tyres/quality-grades/">How grading works</a>
+          </p>
+
+          <h3>Minimum order</h3>
+          <ul class="aside-list">
+            {
+              carOrderRoutes.map((r) => (
+                <li>
+                  <strong>{r.name}</strong> — {r.quantity}
+                  <br />
+                  <span class="small">{r.coverage}</span>
+                </li>
+              ))
+            }
+          </ul>
+
+          <h3>Sizes</h3>
+          <p class="small">
+            {carTyreSizeCount} sizes across 11 rim diameters. Not listed? FlexTyres asks you to tell it
+            anyway — put the size in the message box.
+          </p>
+          <p class="small">
+            <a href={documents.stockListXlsx.href} download>Download the stock sheet</a> to mark up quantities
+            offline.
+          </p>
+
+          <h3>Faster routes</h3>
+          <p class="small">
+            Call <a href={`tel:${contact.phoneE164}`}>{contact.phoneDisplay}</a> ·
+            <a href={contact.whatsappUrl} rel="noopener">WhatsApp</a> ·
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          </p>
+
+          <h3>Need less than a container?</h3>
+          <p class="small">
+            <a href="/offers/sprinter-van-delivery/">Sprinter van delivery</a> starts at 180 tyres for
+            Belgium, France and the Netherlands.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quote-layout {
+    display: grid;
+    gap: var(--s-6);
+  }
+  @media (min-width: 64em) {
+    .quote-layout {
+      grid-template-columns: 1fr 20rem;
+      gap: var(--s-7);
+      align-items: start;
+    }
+    .quote-layout__aside {
+      position: sticky;
+      top: 6rem;
+    }
+  }
+  .quote-layout__aside {
+    background: var(--c-bg-subtle);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    padding: var(--s-5);
+  }
+  .quote-layout__aside h2 {
+    margin-top: 0;
+    font-size: var(--fs-lg);
+  }
+  .quote-layout__aside h3 {
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--c-text-muted);
+    margin-top: var(--s-5);
+    margin-bottom: var(--s-2);
+  }
+  .aside-list {
+    list-style: none;
+    margin: 0 0 var(--s-3);
+    padding: 0;
+    font-size: var(--fs-sm);
+  }
+  .aside-list li {
+    margin: 0 0 var(--s-2);
+    max-width: none;
+  }
+  .small {
+    font-size: var(--fs-xs);
+    color: var(--c-text-muted);
+    margin-bottom: var(--s-2);
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PageHeader from '~/components/blocks/PageHeader.astro';
+import AnswerBlock from '~/components/blocks/AnswerBlock.astro';
+import QuoteForm from '~/components/blocks/QuoteForm.astro';
+import RelatedLinks from '~/components/blocks/RelatedLinks.astro';
+import { graph, webPage, breadcrumbList, type Crumb } from '~/lib/schema';
+import { canonical } from '~/lib/seo';
+import { carTyreSizes } from '~/data/sizes';
+import type { OrderRoute } from '~/data/tyres';
+
+export const getStaticPaths = (async () => {
+  const offers = await getCollection('offers');
+  return offers.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const path = `/offers/${entry.id}/`;
+const url = canonical(path);
+const crumbs: Crumb[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Offers', path: '/offers/' },
+  { name: entry.data.title, path },
+];
+
+const sprinterRoutes: readonly OrderRoute[] = [
+  {
+    id: 'van',
+    name: 'Sprinter van',
+    quantity: '180 tyres',
+    coverage: entry.data.coverage.join(', '),
+    notes: [],
+    href: path,
+  },
+  {
+    id: 'custom',
+    name: 'Custom order',
+    quantity: 'By arrangement',
+    coverage: entry.data.coverage.join(', '),
+    notes: [],
+    href: path,
+  },
+];
+
+const schema = graph(
+  webPage({
+    url,
+    name: entry.data.heading,
+    description: entry.data.description,
+    breadcrumbId: `${url}#breadcrumb`,
+  }),
+  breadcrumbList(url, crumbs),
+);
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  path={path}
+  schema={schema}
+  crumbs={crumbs}
+>
+  <PageHeader eyebrow={entry.data.coverage.join(' · ')} title={entry.data.heading} />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <AnswerBlock>
+        <p>{entry.data.summary}</p>
+      </AnswerBlock>
+
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle" aria-labelledby="offer-form-heading">
+    <div class="container container--narrow">
+      <h2 id="offer-form-heading">Request this delivery</h2>
+      <p class="section__lede">
+        Tick the sizes you need and tell FlexTyres your seasonal mix and delivery address.
+      </p>
+      <QuoteForm id="quote-offer" kind="car" routes={sprinterRoutes} sizeGroups={carTyreSizes} />
+
+      <RelatedLinks
+        links={[
+          {
+            label: 'Used car tyres',
+            href: '/tyres/car-tyres/',
+            hint: 'Grades, sizes and container quantities',
+          },
+          {
+            label: 'Quality grades',
+            href: '/tyres/quality-grades/',
+            hint: 'What 4–6 mm tread means',
+          },
+          {
+            label: 'How to order',
+            href: '/how-to-order/',
+            hint: 'Process, terms and inspection window',
+          },
+          { label: 'Export markets', href: '/export-markets/', hint: 'Where else FlexTyres ships' },
+        ]}
+      />
+    </div>
+  </section>
+</BaseLayout>
